@@ -144,3 +144,51 @@ cc test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
     printf("%i\n", ft_isprint(1500));
     return (0);
 } */
+
+//* ft_tolower
+/* int main (void)
+{
+    printf("%i - ", tolower(226));
+    printf("%i\n", ft_tolower(226));
+    printf("%i - ", tolower('0'));
+    printf("%i\n", ft_tolower('0'));
+    printf("%i - ", tolower('7'));
+    printf("%i\n", ft_tolower('7'));
+    printf("%i - ", tolower('p'));
+    printf("%i\n", ft_tolower('p'));
+    printf("%i - ", tolower(-500));
+    printf("%i\n", ft_tolower(-500));
+    printf("%i - ", tolower('A'));
+    printf("%i\n", ft_tolower('A'));
+    printf("%i - ", tolower('\b'));
+    printf("%i\n", ft_tolower('\b'));
+    printf("%i - ", tolower('Z'));
+    printf("%i\n", ft_tolower('Z'));
+    printf("%i - ", tolower(1500));
+    printf("%i\n", ft_tolower(1500));
+    return (0);
+} */
+
+//* ft_toupper
+/* int main (void)
+{
+    printf("%i - ", toupper(226));
+    printf("%i\n", ft_toupper(226));
+    printf("%i - ", toupper('0'));
+    printf("%i\n", ft_toupper('0'));
+    printf("%i - ", toupper('7'));
+    printf("%i\n", ft_toupper('7'));
+    printf("%i - ", toupper('p'));
+    printf("%i\n", ft_toupper('p'));
+    printf("%i - ", toupper(-255));
+    printf("%i\n", ft_toupper(-255));
+    printf("%i - ", toupper('A'));
+    printf("%i\n", ft_toupper('A'));
+    printf("%i - ", toupper('\t'));
+    printf("%i\n", ft_toupper('\t'));
+    printf("%i - ", toupper('x'));
+    printf("%i\n", ft_toupper('x'));
+    printf("%i - ", toupper(1500));
+    printf("%i\n", ft_toupper(1500));
+    return (0);
+} */
