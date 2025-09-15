@@ -14,6 +14,7 @@ cc test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
 #include "libft.h"
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 
 //* ft_isalnum
 /* int main (void)
@@ -190,5 +191,39 @@ cc test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
     printf("%i\n", ft_toupper('x'));
     printf("%i - ", toupper(1500));
     printf("%i\n", ft_toupper(1500));
+    return (0);
+} */
+
+//* ft_strrchr
+/* int main (void)
+{
+    printf("%s - ", strrchr("aaabaaa", 'b'));
+    printf("%s\n", ft_strrchr("aaabaaa", 'b'));
+//    printf("%s - ", strrchr("aaabaaa", 'x'));
+//    printf("%s\n", ft_strrchr("aaabaaa", 'x'));
+    printf("%s - ", strrchr("hola", 'o'));
+    printf("%s\n", ft_strrchr("hola", 'o'));
+    printf("%s - ", strrchr("dogScat", 'S'));
+    printf("%s\n", ft_strrchr("dogScat", 'S'));
+    printf("%s - ", strrchr("[right]", '['));
+    printf("%s\n", ft_strrchr("[right]", '['));
+    printf("%s - ", strrchr("?42", '4'));
+    printf("%s\n", ft_strrchr("?42", '4'));
+    return (0);
+} */
+
+//* ft_strlen
+/* int main (void)
+{
+    printf("%li - ", strlen("Hola"));
+    printf("%li\n", ft_strlen("Hola"));
+    printf("%li - ", strlen("A"));
+    printf("%li\n", ft_strlen("A"));
+    printf("%li - ", strlen(""));
+    printf("%li\n", ft_strlen(""));
+    printf("%li - ", strlen("42"));
+    printf("%li\n", ft_strlen("42"));
+    printf("%li - ", strlen("qwertzuiopasdfghjklyxcvbnmqwertzuioasdfghjklyxcvbnm"));
+    printf("%li\n", ft_strlen("qwertzuiopasdfghjklyxcvbnmqwertzuioasdfghjklyxcvbnm"));
     return (0);
 } */
