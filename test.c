@@ -1,0 +1,146 @@
+/*
+cc test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
+
+-I dir
+    Add directory dir to the list of directories to be searched for header files.
+
+-L dir
+    Add directory dir to the list of directories to be searched for library files.
+
+-l lib
+    Link with the library named lib. The compiler searches for liblib.a or liblib.so.  
+*/
+
+#include "libft.h"
+#include <stdio.h>
+#include <ctype.h>
+
+//* ft_isalnum
+/* int main (void)
+{
+    printf("%i - ", isalnum('5'));
+    printf("%i\n", ft_isalnum('5'));
+    printf("%i - ", isalnum('['));
+    printf("%i\n", ft_isalnum('['));
+    printf("%i - ", isalnum('#'));
+    printf("%i\n", ft_isalnum('#'));
+    printf("%i - ", isalnum('Q'));
+    printf("%i\n", ft_isalnum('Q'));
+    printf("%i - ", isalnum(-5));
+    printf("%i\n", ft_isalnum(-5));
+    printf("%i - ", isalnum('z'));
+    printf("%i\n", ft_isalnum('z'));
+    printf("%i - ", isalnum('@'));
+    printf("%i\n", ft_isalnum('@'));
+    printf("%i - ", isalnum('Z'));
+    printf("%i\n", ft_isalnum('Z'));
+    printf("%i - ", isalnum(-32));
+    printf("%i\n", ft_isalnum(-32));
+    printf("%i - ", isalnum(1500));
+    printf("%i\n", ft_isalnum(1500));
+    return (0);
+} */
+
+//* ft_isalpha
+/* int main (void)
+{
+    printf("%i - ", isalpha('5'));
+    printf("%i\n", ft_isalpha('5'));
+    printf("%i - ", isalpha('['));
+    printf("%i\n", ft_isalpha('['));
+    printf("%i - ", isalpha('#'));
+    printf("%i\n", ft_isalpha('#'));
+    printf("%i - ", isalpha('Q'));
+    printf("%i\n", ft_isalpha('Q'));
+    printf("%i - ", isalpha(-5));
+    printf("%i\n", ft_isalpha(-5));
+    printf("%i - ", isalpha('z'));
+    printf("%i\n", ft_isalpha('z'));
+    printf("%i - ", isalpha('@'));
+    printf("%i\n", ft_isalpha('@'));
+    printf("%i - ", isalpha('Z'));
+    printf("%i\n", ft_isalpha('Z'));
+    printf("%i - ", isalpha(-32));
+    printf("%i\n", ft_isalpha(-32));
+    printf("%i - ", isalpha(1500));
+    printf("%i\n", ft_isalpha(1500));
+    return (0);
+} */
+
+//* ft_isascii
+/* int main (void)
+{
+    printf("%i - ", isascii(226));
+    printf("%i\n", ft_isascii(226));
+    printf("%i - ", isascii('['));
+    printf("%i\n", ft_isascii('['));
+    printf("%i - ", isascii('#'));
+    printf("%i\n", ft_isascii('#'));
+    printf("%i - ", isascii('p'));
+    printf("%i\n", ft_isascii('p'));
+    printf("%i - ", isascii(-5));
+    printf("%i\n", ft_isascii(-5));
+    printf("%i - ", isascii('z'));
+    printf("%i\n", ft_isascii('z'));
+    printf("%i - ", isascii('\b'));
+    printf("%i\n", ft_isascii('\b'));
+    printf("%i - ", isascii('Z'));
+    printf("%i\n", ft_isascii('Z'));
+    printf("%i - ", isascii(-32));
+    printf("%i\n", ft_isascii(-32));
+    printf("%i - ", isascii(1500));
+    printf("%i\n", ft_isascii(1500));
+    return (0);
+} */
+
+//* ft_isdigit
+/* int main (void)
+{
+    printf("%i - ", isdigit(226));
+    printf("%i\n", ft_isdigit(226));
+    printf("%i - ", isdigit('0'));
+    printf("%i\n", ft_isdigit('0'));
+    printf("%i - ", isdigit('7'));
+    printf("%i\n", ft_isdigit('7'));
+    printf("%i - ", isdigit('p'));
+    printf("%i\n", ft_isdigit('p'));
+    printf("%i - ", isdigit(-5));
+    printf("%i\n", ft_isdigit(-5));
+    printf("%i - ", isdigit('z'));
+    printf("%i\n", ft_isdigit('z'));
+    printf("%i - ", isdigit('\b'));
+    printf("%i\n", ft_isdigit('\b'));
+    printf("%i - ", isdigit('Z'));
+    printf("%i\n", ft_isdigit('Z'));
+    printf("%i - ", isdigit(-32));
+    printf("%i\n", ft_isdigit(-32));
+    printf("%i - ", isdigit(1500));
+    printf("%i\n", ft_isdigit(1500));
+    return (0);
+} */
+
+//* ft_isprint
+/* int main (void)
+{
+    printf("%i - ", isprint(226));
+    printf("%i\n", ft_isprint(226));
+    printf("%i - ", isprint('0'));
+    printf("%i\n", ft_isprint('0'));
+    printf("%i - ", isprint('7'));
+    printf("%i\n", ft_isprint('7'));
+    printf("%i - ", isprint('p'));
+    printf("%i\n", ft_isprint('p'));
+    printf("%i - ", isprint(-5));
+    printf("%i\n", ft_isprint(-5));
+    printf("%i - ", isprint('z'));
+    printf("%i\n", ft_isprint('z'));
+    printf("%i - ", isprint('\b'));
+    printf("%i\n", ft_isprint('\b'));
+    printf("%i - ", isprint('Z'));
+    printf("%i\n", ft_isprint('Z'));
+    printf("%i - ", isprint(-32));
+    printf("%i\n", ft_isprint(-32));
+    printf("%i - ", isprint(1500));
+    printf("%i\n", ft_isprint(1500));
+    return (0);
+} */
