@@ -221,22 +221,20 @@ int main(void)
     printf("--------- MEMCPM ---------\n\n");
 
     printf("--------- MEMCPY ---------\n");
-    char* buffer[25];
+    char* buffer = malloc(25);
+    char* src = "Hola";
+    buffer = ft_memcpy(buffer, src, 4);
+    printf("%s\n", buffer);
 
-    printf("%i - ", memcpy("Hola", buffer, 5));
-    printf("%i\n", ft_memcpy("Hola", buffer, 5));
-    printf("%i - ", memcpy("Perro", "Gato", 5));
-    printf("%i\n", ft_memcpy("Perro", "Perra", 5));
-    printf("%i - ", memcpy("", "E", 1));
-    printf("%i\n", ft_memcpy("", "E", 1));
-    printf("%i - ", memcpy("Ex", "E", 2));
-    printf("%i\n", ft_memcpy("Ex", "E", 2));
-    printf("%i - ", memcpy("Hola", "asd", 0));
-    printf("%i\n", ft_memcpy("Hola", "asd", 0));
-    printf("%i - ", memcpy(&num2, &num, 4));
-    printf("%i\n", ft_memcpy(&num2, &num, 4));
-    printf("%i - ", memcpy(&num2, &num3, 4));
-    printf("%i\n", ft_memcpy(&num2, &num3, 4));
+    char* buffer1 = malloc(25);
+    char* src1 = "I love this";
+    buffer1 = ft_memcpy(buffer1, src1, 6);
+    printf("%s\n", buffer1);
+
+    char* buffer2 = malloc(25);
+    char* src2 = "<<TEST>>";
+    buffer2 = ft_memcpy(buffer2, src2, 9);
+    printf("%s\n", buffer2);
     printf("--------- MEMCPY ---------\n\n");
 
     printf("--------- STRLEN ---------\n");
