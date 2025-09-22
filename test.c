@@ -185,6 +185,60 @@ int main(void)
     printf("%i\n", ft_isprint(1500));
     printf("--------- ISPRINT ---------\n\n");
 
+    printf("--------- MEMCHR ---------\n");
+    int num = 88;
+    printf("%p - ", memchr("Hola", 'x', 5));
+    printf("%p\n", ft_memchr("Hola", 'x', 5));
+    printf("%p - ", memchr("Hola", 'a', 4));
+    printf("%p\n", ft_memchr("Hola", 'a', 4));
+    printf("%p - ", memchr("", 'E', 1));
+    printf("%p\n", ft_memchr("", 'E', 1));
+    printf("%p - ", memchr("Hola", 'x', 0));
+    printf("%p\n", ft_memchr("Hola", 'x', 0));
+    printf("%p - ", memchr("chaU", 'c', 2));
+    printf("%p\n", ft_memchr("chaU", 'c', 2));
+    printf("%p - ", memchr(&num, 88, 4));
+    printf("%p\n", ft_memchr(&num, 88, 4));
+    printf("--------- MEMCHR ---------\n\n");
+
+    printf("--------- MEMCMP ---------\n");
+    int num2 = 88;
+    int num3 = 5;
+    printf("%i - ", memcmp("Hola", "Hola", 5));
+    printf("%i\n", ft_memcmp("Hola", "Hola", 5));
+    printf("%i - ", memcmp("Perro", "Gato", 5));
+    printf("%i\n", ft_memcmp("Perro", "Perra", 5));
+    printf("%i - ", memcmp("", "E", 1));
+    printf("%i\n", ft_memcmp("", "E", 1));
+    printf("%i - ", memcmp("Ex", "E", 2));
+    printf("%i\n", ft_memcmp("Ex", "E", 2));
+    printf("%i - ", memcmp("Hola", "asd", 0));
+    printf("%i\n", ft_memcmp("Hola", "asd", 0));
+    printf("%i - ", memcmp(&num2, &num, 4));
+    printf("%i\n", ft_memcmp(&num2, &num, 4));
+    printf("%i - ", memcmp(&num2, &num3, 4));
+    printf("%i\n", ft_memcmp(&num2, &num3, 4));
+    printf("--------- MEMCPM ---------\n\n");
+
+    printf("--------- MEMCPY ---------\n");
+    char* buffer[25];
+
+    printf("%i - ", memcpy("Hola", buffer, 5));
+    printf("%i\n", ft_memcpy("Hola", buffer, 5));
+    printf("%i - ", memcpy("Perro", "Gato", 5));
+    printf("%i\n", ft_memcpy("Perro", "Perra", 5));
+    printf("%i - ", memcpy("", "E", 1));
+    printf("%i\n", ft_memcpy("", "E", 1));
+    printf("%i - ", memcpy("Ex", "E", 2));
+    printf("%i\n", ft_memcpy("Ex", "E", 2));
+    printf("%i - ", memcpy("Hola", "asd", 0));
+    printf("%i\n", ft_memcpy("Hola", "asd", 0));
+    printf("%i - ", memcpy(&num2, &num, 4));
+    printf("%i\n", ft_memcpy(&num2, &num, 4));
+    printf("%i - ", memcpy(&num2, &num3, 4));
+    printf("%i\n", ft_memcpy(&num2, &num3, 4));
+    printf("--------- MEMCPY ---------\n\n");
+
     printf("--------- STRLEN ---------\n");
     printf("%li - ", strlen("Hola"));
     printf("%li\n", ft_strlen("Hola"));
@@ -197,6 +251,17 @@ int main(void)
     printf("%li - ", strlen("qwertzuiopasdfghjklyxcvbnmqwertzuioasdfghjklyxcvbnm"));
     printf("%li\n", ft_strlen("qwertzuiopasdfghjklyxcvbnmqwertzuioasdfghjklyxcvbnm"));
     printf("--------- STRLEN ---------\n\n");
+
+    printf("--------- STRNCMP ---------\n");
+    printf("%i - ", strncmp("Hola", "Hola", 4));
+    printf("%i\n", ft_strncmp("Hola", "Hola", 4));
+    printf("%i - ", strncmp("x", "xyz", 1));
+    printf("%i\n", ft_strncmp("x", "xyz", 1));
+    printf("%i - ", strncmp("Ecole 42", "Ecole 421", 10));
+    printf("%i\n", ft_strncmp("Ecole 42", "Ecole 421", 10));
+    printf("%i - ", strncmp("Pedro", "Juan", 150));
+    printf("%i\n", ft_strncmp("Pedro", "Juan", 150));
+    printf("--------- STRNCMP ---------\n\n");
 
     printf("--------- STRRCHR ---------\n");
     printf("%s - ", strrchr("aaabaaa", 'b'));
