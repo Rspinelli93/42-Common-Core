@@ -6,10 +6,21 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 21:11:14 by rspinell          #+#    #+#             */
-/*   Updated: 2025/09/15 21:11:16 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/09/22 11:56:37 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_bzero(void *s, size_t n);
+void ft_bzero(void *s, size_t n)
+{
+    char* str;
+
+    str = (char*)s;
+    while (n > 0)
+    {
+        *str = '\0';
+        n--;
+        str++;
+    }
+}

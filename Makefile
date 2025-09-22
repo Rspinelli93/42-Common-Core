@@ -22,7 +22,7 @@ $(NAME): $(OBJ)
 
 # Take all the .c files and compile the .o files needed foor creating the lib
 srcs/%.o : srcs/%.c
-	cc $(CFLAGS) -I $(INCLUDE) -c $< -o $@
+	cc $(CFLAGS) -g -I $(INCLUDE) -c $< -o $@
 
 # Add bonus files to the lib
 extra: all $(OBONUS)

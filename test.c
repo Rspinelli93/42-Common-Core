@@ -1,6 +1,9 @@
 /*
 cc test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
 
+-g
+    add for debbuging, then run gdb ./a.out
+
 -I dir
     Add directory dir to the list of directories to be searched for header files.
 
@@ -16,9 +19,58 @@ cc test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
 #include <ctype.h>
 #include <string.h>
 
-//* ft_isalnum
-/* int main (void)
+int main(void)
 {
+    printf("--------- ATOI ---------\n");
+    printf("%i - ", atoi("Hola"));
+    printf("%i\n", ft_atoi("Hola"));
+    printf("%i - ", atoi(" \t+55p"));
+    printf("%i\n", ft_atoi(" \t+55p"));
+    printf("%i - ", atoi(""));
+    printf("%i\n", ft_atoi(""));
+    printf("%i - ", atoi("42"));
+    printf("%i\n", ft_atoi("42"));
+    printf("%i - ", atoi("  \t \v -42asdasd"));
+    printf("%i\n", ft_atoi("  \t \v -42asdasd"));
+    printf("--------- ATOI ---------\n\n");
+
+    printf("--------- BZERO ---------\n");
+    char* str1 = malloc(3);
+    char* str2 = malloc(3);
+    char* temp1 = str1 + 1;
+    char* temp2 = str2 + 1;
+    int x = 97;
+    int i = 0;
+
+    while (i < 3)
+    {
+        str1[i] = x;
+        str2[i] = x;
+        x++;
+        i++;
+    }
+    printf("%s - ", str1);
+    printf("%s\n", str2);
+    bzero(temp1, 1);
+    ft_bzero(temp2, 1);
+    printf("%s - ", str1);
+    printf("%s\n", str2);
+    free(str1);
+    free(str2);
+    printf("--------- BZERO ---------\n\n");
+
+    printf("--------- CALLOC ---------\n");
+    int* arr = ft_calloc(35, sizeof(int));
+    int j = 0;
+    while (j < 35)
+    {
+        printf("%i ", arr[j]);
+        j++;
+    }
+    free(arr);
+    printf("\n--------- CALLOC ---------\n\n");
+
+    printf("--------- ISALNUM ---------\n");
     printf("%i - ", isalnum('5'));
     printf("%i\n", ft_isalnum('5'));
     printf("%i - ", isalnum('['));
@@ -39,12 +91,9 @@ cc test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
     printf("%i\n", ft_isalnum(-32));
     printf("%i - ", isalnum(1500));
     printf("%i\n", ft_isalnum(1500));
-    return (0);
-} */
+    printf("--------- ISALNUM ---------\n\n");
 
-//* ft_isalpha
-/* int main (void)
-{
+    printf("--------- ISALPHA ---------\n");
     printf("%i - ", isalpha('5'));
     printf("%i\n", ft_isalpha('5'));
     printf("%i - ", isalpha('['));
@@ -65,12 +114,9 @@ cc test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
     printf("%i\n", ft_isalpha(-32));
     printf("%i - ", isalpha(1500));
     printf("%i\n", ft_isalpha(1500));
-    return (0);
-} */
+    printf("--------- ISALPHA ---------\n\n");
 
-//* ft_isascii
-/* int main (void)
-{
+    printf("--------- ISASCII ---------\n");
     printf("%i - ", isascii(226));
     printf("%i\n", ft_isascii(226));
     printf("%i - ", isascii('['));
@@ -91,12 +137,9 @@ cc test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
     printf("%i\n", ft_isascii(-32));
     printf("%i - ", isascii(1500));
     printf("%i\n", ft_isascii(1500));
-    return (0);
-} */
+    printf("--------- ISASCII ---------\n\n");
 
-//* ft_isdigit
-/* int main (void)
-{
+    printf("--------- ISDIGIT ---------\n");
     printf("%i - ", isdigit(226));
     printf("%i\n", ft_isdigit(226));
     printf("%i - ", isdigit('0'));
@@ -117,12 +160,9 @@ cc test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
     printf("%i\n", ft_isdigit(-32));
     printf("%i - ", isdigit(1500));
     printf("%i\n", ft_isdigit(1500));
-    return (0);
-} */
+    printf("--------- ISDIGIT ---------\n\n");
 
-//* ft_isprint
-/* int main (void)
-{
+    printf("--------- ISPRINT ---------\n");
     printf("%i - ", isprint(226));
     printf("%i\n", ft_isprint(226));
     printf("%i - ", isprint('0'));
@@ -143,12 +183,37 @@ cc test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
     printf("%i\n", ft_isprint(-32));
     printf("%i - ", isprint(1500));
     printf("%i\n", ft_isprint(1500));
-    return (0);
-} */
+    printf("--------- ISPRINT ---------\n\n");
 
-//* ft_tolower
-/* int main (void)
-{
+    printf("--------- STRLEN ---------\n");
+    printf("%li - ", strlen("Hola"));
+    printf("%li\n", ft_strlen("Hola"));
+    printf("%li - ", strlen("A"));
+    printf("%li\n", ft_strlen("A"));
+    printf("%li - ", strlen(""));
+    printf("%li\n", ft_strlen(""));
+    printf("%li - ", strlen("42"));
+    printf("%li\n", ft_strlen("42"));
+    printf("%li - ", strlen("qwertzuiopasdfghjklyxcvbnmqwertzuioasdfghjklyxcvbnm"));
+    printf("%li\n", ft_strlen("qwertzuiopasdfghjklyxcvbnmqwertzuioasdfghjklyxcvbnm"));
+    printf("--------- STRLEN ---------\n\n");
+
+    printf("--------- STRRCHR ---------\n");
+    printf("%s - ", strrchr("aaabaaa", 'b'));
+    printf("%s\n", ft_strrchr("aaabaaa", 'b'));
+    // printf("%s - ", strrchr("aaabaaa", 'x'));
+    // printf("%s\n", ft_strrchr("aaabaaa", 'x'));
+    printf("%s - ", strrchr("hola", 'o'));
+    printf("%s\n", ft_strrchr("hola", 'o'));
+    printf("%s - ", strrchr("dogScat", 'S'));
+    printf("%s\n", ft_strrchr("dogScat", 'S'));
+    printf("%s - ", strrchr("[right]", '['));
+    printf("%s\n", ft_strrchr("[right]", '['));
+    printf("%s - ", strrchr("?42", '4'));
+    printf("%s\n", ft_strrchr("?42", '4'));
+    printf("--------- STRRCHR ---------\n\n");
+
+    printf("--------- TOLOWER ---------\n");
     printf("%i - ", tolower(226));
     printf("%i\n", ft_tolower(226));
     printf("%i - ", tolower('0'));
@@ -167,12 +232,9 @@ cc test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
     printf("%i\n", ft_tolower('Z'));
     printf("%i - ", tolower(1500));
     printf("%i\n", ft_tolower(1500));
-    return (0);
-} */
+    printf("--------- TOLOWER ---------\n\n");
 
-//* ft_toupper
-/* int main (void)
-{
+    printf("--------- TOUPPER ---------\n");
     printf("%i - ", toupper(226));
     printf("%i\n", ft_toupper(226));
     printf("%i - ", toupper('0'));
@@ -191,39 +253,7 @@ cc test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
     printf("%i\n", ft_toupper('x'));
     printf("%i - ", toupper(1500));
     printf("%i\n", ft_toupper(1500));
-    return (0);
-} */
+    printf("--------- TOUPPER ---------\n\n");
 
-//* ft_strrchr
-/* int main (void)
-{
-    printf("%s - ", strrchr("aaabaaa", 'b'));
-    printf("%s\n", ft_strrchr("aaabaaa", 'b'));
-//    printf("%s - ", strrchr("aaabaaa", 'x'));
-//    printf("%s\n", ft_strrchr("aaabaaa", 'x'));
-    printf("%s - ", strrchr("hola", 'o'));
-    printf("%s\n", ft_strrchr("hola", 'o'));
-    printf("%s - ", strrchr("dogScat", 'S'));
-    printf("%s\n", ft_strrchr("dogScat", 'S'));
-    printf("%s - ", strrchr("[right]", '['));
-    printf("%s\n", ft_strrchr("[right]", '['));
-    printf("%s - ", strrchr("?42", '4'));
-    printf("%s\n", ft_strrchr("?42", '4'));
     return (0);
-} */
-
-//* ft_strlen
-/* int main (void)
-{
-    printf("%li - ", strlen("Hola"));
-    printf("%li\n", ft_strlen("Hola"));
-    printf("%li - ", strlen("A"));
-    printf("%li\n", ft_strlen("A"));
-    printf("%li - ", strlen(""));
-    printf("%li\n", ft_strlen(""));
-    printf("%li - ", strlen("42"));
-    printf("%li\n", ft_strlen("42"));
-    printf("%li - ", strlen("qwertzuiopasdfghjklyxcvbnmqwertzuioasdfghjklyxcvbnm"));
-    printf("%li\n", ft_strlen("qwertzuiopasdfghjklyxcvbnmqwertzuioasdfghjklyxcvbnm"));
-    return (0);
-} */
+}
