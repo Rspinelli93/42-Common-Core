@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 21:11:14 by rspinell          #+#    #+#             */
-/*   Updated: 2025/09/22 11:56:37 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/09/29 15:49:33 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-    char* str;
+	char	*str;
 
-    str = (char*)s;
-    while (n > 0)
-    {
-        *str = '\0';
-        n--;
-        str++;
-    }
+	str = (char *)s;
+	while (n > 0)
+	{
+		*str = '\0';
+		n--;
+		str++;
+	}
 }
