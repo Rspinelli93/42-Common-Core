@@ -237,6 +237,26 @@ int main(void)
     printf("%s\n", buffer2);
     printf("--------- MEMCPY ---------\n\n");
 
+    printf("--------- MEMMOVE ---------\n");
+    char* src3 = "asdASD";
+    int len3 = strlen(src3) + 1;
+    char* dest3 = malloc(sizeof(char) * len3 - 3);
+    dest3 = ft_memmove(dest3, src3 + 3, len3 - 3);
+    printf("%s\n", dest3) ;
+
+    char* src4 = "I love this (not this)";
+    int len4 = 11;
+    char* dest4  = malloc(sizeof(char) * len4);
+    dest4  = ft_memmove(dest4 , src4, len4);
+    printf("%s\n", dest4 );
+
+    char* src5 = "<<TEST>>";
+    int len5 = strlen(src5) + 1;
+    char* dest5  = malloc(sizeof(char) * len5);
+    dest5  = ft_memmove(dest5 , src5, len5);
+    printf("%s\n", dest5 );
+    printf("--------- MEMMOVE ---------\n\n");
+
     printf("--------- STRLEN ---------\n");
     printf("%li - ", strlen("Hola"));
     printf("%li\n", ft_strlen("Hola"));
