@@ -257,6 +257,55 @@ int main(void)
     printf("%s\n", dest5 );
     printf("--------- MEMMOVE ---------\n\n");
 
+    printf("--------- MEMSET ---------\n");
+    char src6[] = "asdASD";
+    ft_memset(src6, 'F', 3);
+    printf("%s\n", src6) ;
+
+    char src7[] = "I love this";
+    ft_memset(src7 + 2 , '0', 4);
+    printf("%s\n", src7 );
+
+    char src8[] = "<<TEST>>";
+    ft_memset(src8 + 2, '5', 4);
+    printf("%s\n", src8 );
+    printf("--------- MEMSET ---------\n\n");
+
+    printf("--------- STRCHR ---------\n");
+    char *src9 = "HolaXHola";
+    char *dest9 = ft_strchr(src9, 'X');
+    printf("%s\n", dest9) ;
+
+    char *src11 = "HolaXChau";
+    char *dest11 = ft_strchr(src11, 'H');
+    printf("%s\n", dest11) ;
+    
+    char *src12 = "HolaXChau";
+    char *dest12 = ft_strchr(src12, 'u');
+    printf("%s\n", dest12) ;
+    printf("--------- STRCHR ---------\n\n");
+
+    printf("--------- STRDUP ---------\n");
+    char *src13 = "Duplicate me";
+    char *dest13 = ft_strdup(src13);
+    printf("%s\n", dest13) ;
+    free(dest13);
+
+    char *src14 = "";
+    char *dest14 = ft_strdup(src14);
+    printf("%s\n", dest14);
+    free(dest14);
+    printf("--------- STRDUP ---------\n\n");
+
+    printf("--------- STRLCAT ---------\n");
+    char dest15[20] = "Hello, ";
+    printf("Return %lu\n", ft_strlcat(dest15, "World!", sizeof(dest15)));
+    printf("%s\n", dest15);
+    char dest16[10] = "Hello, ";
+    printf("Return %lu\n", ft_strlcat(dest16, "World!", sizeof(dest16)));
+    printf("%s\n", dest16);
+    printf("--------- STRLCAT ---------\n\n");
+
     printf("--------- STRLEN ---------\n");
     printf("%li - ", strlen("Hola"));
     printf("%li\n", ft_strlen("Hola"));
