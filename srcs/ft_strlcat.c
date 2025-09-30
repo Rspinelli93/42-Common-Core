@@ -9,28 +9,40 @@
 /*   Updated: 2025/09/29 16:26:30 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/* 
+Measure dlen = strlen(dst) once.
 
+If dlen >= dsize, you can’t append anything, and return dsize + strlen(src).
+
+Otherwise, you have dsize - dlen - 1 space for copying. 
+*/
 #include "libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dsize)
 {
-	char	*ptr;
-	size_t	slen;
+	unsigned char	*srcs;
+	unsigned char	*dest;
+	size_t			dlen;
+	size_t			space;
 
-	ptr = (char *)src;
-	slen = (size_t)(ft_strlen(dst) + ft_strlen(src));
-	while(*dst != '\0')
+	if (!src && !dst)
+		return (0);
+	if (dsize == 0)
+		return (ft_strlen(src));
+	dlen = (size_t)ft_strlen(dst);
+	if (dlen >= dsize)
+		return (dsize + ft_strlen(src));
+	srcs = (unsigned char *)src;
+	dest = (unsigned char *)dst;
+	while (*dest)
+		dest++;
+	space = dsize - dlen - 1;
+	while (space-- > 0 && *srcs)
 	{
-		dst++;
-		dsize--;
+		*dest = *srcs;
+		dest++;
+		srcs++;
 	}
-	while (dsize > 1 && *ptr)
-	{
-		*dst = *ptr;
-		dst++;
-		ptr++;
-		dsize--;
-	}
-	*dst = '\0';
-	return (slen);
+	*dest = '\0';
+	return (ft_strlen(src) + dlen);
 }
