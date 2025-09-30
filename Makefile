@@ -1,7 +1,11 @@
 CFLAGS = -Wall -Wextra -Werror
 
 # Wildcard grabs all .c files, in this case in the folder /srcs
-SRCS = $(wildcard srcs/*.c)
+# ❌ this only looks one level deep (won’t catch srcs/extra/*.c)
+# SRCS = $(wildcard srcs/*.c)
+
+# ✅ instead, use "find" to search recursively for all .c files in srcs/
+SRCS = $(shell find srcs -name "*.c")
 
 # Convert the list of %.c generated with SRCS to %.o
 OBJ = $(SRCS:%.c=%.o)
@@ -20,8 +24,8 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
-# Take all the .c files and compile the .o files needed foor creating the lib
-srcs/%.o : srcs/%.c
+# Take all the .c files and pre-compile the .o files needed foor creating the lib
+%.o: %.c
 	cc $(CFLAGS) -g -I $(INCLUDE) -c $< -o $@
 
 # Add bonus files to the lib
