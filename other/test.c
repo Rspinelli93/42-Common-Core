@@ -1,5 +1,5 @@
 /*
-cc test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
+cc ./other/test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
 
 -g
     add for debbuging, then run gdb ./a.out
@@ -386,6 +386,31 @@ int main(void)
     printf("%i - ", toupper(1500));
     printf("%i\n", ft_toupper(1500));
     printf("--------- TOUPPER ---------\n\n");
+    
+    printf("-------------------- EXTRAS -------------------\n");
+    printf("-------------------- EXTRAS -------------------\n\n");
+
+    printf("--------- SUBSTR ---------\n");
+    printf("%s\n", ft_substr("Je ne comprends pas", 2, 5));
+    printf("%s\n", ft_substr("Je ne comp\0 hi im hiding", 50, 150));
+    printf("--------- SUBSTR ---------\n\n");
+
+    printf("--------- STRJOIN ---------\n");
+    printf("%s\n", ft_strjoin("Ecole", "42"));
+    printf("%s\n", ft_strjoin("", ""));
+    printf("%s\n", ft_strjoin("J", "ello"));
+    printf("%s\n", ft_strjoin("asdasd", ":))))"));
+    printf("--------- STRJOIN ---------\n\n");
+
+    printf("--------- STRTRIM ---------\n");
+    printf("%s\n", ft_strtrim("yyyyyyyyEcoleyzzzzxx", "xyz"));
+    printf("%s\n", ft_strtrim("", "asd"));
+    printf("%s\n", ft_strtrim("Hola", "Ha"));
+    printf("%s\n", ft_strtrim("Empty set", ""));
+    printf("--------- STRTRIM ---------\n\n");
+
+    printf("-------------------- BONUS -------------------\n");
+    printf("-------------------- BONUS -------------------\n");
 
     return (0);
 }
