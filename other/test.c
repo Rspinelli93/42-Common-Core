@@ -19,6 +19,11 @@ cc ./other/test.c -Wall -Wextra -Werror -L . -l ft -I include -o test
 #include <ctype.h>
 #include <string.h>
 
+char    strmapitest(unsigned int i, char c);
+char    toupermapi(unsigned int i, char c);
+void    iteritest1(unsigned int i, char* s);
+void    iteritest2(unsigned int i, char* s);
+
 int main(void)
 {
     printf("--------- ATOI ---------\n");
@@ -423,8 +428,57 @@ int main(void)
     for (int i = 0; res4[i]; i++) printf("%s\n", res4[i]);
     printf("--------- FT_SPLIT ---------\n\n");
 
+    printf("--------- FT_ITOA ---------\n");
+    printf("%s\n", ft_itoa(12));
+    printf("%s\n", ft_itoa(-12312));
+    printf("%s\n", ft_itoa(-2147483647 -1));
+    printf("%s\n", ft_itoa(2147483647));
+    printf("%s\n", ft_itoa(-42));
+    printf("%s\n", ft_itoa(0));
+    printf("--------- FT_ITOA ---------\n\n");
+
+    printf("--------- FT_STRMAPI ---------\n");
+    printf("%s\n", ft_strmapi("hola", strmapitest));
+    printf("%s\n", ft_strmapi("hola", toupermapi));
+    printf("--------- FT_STRMAPI ---------\n\n");
+
+    printf("--------- FT_STRITERI ---------\n");
+    char    stit1[9] = "Ecole 42";
+    char    stit2[10] = "Scuola 42";
+    ft_striteri(stit1, iteritest1);
+    ft_striteri(stit2, iteritest2);
+    printf("%s\n", stit1);
+    printf("%s\n", stit2);
+    printf("--------- FT_STRITERI ---------\n\n");
+
     printf("-------------------- BONUS -------------------\n");
     printf("-------------------- BONUS -------------------\n");
 
     return (0);
 }
+
+char    strmapitest(unsigned int i, char c)
+{
+    return (c + i);
+}
+
+char    toupermapi(unsigned int i, char c)
+{
+    (void)i;
+    if (c >= 'a' && c <= 'z')
+        return c - 32;
+    return c;
+}
+
+void    iteritest1(unsigned int i, char* s)
+{
+    (void)i;
+    *s -= 32;
+}
+
+void    iteritest2(unsigned int i, char* s)
+{
+    (void)i;
+    *s = 'a';
+}
+
