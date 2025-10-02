@@ -409,6 +409,20 @@ int main(void)
     printf("%s\n", ft_strtrim("Empty set", ""));
     printf("--------- STRTRIM ---------\n\n");
 
+    printf("--------- FT_SPLIT ---------\n");
+    char **res1 = ft_split("      split       this for   me  !       ", ' ');
+    for (int i = 0; res1[i]; i++) printf("%s\n", res1[i]);
+    printf("\n");
+    char **res2 = ft_split("   Hola", ' ');
+    for (int i = 0; res2[i]; i++) printf("%s\n", res2[i]);
+    printf("\n");
+    char **res3 = ft_split("     Hola   que  talco  ", ' ');
+    for (int i = 0; res3[i]; i++) printf("%s\n", res3[i]);
+    printf("\n");
+    char **res4 = ft_split("Empty set", ' ');
+    for (int i = 0; res4[i]; i++) printf("%s\n", res4[i]);
+    printf("--------- FT_SPLIT ---------\n\n");
+
     printf("-------------------- BONUS -------------------\n");
     printf("-------------------- BONUS -------------------\n");
 

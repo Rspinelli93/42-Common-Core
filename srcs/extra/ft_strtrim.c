@@ -6,13 +6,13 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 23:31:14 by rick              #+#    #+#             */
-/*   Updated: 2025/10/01 21:34:13 by rick             ###   ########.fr       */
+/*   Updated: 2025/10/02 19:44:21 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	charcmp(char c, char const *set)
+static int	charcmp(char c, char const *set)
 {
 	while (*set)
 	{
@@ -25,7 +25,7 @@ int	charcmp(char c, char const *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-    char	*dst;
+	char	*dst;
 	int		s;
 	int		e;
 	int		i;
@@ -36,7 +36,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (charcmp(s1[s], set))
 		s++;
 	if ((ft_strlen(s1) == 0) || (s >= e))
-        return (ft_strdup(""));
+		return (ft_strdup(""));
 	while (charcmp(s1[e], set))
 		e--;
 	dst = (char *) malloc(sizeof(char) * (2 + e - s));
