@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 15:56:16 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/03 21:11:06 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/03 21:14:39 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list	*ptr;
 	t_list	*tmp;
 
-	if (!lst)
+	if (lst == NULL)
 		return ;
-	ptr = *lst;
-	while (ptr != NULL)
+	while (*lst)
 	{
-		tmp = ptr;
-		ptr = ptr->next;
+		tmp = (*lst)->next;
 		ft_lstdelone(tmp, del);
+		*lst = tmp;
 	}
-	lst = NULL;
+	free(*lst);
+	*lst = NULL;
 }
