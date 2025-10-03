@@ -1,19 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 23:42:39 by rick              #+#    #+#             */
-/*   Updated: 2025/10/03 14:48:22 by rick             ###   ########.fr       */
+/*   Created: 2025/10/03 15:53:52 by rspinell          #+#    #+#             */
+/*   Updated: 2025/10/03 16:06:09 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
-{
-    ft_putstr_fd(s, fd);
-    ft_putchar_fd('\n', fd);
-}
+t_list	*ft_lstlast(t_list *lst);
