@@ -6,43 +6,37 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:26:50 by rspinell          #+#    #+#             */
-/*   Updated: 2025/09/29 16:28:12 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/03 18:23:50 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*     
-If *s2 is an empty string, *s1 is returned; if *s2	occurs nowhere
-in *s1, NULL is returned; otherwise a pointer to	the first character of
-the first occurrence of *s2 is returned.
+/*
+Search for a complete substring in max len characters.
 
-The strnstr() function locates the first	occurrence of the  null-termi-
-nated  string *s2 in the string *s1, where not more than len charac-
-ters are	searched.  Characters that appear after	a `\0'	character  are
-not  searched.
+28. Check if the sub is empty
 */
 
 #include "libft.h"
 
 char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 {
-	char	*ptr1;
-	char	*ptr2;
 	size_t	i;
+	size_t	j;
 
 	i = 0;
-	ptr1 = (char *) s1;
-	if (len == 0 || s1 == s2)
-		return (ptr1);
-	ptr2 = (char *) s2;
-	if (ft_strlen(ptr2) < ft_strlen(ptr1))
+	j = 0;
+	if (!s2[0])
+		return ((char *) s1);
+	while (s1[i] && i < len)
 	{
-		while ((i + ft_strlen(ptr2)) <= len)
+		while ((s1[i + j] == s2[j]) && (s1[i + j] && i + j < len))
 		{
-			if (ft_strncmp(ptr1, ptr2, ft_strlen(s2)) == 0)
-				return (ptr1);
-			ptr1++;
-			i++;
+			j++;
+			if (!s2[j])
+				return ((char *) s1 + i);
 		}
+		j = 0;
+		i++;
 	}
 	return (NULL);
 }

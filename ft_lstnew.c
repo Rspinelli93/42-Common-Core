@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 15:50:55 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/03 16:06:19 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/03 18:07:13 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	struct t_list	list;
+	t_list	*li;
 
-	list = malloc(sizeof(t_list));
-	list.content = content;
-	list.next = NULL;
-	return (list);
+	li = malloc(sizeof(t_list));
+	if (!li)
+		return (NULL);
+	li->content = content;
+	li->next = NULL;
+	return (li);
 }

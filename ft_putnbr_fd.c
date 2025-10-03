@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 23:43:29 by rick              #+#    #+#             */
-/*   Updated: 2025/10/03 15:40:41 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/03 18:16:04 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	ft_putnbr_fd(int n, int fd)
 	{
 		ft_putchar_fd('-', fd);
 		nb *= -1;
-		ft_putnbr_fd(n, fd);
 	}
 	if (nb > 9)
 	{
@@ -34,5 +33,5 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putnbr_fd((nb % 10), fd);
 	}
 	if (nb < 10)
-		ft_putchar_fd(n + '0', fd);
+		ft_putchar_fd(nb + '0', fd);
 }

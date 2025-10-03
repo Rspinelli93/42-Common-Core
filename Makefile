@@ -1,4 +1,4 @@
-SCRS = \
+SRCS = \
 	ft_isalpha.c \
 	ft_isdigit.c \
 	ft_isalnum.c \
@@ -55,7 +55,7 @@ all: $(NAME)
 
 # Add bonus files to the lib
 bonus: $(OBJS) $(OBONUS)
-	ar rcs $(NAME) $(OBONUS) $(OBJS)
+	ar rcs $(NAME) $(OBJS) $(OBONUS)
 
 # Build the static library
 $(NAME): $(OBJS)
