@@ -6,10 +6,17 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 23:40:47 by rick              #+#    #+#             */
-/*   Updated: 2025/09/30 23:53:06 by rick             ###   ########.fr       */
+/*   Updated: 2025/10/03 14:45:01 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd);
+void	ft_putstr_fd(char *s, int fd)
+{
+    while(*s)
+    {
+        ft_putchar_fd(*s, fd);
+        s++;
+    }
+}

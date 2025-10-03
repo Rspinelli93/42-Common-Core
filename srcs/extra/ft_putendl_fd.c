@@ -6,10 +6,14 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 23:42:39 by rick              #+#    #+#             */
-/*   Updated: 2025/09/30 23:52:55 by rick             ###   ########.fr       */
+/*   Updated: 2025/10/03 14:48:22 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd)
+{
+    ft_putstr_fd(s, fd);
+    ft_putchar_fd('\n', fd);
+}
