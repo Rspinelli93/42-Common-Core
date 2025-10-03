@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 15:54:39 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/03 19:41:38 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/03 22:21:32 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/* This function lets us add a new element to the end of an existing list. */
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
