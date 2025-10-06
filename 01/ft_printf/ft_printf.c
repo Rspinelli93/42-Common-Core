@@ -6,16 +6,12 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:13:43 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/06 16:09:17 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/06 16:16:10 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printf(const char *format, ...)
-{
-
-}
 /*
 • %c Prints a single character.
 • %s Prints a string (as defined by the common C convention).
@@ -27,3 +23,9 @@ int	ft_printf(const char *format, ...)
 • %X Prints a number in hexadecimal (base 16) uppercase format.
 • %% Prints a percent sign.
 */
+
+int	ft_printf(const char *format, ...)
+{
+
+}
+
