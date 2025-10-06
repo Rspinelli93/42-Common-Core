@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 23:32:15 by rick              #+#    #+#             */
-/*   Updated: 2025/10/06 11:10:32 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/06 11:17:56 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ alt = switch, so we will only add to the words count
 static int	cntwords(char *s, char c)
 {
 	int	words;
-	int alt;
+	int	alt;
 
 	words = 0;
 	alt = 0;
