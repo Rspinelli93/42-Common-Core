@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 21:12:47 by rspinell          #+#    #+#             */
-/*   Updated: 2025/09/29 16:25:00 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/06 10:24:57 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ char	*ft_strrchr(const char *s, int c)
 		ptr++;
 		i++;
 	}
-	if (*ptr == '\0' && c == '\0')
+	if (*ptr == '\0' && (unsigned char) c == '\0')
 		return (ptr);
 	while (i > 0)
 	{
 		ptr--;
-		if (*ptr == (char)c)
+		if (*ptr == (unsigned char) c)
 			return (ptr);
 		i--;
 	}

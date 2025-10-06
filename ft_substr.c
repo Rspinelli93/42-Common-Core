@@ -3,40 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 23:26:02 by rick              #+#    #+#             */
-/*   Updated: 2025/10/01 20:14:53 by rick             ###   ########.fr       */
+/*   Updated: 2025/10/06 10:51:12 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+ft_substr returns a substring of the string s passed as parameter.
+
+str: the string to take a substring from
+start: starting position (index) of the extracted string
+length: length of string to return
+
+32. Check for empty string
+35. Check index "out of bounds"
+38. Check for good mem alloc in case len
+	is bigger than the actual amount of char to copy.
+41. Allocate memory
+46. Start at s + start
+*/
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*pts;
+	char	*ptr;
 	char	*dst;
-	char	*ptd;
 	size_t	i;
 
-	i = 0;
-	dst = (char *) malloc(sizeof(char) * (len + 1));
+	if (!s)
+		return (NULL);
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	dst = malloc(sizeof(char) * (len + 1));
 	if (dst == NULL)
 		return (NULL);
-	if (start >= ft_strlen(s))
+	ptr = (char *) s + start;
+	i = 0;
+	while (i < len)
 	{
-		*dst = '\0';
-		return (dst);
-	}
-	pts = (char *) s + start;
-	ptd = dst;
-	while (i < len && *pts)
-	{
-		*ptd = *pts;
-		ptd++;
-		pts++;
+		*dst = *ptr;
+		dst++;
+		ptr++;
 		i++;
 	}
-	*ptd = '\0';
-	return (dst);
+	*dst = '\0';
+	return (dst - len);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 23:32:15 by rick              #+#    #+#             */
-/*   Updated: 2025/10/02 20:03:19 by rick             ###   ########.fr       */
+/*   Updated: 2025/10/06 11:10:32 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*skipc(char *str, char c);
 static int	cntwords(char *s, char c);
-static char	*stralloc(int len, char *str);
+static char	*strmake(int len, char *str);
 static int	strclen(char *str, char c);
 
 char	**ft_split(char const *s, char c)
@@ -33,7 +33,7 @@ char	**ft_split(char const *s, char c)
 	str = skipc(str, c);
 	while (i < words)
 	{
-		arr[i] = stralloc(strclen(str, c), str);
+		arr[i] = strmake(strclen(str, c), str);
 		str += ft_strlen(arr[i]);
 		str = skipc(str, c);
 		i++;
@@ -42,7 +42,7 @@ char	**ft_split(char const *s, char c)
 	return (arr);
 }
 
-/* 
+/*
 SKIP C - Advances the string until it finds != 'c' or the end.
 
 Return - ptr to that position
@@ -63,41 +63,39 @@ COUNT WORDS
 Params - 's' being the string to iterate and 'c' the separator
 Return - Number of strings found separated by 'c'
 
-24. Advance in case of separator till first word
-28. Control in case of all ('s' char) == 'c' or string being empty
-32. Iterate over the string
-34. Increment words in case of:
-		- '*s' == 'c' followed by a char different than 'c'
-			(Avoid 2 'c' or more in a row)
-		- reaching the end of the string
+words = word count
+alt = switch, so we will only add to the words count
+	if alt == 0
+
+83. iterate over the string
+89. add to count in posisitive cases
+94. set alt to 0 again
 40. Return the word
 */
 
 static int	cntwords(char *s, char c)
 {
 	int	words;
+	int alt;
 
-	s = skipc(s, c);
-	if (ft_strlen(s) == 0 || !s || c == '\0')
-		return (0);
 	words = 0;
+	alt = 0;
 	while (*s)
 	{
-		if (*s == c)
+		if (*s != c && alt == 0)
 		{
+			alt = 1;
 			words++;
-			s = skipc(s, c);
-			continue ;
 		}
+		else if (*s == c)
+			alt = 0;
 		s++;
 	}
-	if (*(s - 1) != c)
-		words++;
 	return (words);
 }
 
-/* 
-ALLOCATE A STRING - Allocate a string, populate and null terminate.
+/*
+MAKE A STRING - Allocate a string, populate and null terminate.
 
 Return - Allocated string or NULL in case of not enough mem
 Params - 'len' is the length not including '\0'
@@ -107,7 +105,7 @@ Params - 'len' is the length not including '\0'
 69. Null terminate
 70. Return string
 */
-static char	*stralloc(int len, char *str)
+static char	*strmake(int len, char *str)
 {
 	char	*dst;
 	char	*ptr;
@@ -129,7 +127,7 @@ static char	*stralloc(int len, char *str)
 	return (dst);
 }
 
-/* 
+/*
 STRING LENGTH - Finds the length of the string until it finds 'c' or the end.
 
 Return - Length of the string
