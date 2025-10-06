@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Build artifacts
+*.o
+*.out
+a.out
+
+# Temp files
+*.swp
+*.tmp
