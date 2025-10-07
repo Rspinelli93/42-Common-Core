@@ -6,12 +6,13 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:13:43 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/06 23:13:40 by rick             ###   ########.fr       */
+/*   Updated: 2025/10/07 22:13:40 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdarg.h>
+#include "ft_printf.h"
+
+static void	ft_mode(int *cnt, char c, va_list args);
 
 /*
 • %c Prints a single character.
@@ -23,9 +24,7 @@
 • %x Prints a number in hexadecimal (base 16) lowercase format.
 • %X Prints a number in hexadecimal (base 16) uppercase format.
 • %% Prints a percent sign.
-*/
-
-/* 
+----------------------------------------
 $) va_list: An object of type va_list is used by the 
 		macros va_start(3), va_arg(3), va_copy(3), and
 		va_end(3) to traverse the list of arguments.
@@ -44,9 +43,7 @@ $) MACROS (func)
 	Use another (dest) to read the arguments without losing track.
 -	void va_end(va_list ap);
 	va_end() will free the allocated memory.
-*/
-
-/* 
+-------------------------------------------
 $) IMPLEMENTATION
 * Count args function int count_args(va_list args);
 * Iterate until the end
@@ -54,9 +51,50 @@ $) IMPLEMENTATION
 * Strncmp to check for flags
 * Strcat to add the content to the string to print
 */
+
 int	ft_printf(const char *format, ...)
 {
-    va_list	args;
+	va_list	args;
+	int		cnt;
+
+	cnt = 0;
 	va_start(args, format);
+	while (format)
+	{
+		if (*format == '%')
+		{
+			format++;
+			ft_mode(&cnt, *format, args);
+			va_arg(args, type_of_var);
+//! 		ACA HAY QUE ACLARAR LA VARIABLE, EN FTMODE AGREGAR UN PARAMETRO POINTER A ARGUMENTO, PARA PODER MODIFICARLO EN CADA FUNCION
+			format++;
+			continue ;
+		}
+		cnt++;
+		format++;
+	}
+	va_end(args);
+	return (cnt);
 }
 
+static void	ft_mode(int *cnt, char c, va_list args)
+{
+	if (c == 'c')
+		ft_putchar_pf(va_arg(args, int), cnt);
+	if (c == 's')
+		ft_putstr_pf(va_arg(args, char *), cnt);
+	if (c == 'p')
+		ft_printptr_pf(va_arg(args, void *), cnt);
+	if (c == 'd')
+		ft_putnbr_pf(va_arg(args, int), 1, cnt);
+	if (c == 'i')
+		ft_putnbr_pf(va_arg(args, int), 1, cnt);
+	if (c == 'u')
+		ft_putunsig_pf(va_arg(args, unsigned int), cnt);
+	if (c == 'x')
+		ft_printhex_pf(va_arg(args, unsigned int), cnt);
+	if (c == 'X')
+		ft_printhexup_pf(va_arg(args, unsigned int), cnt);
+	if (c == '%')
+		ft_putchar_pf('%', cnt);
+}
