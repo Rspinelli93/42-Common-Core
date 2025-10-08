@@ -1,15 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printhexup_pf.c                                 :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 19:09:48 by rick              #+#    #+#             */
-/*   Updated: 2025/10/07 21:58:28 by rick             ###   ########.fr       */
+/*   Created: 2025/10/08 21:47:05 by rick              #+#    #+#             */
+/*   Updated: 2025/10/08 22:01:18 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
-void	ft_printhexup_pf(unsigned int u, int *cnt);
+int	main(void)
+{
+	int	i = -42;
+	unsigned int u = 42;
+	char *str = "This is a string";
+	ft_printf("Integer: %i\n", &i);
+//	ft_printf("Decimal: %i\n", &i);
+//	ft_printf("Hexa: %x\n", &i);
+//	ft_printf("HEXA: %X\n", &i);
+//	ft_printf("Pointer: %p\n", i);
+//	ft_printf("Char: %i\n", *str);
+//	ft_printf("String: %i\n", str);
+//	ft_printf("Percentage: %%\n");
+//	ft_printf("Unsigned %u\n", u);
+	return (0);
+}

@@ -6,13 +6,13 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:13:43 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/07 22:13:40 by rick             ###   ########.fr       */
+/*   Updated: 2025/10/08 20:38:44 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_mode(int *cnt, char c, va_list args);
+static void	ft_mode(int *cnt, char c, va_list *args);
 
 /*
 • %c Prints a single character.
@@ -64,9 +64,9 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			ft_mode(&cnt, *format, args);
-			va_arg(args, type_of_var);
-//! 		ACA HAY QUE ACLARAR LA VARIABLE, EN FTMODE AGREGAR UN PARAMETRO POINTER A ARGUMENTO, PARA PODER MODIFICARLO EN CADA FUNCION
+			ft_mode(&cnt, *format, &args);
+			if (*format == '%')
+				va_arg(args, int);
 			format++;
 			continue ;
 		}
@@ -77,24 +77,24 @@ int	ft_printf(const char *format, ...)
 	return (cnt);
 }
 
-static void	ft_mode(int *cnt, char c, va_list args)
+static void	ft_mode(int *cnt, char c, va_list *args)
 {
 	if (c == 'c')
-		ft_putchar_pf(va_arg(args, int), cnt);
+		ft_putchar_pf(va_arg(*args, int), cnt);
 	if (c == 's')
-		ft_putstr_pf(va_arg(args, char *), cnt);
+		ft_putstr_pf(va_arg(*args, char *), cnt);
 	if (c == 'p')
-		ft_printptr_pf(va_arg(args, void *), cnt);
+		ft_printptr_pf(va_arg(*args, void *), "0123456789abcdef", cnt);
 	if (c == 'd')
-		ft_putnbr_pf(va_arg(args, int), 1, cnt);
+		ft_putnbr_pf(va_arg(*args, int), 1, cnt);
 	if (c == 'i')
-		ft_putnbr_pf(va_arg(args, int), 1, cnt);
+		ft_putnbr_pf(va_arg(*args, int), 1, cnt);
 	if (c == 'u')
-		ft_putunsig_pf(va_arg(args, unsigned int), cnt);
+		ft_putnbr_pf((int) va_arg(*args, unsigned int), 1, cnt);
 	if (c == 'x')
-		ft_printhex_pf(va_arg(args, unsigned int), cnt);
+		ft_printhex_pf(va_arg(*args, unsigned int), "0123456789abcdef", cnt);
 	if (c == 'X')
-		ft_printhexup_pf(va_arg(args, unsigned int), cnt);
+		ft_printhex_pf(va_arg(*args, unsigned int), "0123456789ABCDEF", cnt);
 	if (c == '%')
 		ft_putchar_pf('%', cnt);
 }
