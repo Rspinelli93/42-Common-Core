@@ -19,8 +19,8 @@ $(LIBFT):
 
 # Build printf lib from libft + objs
 $(NAME): $(LIBFT) $(OFILES)
-	cp $(LIBFT) $(NAME)           # start from libft.a
-	ar rcs $(NAME) $(OFILES)      # add printf objects
+	cp $(LIBFT) $(NAME)
+	ar rcs $(NAME) $(OFILES)
 
 # Compile .c to .o, addprefix prepends -I to each include dir
 %.o: %.c

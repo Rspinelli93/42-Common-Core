@@ -3,17 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_pf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:02:37 by rick              #+#    #+#             */
-/*   Updated: 2025/10/07 22:00:50 by rick             ###   ########.fr       */
+/*   Updated: 2025/10/09 18:43:33 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 void	ft_putstr_pf(char *str, int *cnt)
 {
-	ft_putstr_fd(str, 1);
-	*cnt += ft_strlen(str);
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+	{
+		write (1, "(null)", 6);
+		*cnt = *cnt + 6;
+	}
+	else
+	{
+		while (str[i] != '\0')
+		{
+			ft_putchar_pf(str[i], cnt);
+			i++;
+		}
+	}
 }
+/*int main(void)
+{
+	int i = 42;
+	char *str = "Hola";
+	ft_putstr_pf(str, &i);
+	printf("\nExpected opt: Hola\nCount expt: 46. Res: %i\n", i);
+	return (0);
+}*/
