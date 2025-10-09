@@ -6,15 +6,18 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:13:43 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/08 20:38:44 by rick             ###   ########.fr       */
+/*   Updated: 2025/10/09 15:00:00 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 static void	ft_mode(int *cnt, char c, va_list *args);
+static void	ft_pformat(const char *str);
 
 /*
+cc main.c -I includes -I libft libftprintf.a -o test
+
 • %c Prints a single character.
 • %s Prints a string (as defined by the common C convention).
 • %p The void * pointer argument has to be printed in hexadecimal format.
@@ -59,6 +62,7 @@ int	ft_printf(const char *format, ...)
 
 	cnt = 0;
 	va_start(args, format);
+	ft_pformat(format);
 	while (format)
 	{
 		if (*format == '%')
@@ -68,6 +72,7 @@ int	ft_printf(const char *format, ...)
 			if (*format == '%')
 				va_arg(args, int);
 			format++;
+			ft_pformat(format);
 			continue ;
 		}
 		cnt++;
@@ -97,4 +102,15 @@ static void	ft_mode(int *cnt, char c, va_list *args)
 		ft_printhex_pf(va_arg(*args, unsigned int), "0123456789ABCDEF", cnt);
 	if (c == '%')
 		ft_putchar_pf('%', cnt);
+}
+static void	ft_pformat(const char *str)
+{
+	char	*ptr;
+
+	ptr = (char *)str;
+	while (ptr && *ptr != '%')
+	{
+		ft_putchar_fd(*ptr, 1);
+		ptr++;
+	}
 }
