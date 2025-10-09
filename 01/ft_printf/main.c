@@ -6,13 +6,13 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 21:47:05 by rick              #+#    #+#             */
-/*   Updated: 2025/10/09 18:39:21 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/09 19:12:43 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
-
+#include <stdio.h>
 int	main(void)
 {
 	int	i = -42;
@@ -23,6 +23,6 @@ int	main(void)
 //	ft_printf("Char: %c\n", str[0]);
 //	ft_printf("String: %s\n", str);
 //	ft_printf("Percentage: %%\n");
-	ft_printf(" NULL %s NULL ", NULL);
+	printf(" %p %p ", -2147483648, 2147483647);
 	return (0);
 }
