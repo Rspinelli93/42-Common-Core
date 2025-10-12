@@ -6,33 +6,52 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:06:13 by rick              #+#    #+#             */
-/*   Updated: 2025/10/09 18:32:33 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/12 10:56:17 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
+
+static void	ft_printhexlong_pf(unsigned long u, char *str, int *cnt)
+{
+	if (u > 15)
+	{
+		ft_printhexlong_pf(u / 16, str, cnt);
+		ft_printhexlong_pf(u % 16, str, cnt);
+	}
+	if (u < 16)
+		ft_putchar_pf(str[u], cnt);
+}
 
 void	ft_printptr_pf(void *ptr, char *str, int *cnt)
 {
 	unsigned long	u;
 
+	if (!ptr)
+	{
+		ft_putstr_pf("(nil)", cnt);
+		return ;
+	}
 	u = (unsigned long)ptr;
 	ft_putstr_pf("0x", cnt);
 	if (u > 15)
 	{
-		ft_printhex_pf(u / 16, str, cnt);
-		ft_printhex_pf(u % 16, str, cnt);
+		ft_printhexlong_pf(u / 16, str, cnt);
+		ft_printhexlong_pf(u % 16, str, cnt);
 	}
 	if (u < 16)
 		ft_putchar_pf(str[u], cnt);
 }
-/*int main (void)
+/* int main (void)
 {
-	char	c = '5';
-	char	*str = "0123456789abcdefg";
-	int		count = 41;
-	ft_printptr_pf(&c, str, &count);
-	printf("\nCount start: 41. Res: %i\n", count);
+
+	char	*str = "(nil)";
+	int		count = 0;
+
+	ft_putstr_pf(str, &count);
+ 	//ft_printptr_pf(&c, str, &count);
+	ft_printf("\n%p\n", 0);
+	int i = printf("%p", NULL);
+	printf("%i", i);
 	return (0);
-}*/
+} */

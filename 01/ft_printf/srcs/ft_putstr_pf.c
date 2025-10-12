@@ -6,12 +6,11 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:02:37 by rick              #+#    #+#             */
-/*   Updated: 2025/10/09 18:43:33 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/12 10:56:18 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 void	ft_putstr_pf(char *str, int *cnt)
 {

@@ -6,12 +6,11 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 19:07:45 by rick              #+#    #+#             */
-/*   Updated: 2025/10/09 16:46:20 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/12 10:56:19 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 void	ft_putnbr_pf(int i, int *cnt)
 {

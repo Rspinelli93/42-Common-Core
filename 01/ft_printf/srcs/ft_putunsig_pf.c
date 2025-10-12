@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printhex_pf.c                                   :+:      :+:    :+:   */
+/*   ft_putunsig_pf.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 19:08:50 by rick              #+#    #+#             */
-/*   Updated: 2025/10/12 10:56:22 by rspinell         ###   ########.fr       */
+/*   Created: 2025/10/12 10:55:59 by rspinell          #+#    #+#             */
+/*   Updated: 2025/10/12 11:02:13 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printhex_pf(unsigned int u, char *str, int *cnt)
+void	ft_putunsig_pf(unsigned int u, int *cnt)
 {
-	if (u > 15)
-	{
-		ft_printhex_pf(u / 16, str, cnt);
-		ft_printhex_pf(u % 16, str, cnt);
-	}
-	if (u < 16)
-		ft_putchar_pf(str[u], cnt);
-}
+	unsigned long	ul;
 
-/*int main (void)
-{
-	unsigned int	num = 123;
-	char	*str = "0123456789abcdefg";
-	int		count = 41;
-	ft_printhex_pf(num, str, &count);
-	printf("\nNum 123, expected print: 7b\nCount expected 43. Res: %i\n", count);
-	return (0);
-}*/
+	ul = (unsigned long)u;
+	if (ul < 0)
+	{
+		ul = 4294967295 - ul;
+	}
+	if (ul > 9)
+	{
+		ft_putunsig_pf((ul / 10), cnt);
+		ft_putunsig_pf((ul % 10), cnt);
+	}
+	if (ul < 10)
+	{
+		ft_putchar_pf(ul + '0', cnt);
+	}
+}

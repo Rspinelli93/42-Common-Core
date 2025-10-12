@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:13:43 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/09 18:21:08 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/12 11:04:39 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void	ft_specifier(int *cnt, char c, va_list *args)
 	if (c == 'i')
 		ft_putnbr_pf(va_arg(*args, int), cnt);
 	if (c == 'u')
-		ft_putnbr_pf((int) va_arg(*args, unsigned int), cnt);
+		ft_putunsig_pf((int) va_arg(*args, unsigned int), cnt);
 	if (c == 'x')
 		ft_printhex_pf(va_arg(*args, unsigned int), "0123456789abcdef", cnt);
 	if (c == 'X')
