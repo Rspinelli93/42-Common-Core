@@ -1,12 +1,9 @@
 CFLAGS = -Wall -Wextra -Werror
 
-LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
-
-INCLUDES = ./includes ./libft
+INCLUDES = ./includes
 
 # Source files (wildcard expands all .c in srcs)
-SRCS = $(wildcard ./srcs/*.c)
+SRCS = $(wildcard ./srcs/*.c) $(wildcard ./libft/*.c)
 # Object files: replace .c with .o for all SRCS + ft_printf.o
 OFILES = $(SRCS:.c=.o) ft_printf.o
 
@@ -14,12 +11,8 @@ NAME = libftprintf.a
 
 all: $(NAME)
 
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
-
 # Build printf lib from libft + objs
-$(NAME): $(LIBFT) $(OFILES)
-	cp $(LIBFT) $(NAME)
+$(NAME): $(OFILES)
 	ar rcs $(NAME) $(OFILES)
 
 # Compile .c to .o, addprefix prepends -I to each include dir
@@ -28,11 +21,9 @@ $(NAME): $(LIBFT) $(OFILES)
 
 clean:
 	rm -rf $(OFILES)
-	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -rf $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
