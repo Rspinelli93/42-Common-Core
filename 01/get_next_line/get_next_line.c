@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:03 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/13 13:46:12 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/13 16:18:40 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			ret;
 
-	buff = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (fd < 0 || !buff)
+	buff = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
+	if (fd < 0 || !buff || BUFFER_SIZE < 1)
 		return (NULL);
 	while (!contains_n(stash))
 	{
@@ -95,7 +95,7 @@ char	*get_next_line(int fd)
 		if (ret < BUFFER_SIZE)
 			return (stash);
 	}
-	line = get_line(stash);
+	line = get_lines(stash);
 	stash = str_realloc(stash, 0, ft_strlen(line) - 1);
 	return (line);
 }
@@ -103,7 +103,7 @@ char	*get_next_line(int fd)
 /*
 	* get_line() will allocate and copy a string until finding
 	* a '\n' character and return the newly allocated string. */
-char	*get_line(char *str)
+char	*get_lines(char *str)
 {
 	char	*line;
 	char	*ptr;
@@ -114,13 +114,13 @@ char	*get_line(char *str)
 		len++;
 	line = ft_calloc(sizeof(char), len + 2);
 	ptr = line;
-	while (*str)
+	while (len > 0)
 	{
 		*ptr = *str;
 		ptr++;
 		str++;
+		len--;
 	}
-	*ptr = '\n';
 	return (line);
 }
 
@@ -144,7 +144,7 @@ char	*concat_end(char *stash, char *buff)
 		stash = str_realloc(stash, BUFFER_SIZE, 0);
 		if (!stash)
 			return (NULL);
-		ptr = stash + (ft_strlen(stash) + 1);
+		ptr = stash + (ft_strlen(stash));
 	}
 	while (*buff)
 	{
@@ -184,4 +184,19 @@ char	*str_realloc(char *str, int b_size, int ix)
 	}
 	free(str);
 	return (new);
+}
+
+int	main(void)
+{
+	int	fd;
+	char *str;
+	int i = 15;
+
+	fd = open("./test.txt", O_RDONLY);
+	printf("fd: %i\n", fd);
+	while (--i > 0)
+	{
+		str = get_next_line(fd);
+		printf("%s", str);
+	}
 }

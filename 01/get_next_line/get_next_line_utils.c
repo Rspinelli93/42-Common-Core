@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:25 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/13 13:46:22 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/13 15:21:28 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ft_strlen(const char *s)
 	* contains a new line char ('\n'). */
 int	contains_n(char *str)
 {
+	if (!str)
+		return (0);
 	while (*str)
 	{
 		if (*str == '\n')

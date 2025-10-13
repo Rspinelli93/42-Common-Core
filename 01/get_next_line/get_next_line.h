@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:42 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/13 13:46:55 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/13 16:15:22 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 16
+#  define BUFFER_SIZE 2
 # endif
 
 # include <fcntl.h>
+# include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 char	*get_next_line(int fd);
-char	*get_line(char *str);
+char	*get_lines(char *str);
 char	*str_realloc(char *str, int b_size, int ix);
 char	*concat_end(char *stash, char *buff);
 int		ft_strlen(const char *s);
