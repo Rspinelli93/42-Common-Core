@@ -3,19 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:25 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/13 08:41:21 by rick             ###   ########.fr       */
+/*   Updated: 2025/10/13 13:46:22 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+/* Returns the length of a string */
+int	ft_strlen(const char *s)
+{
+	int	len;
+
+	len = 0;
+	while (*s != '\0')
+	{
+		s++;
+		len++;
+	}
+	return (len);
+}
+
 /*
-* Boolean function to check if the string 
-* contains a new line char ('\n'). */
-int	found_n(char *str)
+	* BOOL. Function to check if the string
+	* contains a new line char ('\n'). */
+int	contains_n(char *str)
 {
 	while (*str)
 	{
@@ -25,23 +39,29 @@ int	found_n(char *str)
 	}
 	return (0);
 }
-/*
-* concat_end concatenates at the end of the string 
-* (string that will be returned by get_next_line), the part
-* of the buffer before finding '\n' or '\0'.
-* Return: the return is null in case of coping the full buffer,
-* and in case of stopping before by a '\n' it will return a pointer
-* to the next char. */
-char	*concat_end(static char *stat, char *buff)
+
+/* Allocates memory, filling bytes with 0s */
+void	*ft_calloc(int nmemb, int size)
 {
-	stat += ft_strlen(stat);
-	while (*buff || *buff == '\n')
+	void	*ptr;
+
+	ptr = malloc(nmemb * size);
+	if (ptr == NULL)
+		return (ptr);
+	ft_bzero(ptr, nmemb * size);
+	return (ptr);
+}
+
+/* Fills bytes with 0s */
+void	ft_bzero(void *s, int n)
+{
+	char	*str;
+
+	str = (char *)s;
+	while (n > 0)
 	{
-		*stat = *buff;
-		buff++;
-		stat++;
+		*str = '\0';
+		n--;
+		str++;
 	}
-	if (*buff == '\n')
-		return (buff + 1);
-	return (NULL);
 }
