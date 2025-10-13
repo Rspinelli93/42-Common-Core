@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:25 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/12 18:39:01 by rick             ###   ########.fr       */
+/*   Updated: 2025/10/13 08:41:21 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	found_n(char *str)
 	return (0);
 }
 /*
-* concat_end concatenates at the end of the staric string 
+* concat_end concatenates at the end of the string 
 * (string that will be returned by get_next_line), the part
 * of the buffer before finding '\n' or '\0'.
 * Return: the return is null in case of coping the full buffer,

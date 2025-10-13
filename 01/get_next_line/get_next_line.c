@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:03 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/12 16:40:52 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/13 08:40:12 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
+/*
+$	IMPLEMENTATION
+
+	- Read the document.
+	- Store nbytes in the buffer.
+	- Copy the values of the buffer inside the static until
+		static contains \n or the iteration of buffer is 
+		smaller than the size buffer (meaning we got till the
+		end of the document).
+	- Copy the values of the static until the \n into another 
+		string to return. Advance the static until \n + 1
+		(This will have the static ready fo the next iteration).
+*/
 /*
 $	READ()
 
