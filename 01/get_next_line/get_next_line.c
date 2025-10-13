@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:03 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/13 16:18:40 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/13 21:35:52 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "get_next_line.h"
 
 /*
 $	READ()
@@ -50,21 +48,6 @@ the function will return -1 as a synonym of failure.
 ?	fd = open("text.txt", O_RDONLY);
 */
 /*
-When writing your tests, remember that:
-1) Both the buffer size and the line size can be of very different
-values.
-2) A file descriptor does not only point to regular files.
-Be thorough and cross-check your work with your peers. Prepare a
-comprehensive set of diverse tests for the defense.When writing your tests,
-remember that:
-1) Both the buffer size and the line size can be of very different
-values.
-2) A file descriptor does not only point to regular files.
-Be thorough and cross-check your work with your peers. Prepare a
-comprehensive set of diverse tests for the defense.
-*/
-
-/*
 $	IMPLEMENTATION
 
 	- Allocate the buffer
@@ -78,6 +61,9 @@ $	IMPLEMENTATION
 		string to return. Advance the static until \n + 1
 		(This will have the static ready fo the next iteration).
 */
+
+#include "get_next_line.h"
+
 char	*get_next_line(int fd)
 {
 	static char	*stash;
@@ -173,7 +159,7 @@ char	*str_realloc(char *str, int b_size, int ix)
 		slen++;
 		ix++;
 	}
-	new = ft_calloc(sizeof(char), slen + b_size + 1);
+	new = ft_calloc(sizeof(char), slen + b_size);
 	ix = i;
 	i = 0;
 	while (str[ix])
@@ -188,15 +174,20 @@ char	*str_realloc(char *str, int b_size, int ix)
 
 int	main(void)
 {
-	int	fd;
-	char *str;
-	int i = 15;
-
-	fd = open("./test.txt", O_RDONLY);
-	printf("fd: %i\n", fd);
-	while (--i > 0)
+/* 	char	*str = malloc(5);
+	char	*buff = "ho";
+	int i = 0;
+	while (i < 5)
 	{
-		str = get_next_line(fd);
-		printf("%s", str);
+		str[i] = 'b';
+		i++;
 	}
+	str[i] = '\0';
+	char	*cpy = concat_end(str, buff);
+	printf("%s", cpy);
+	free(cpy); */
+	int fd = open("./test.txt", O_RDONLY);
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
 }
