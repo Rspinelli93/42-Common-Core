@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 21:47:05 by rick              #+#    #+#             */
-/*   Updated: 2025/10/12 11:06:00 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/15 18:22:13 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdio.h>
 
-/* int	main(void)
+int	main(void)
 {
 	int	i = -42;
 	unsigned int u = 42;
@@ -27,4 +27,3 @@
 	ft_printf("%u\n%u\n", -1, -2);
 	return (0);
 }
- */

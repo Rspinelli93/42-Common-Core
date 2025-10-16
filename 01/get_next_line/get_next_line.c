@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:03 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/13 21:35:52 by rick             ###   ########.fr       */
+/*   Updated: 2025/10/14 19:48:34 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*get_next_line(int fd)
 			return (stash);
 	}
 	line = get_lines(stash);
-	stash = str_realloc(stash, 0, ft_strlen(line) - 1);
+	stash = new_stash(stash);
 	return (line);
 }
 
@@ -100,7 +100,7 @@ char	*get_lines(char *str)
 		len++;
 	line = ft_calloc(sizeof(char), len + 2);
 	ptr = line;
-	while (len > 0)
+	while (len >= 0)
 	{
 		*ptr = *str;
 		ptr++;
@@ -116,26 +116,26 @@ char	*get_lines(char *str)
 	* in it or NULL if no memory available. */
 char	*concat_end(char *stash, char *buff)
 {
-	char	*ptr;
+	int		ix;
 
 	if (!stash)
 	{
 		stash = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
 		if (!stash)
 			return (NULL);
-		ptr = stash;
+		ix = 0;
 	}
 	else
 	{
-		stash = str_realloc(stash, BUFFER_SIZE, 0);
+		ix = ft_strlen(stash);
+		stash = str_realloc(stash);
 		if (!stash)
 			return (NULL);
-		ptr = stash + (ft_strlen(stash));
 	}
 	while (*buff)
 	{
-		*ptr = *buff;
-		ptr++;
+		stash[ix] = *buff;
+		ix++;
 		buff++;
 	}
 	return (stash);
@@ -143,30 +143,50 @@ char	*concat_end(char *stash, char *buff)
 
 /*
 	* str_realloc() allocates in memory a new string, coping each byte of str
-	* into the new string from index "ix". The memory is allocatd acording the
-	* bytes needed to copy + b_size (buffer size).
+	* into the new string + BUFFER_SIZE '\0' bytes.
 	* RETURN: frees the old string and returns the new one. */
-char	*str_realloc(char *str, int b_size, int ix)
+char	*str_realloc(char *str)
 {
 	char	*new;
 	int		i;
-	int		slen;
 
-	i = ix;
-	slen = 0;
-	while (str[ix])
-	{
-		slen++;
-		ix++;
-	}
-	new = ft_calloc(sizeof(char), slen + b_size);
-	ix = i;
 	i = 0;
-	while (str[ix])
+	new = ft_calloc(sizeof(char), ft_strlen(str) + BUFFER_SIZE + 1);
+	if (!new)
+		return (NULL);
+	while (str[i])
 	{
-		new[i] = str[ix];
+		new[i] = str[i];
 		i++;
-		ix++;
+	}
+	free(str);
+	return (new);
+}
+
+/*
+	* function to get a new stash right after returning each line.
+	* it will free the old stash and reallocate the new one with the string
+	* right after the /n. */
+char	*new_stash(char *str)
+{
+	char	*new;
+	int		j;
+	int		i;
+
+	i = 0;
+	j = 0;
+	while (str[i] != '\n')
+		i++;
+	new = ft_calloc(sizeof(char), ft_strlen(str) - i);
+	if (!new)
+		return (NULL);
+	if (str[i] == '\n')
+		i++;
+	while (str[i])
+	{
+		new[j] = str[i];
+		i++;
+		j++;
 	}
 	free(str);
 	return (new);
@@ -174,7 +194,7 @@ char	*str_realloc(char *str, int b_size, int ix)
 
 int	main(void)
 {
-/* 	char	*str = malloc(5);
+/*   	char	*str = malloc(5);
 	char	*buff = "ho";
 	int i = 0;
 	while (i < 5)
