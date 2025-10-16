@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:03 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/16 19:50:11 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/16 20:48:55 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ $	OPEN:
 
 ?	int open(const char *path, int oflag, ... );
 
-*Flags:
+* Flags:
 You have to tell your function what kind of access you want.
 
 ?    O_RDONLY: In read-only mode, open the file.
@@ -40,7 +40,7 @@ You have to tell your function what kind of access you want.
 ?    O_EXCL: Prevents the file creation if it already
 ?		exists in the directory or location.
 
-*Return:
+* Return:
 The return value of open() is a file descriptor, a small,
 nonnegative integer that is an index to an entry in the
 process's table of open file descriptors. If there is an error somewhere,
@@ -84,16 +84,16 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!stash)
 		stash = NULL;
-	while (contains_n(stash, '\n') < 0 || read(fd, buff, BUFFER_SIZE) != 0)
+	while (contains_c(stash, '\n') < 0 || read(fd, buff, BUFFER_SIZE) != 0)
 	{
 		read(fd, buff, BUFFER_SIZE);
 		stash = ft_strjoin(stash, buff);
 		if (!stash)
 			return (free(buff), NULL);
 	}
-	if (contains_n(stash, '\n') != -1) //containting \n case
+	if (contains_c(stash, '\n') != -1) //containting \n case
 	{
-		stash = ft_substr(stash, (contains_n(stash, '\n') + 1), ft_strlen(stash));
+		stash = ft_substr(stash, (contains_c(stash, '\n') + 1), ft_strlen(stash));
 		line = new_strdup(stash);
 		if (!line)
 			return (free(buff), NULL);
@@ -106,7 +106,7 @@ char	*get_next_line(int fd)
 	* Function to check if the str contains c. 
 	* Return value is the index of the char or -1 in case
 	* of not finding it.*/
-int	contains_n(char *str, char c)
+int	contains_c(char *str, char c)
 {
 	int i;
 
@@ -122,8 +122,7 @@ int	contains_n(char *str, char c)
 	}
 	return (-1);
 }
-
-
+/*
 int	main(void)
 {
 	int fd = open("./test.txt", O_RDONLY);
@@ -133,4 +132,4 @@ int	main(void)
 	char	*str2 = get_next_line(fd);
 	printf("%s", str2);
 	free(str2);
-} 
+}  */
