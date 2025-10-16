@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:03 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/16 19:50:11 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/16 17:40:41 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,9 @@ the function will return -1 as a synonym of failure.
 /*
 $	IMPLEMENTATION
 
-	? Check edge cases:
-		- fd fail to read
-		- buffer size bigger than 0
-		- read condition: this check lets us see if the file exists and
-      		that it has some content to read from, or event that the file is 
-    		openable to read, maybe the file descriptor is more than 0, but it
-			was open in 'modify only', that means we can't read it.
-	? Allocate the buffer
-	? Read the document.
-	? Store in the buffer.
+	- Allocate the buffer
+	- Read the document.
+	- Store in the buffer.
 	- Copy the values of the buffer inside the static until
 		static contains \n or the iteration of buffer is
 		smaller than the size buffer (meaning we got till the
@@ -76,54 +69,139 @@ char	*get_next_line(int fd)
 	static char	*stash;
 	char		*buff;
 	char		*line;
+	int			ret;
 
-    if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
-        return (NULL);
-    buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buff)
+	buff = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
+	if (fd < 0 || !buff || BUFFER_SIZE < 1)
 		return (NULL);
-	if (!stash)
-		stash = NULL;
-	while (contains_n(stash, '\n') < 0 || read(fd, buff, BUFFER_SIZE) != 0)
+	while (!contains_n(stash))
 	{
-		read(fd, buff, BUFFER_SIZE);
-		stash = ft_strjoin(stash, buff);
+		ret = read(fd, buff, BUFFER_SIZE);
+		stash = concat_end(stash, buff);
 		if (!stash)
 			return (free(buff), NULL);
+		if (ret < BUFFER_SIZE)
+			return (free(buff), stash);
 	}
-	if (contains_n(stash, '\n') != -1) //containting \n case
+	line = get_lines(stash);
+	stash = new_stash(stash);
+	return (free(buff), line);
+}
+
+/*
+	* get_line() will allocate and copy a string until finding
+	* a '\n' character and return the newly allocated string. */
+char	*get_lines(char *str)
+{
+	char	*line;
+	char	*ptr;
+	int		len;
+
+	len = 0;
+	while (str[len] != '\n')
+		len++;
+	line = ft_calloc(sizeof(char), (len + 2));
+	if (!line)
+		return (NULL);
+	ptr = line;
+	while (len >= 0)
 	{
-		stash = ft_substr(stash, (contains_n(stash, '\n') + 1), ft_strlen(stash));
-		line = new_strdup(stash);
-		if (!line)
-			return (free(buff), NULL);
-		return (free(buff), line);
+		*ptr = *str;
+		ptr++;
+		str++;
+		len--;
+	}
+	return (line);
+}
+
+/*
+	* concat_end concatenates at the end of stash, the buffer.
+	* returns a newly reallocated stash with the buffer concat
+	* in it or NULL if no memory available. */
+char	*concat_end(char *stash, char *buff)
+{
+	int		ix;
+
+	if (!stash)
+	{
+		stash = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
+		if (!stash)
+			return (NULL);
+		ix = 0;
 	}
 	else
-		return (free(buff), stash);
+	{
+		ix = ft_strlen(stash);
+		stash = str_realloc(stash);
+		if (!stash)
+			return (NULL);
+	}
+	while (*buff)
+	{
+		stash[ix] = *buff;
+		ix++;
+		buff++;
+	}
+	return (stash);
 }
+
 /*
-	* Function to check if the str contains c. 
-	* Return value is the index of the char or -1 in case
-	* of not finding it.*/
-int	contains_n(char *str, char c)
+	* str_realloc() allocates in memory a new string, coping each byte of str
+	* into the new string + BUFFER_SIZE '\0' bytes.
+	* RETURN: frees the old string and returns the new one. */
+char	*str_realloc(char *str)
 {
-	int i;
+	char	*new;
+	int		i;
 
 	i = 0;
-	if (!str)
-		return (-1);
-	while (*str)
+	new = ft_calloc(sizeof(char), (ft_strlen(str) + BUFFER_SIZE + 1));
+	if (!new)
 	{
-		if (*str == c)
-			return (i);
-		str++;
+		free(str);
+		return (NULL);
+	}
+	while (str[i])
+	{
+		new[i] = str[i];
 		i++;
 	}
-	return (-1);
+	free(str);
+	return (new);
 }
 
+/*
+	* function to get a new stash right after returning each line.
+	* it will free the old stash and reallocate the new one with the string
+	* right after the /n. */
+char	*new_stash(char *str)
+{
+	char	*new;
+	int		j;
+	int		i;
 
+	i = 0;
+	j = 0;
+	while (str[i] != '\n')
+		i++;
+	new = ft_calloc(sizeof(char), ft_strlen(str) - i);
+	if (!new)
+	{
+		free(str);
+		return (NULL);
+	}
+	if (str[i] == '\n')
+		i++;
+	while (str[i])
+	{
+		new[j] = str[i];
+		i++;
+		j++;
+	}
+	free(str);
+	return (new);
+}
+/* 
 int	main(void)
 {
 	int fd = open("./test.txt", O_RDONLY);
@@ -133,4 +211,4 @@ int	main(void)
 	char	*str2 = get_next_line(fd);
 	printf("%s", str2);
 	free(str2);
-} 
+} */
