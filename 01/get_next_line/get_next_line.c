@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:03 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/16 20:48:55 by rick             ###   ########.fr       */
+/*   Updated: 2025/10/17 20:48:12 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int	contains_c(char *str, char c)
 	}
 	return (-1);
 }
-/*
+
 int	main(void)
 {
 	int fd = open("./test.txt", O_RDONLY);
@@ -132,4 +132,4 @@ int	main(void)
 	char	*str2 = get_next_line(fd);
 	printf("%s", str2);
 	free(str2);
-}  */
+}
