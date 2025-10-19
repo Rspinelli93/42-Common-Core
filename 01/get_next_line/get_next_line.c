@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:03 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/19 12:34:24 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/19 17:54:22 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,29 +154,40 @@ char	*get_next_line(int fd)
 	int			ret;
 
     if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
-        return (NULL);
+        return (free(stash), NULL);
     buff = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
 	if (buff == NULL)
 		return (NULL);
-	while (!contains_n(stash))
+	ret = BUFFER_SIZE;
+	if (contains_n(stash))
+	{
+		line = get_lines(stash);
+		stash = new_stash(stash);
+		return (free(buff), line);
+	}
+	while (ret == BUFFER_SIZE)
 	{
 		ret = read(fd, buff, BUFFER_SIZE);
-		if (ret == 0 && stash == NULL)
-			return (free(buff), NULL);
-		stash = concat_end(stash, buff);
-		if (!stash)
-			return (free(buff), NULL);
-		if (ret < BUFFER_SIZE)
+		if ((stash == NULL || ft_strlen(stash) == 0) && ret < 1)
 		{
-			line = ft_strdup(stash);
-			return (free(buff), free(stash), line);
+			if (stash != NULL)
+				free(stash);
+			return (free(buff), NULL);
+		}
+		stash = concat_end(stash, buff);
+		ft_bzero(buff, BUFFER_SIZE); // clear buffer
+		if (contains_n(stash))
+		{
+			line = get_lines(stash);
+			stash = new_stash(stash);
+			return (free(buff), line);
 		}
 	}
-	line = get_lines(stash);
-	stash = new_stash(stash);
+	line = ft_strdup(stash);
+	free(stash);
+	stash = NULL;
 	return (free(buff), line);
 }
-
 /*
 	* get_line() will allocate and copy a string until finding
 	* a '\n' character and return the newly allocated string. */
@@ -287,14 +298,40 @@ char	*new_stash(char *str)
 	return (free(str), new);
 }
 
-int	main(void)
+// int	main(void)
+// {
+// 	int fd = open("files/only_nl.txt", O_RDONLY);
+// 	//printf("fd: %d\n", fd);
+// 	char *str;
+// 	while ((str = get_next_line(fd)))
+// 	{
+// 		printf("%s", str);
+// 		free(str);
+// 	}
+// 	free(str);
+// 	str = get_next_line(fd);
+// 	free(str);
+// }
+
+
+int main (void)
 {
-	int fd = open("41_no_nl", O_RDONLY);
-	printf("fd: %d\n", fd);
+	int fd = open("files/multiple_line_with_nl", O_RDONLY);
+
 	char *str;
+	str = get_next_line(fd);
+	printf("%s\n", str);
+	free(str);
+	str = get_next_line(fd);
+	printf("%s\n", str);
+	free(str);
+	str = get_next_line(-1);
+	printf("%s\n", str);
+	close(fd);
+	fd = open("files/multiple_line_with_nl", O_RDONLY);
 	while ((str = get_next_line(fd)))
 	{
-		printf("%s", str);
+		printf("%s\n", str);
 		free(str);
 	}
 	free(str);
