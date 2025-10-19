@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:03 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/19 17:54:22 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/19 19:16:38 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ char	*get_next_line(int fd)
 	int			ret;
 
     if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
-        return (free(stash), NULL);
+        return (NULL);
     buff = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
 	if (buff == NULL)
 		return (NULL);
@@ -180,6 +180,7 @@ char	*get_next_line(int fd)
 		{
 			line = get_lines(stash);
 			stash = new_stash(stash);
+			// HERE CHECK DEBBUGGER : STEP IN LINE 326
 			return (free(buff), line);
 		}
 	}
@@ -336,3 +337,4 @@ int main (void)
 	}
 	free(str);
 }
+
