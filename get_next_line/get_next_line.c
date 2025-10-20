@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:03 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/20 11:46:24 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/20 15:17:15 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,69 +15,61 @@
 char	*get_next_line(int fd)
 {
 	static char	*stash;
-	char		*buff;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE < 1)
 	{
 		if (stash)
-		{
-			free(stash);
-			stash = NULL;
-			return (NULL);
-		}
+			return (free_stash(&stash), NULL);
 		return (NULL);
 	}
-	buff = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
-	if (buff == NULL)
-		return (NULL);
 	if (contains_n(stash))
 	{
-		line = get_lines(stash);
+		line = get_lines(stash, '\n');
 		stash = new_stash(stash);
-		return (free(buff), line);
+		return (line);
 	}
-	return (funct_gnl(stash, buff, fd));
+	line = _gnl(&stash, fd, BUFFER_SIZE);
+	if (!line)
+		return (NULL);
+	if (contains_n(line))
+		return (line);
+	return (free_stash(&stash), line);
 }
 
-char	*funct_gnl(char *stash, char *buff, int fd)
+char	*_gnl(char **stash, int fd, int ret)
 {
 	char	*line;
-	int		ret;
+	char	*buff;
 
-	ret = BUFFER_SIZE;
+	buff = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
 	while (ret == BUFFER_SIZE)
 	{
 		ret = read(fd, buff, BUFFER_SIZE);
-		if ((stash == NULL || ft_strlen(stash) == 0) && ret < 1)
+		if ((*stash == NULL || ft_strlen(*stash) == 0) && ret < 1)
 		{
-			if (stash != NULL)
-			{
-				free(stash);
-				stash = NULL;
-			}
+			if (*stash != NULL)
+				free_stash(stash);
 			return (free(buff), NULL);
 		}
-		stash = concat_end(stash, buff);
+		*stash = concat_end(*stash, buff);
 		free(buff);
 		buff = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
-		if (contains_n(stash))
+		if (contains_n(*stash))
 		{
-			line = get_lines(stash);
-			stash = new_stash(stash);
+			line = get_lines(*stash, '\n');
+			*stash = new_stash(*stash);
 			return (free(buff), line);
 		}
 	}
-	line = ft_strdup(stash);
-	free(stash);
-	stash = NULL;
+	line = get_lines(*stash, '\0');
 	return (free(buff), line);
 }
 
 /*
 	* get_line() will allocate and copy a string until finding
-	* a '\n' character and return the newly allocated string. */
-char	*get_lines(char *str)
+	* a 'c' character and return the newly allocated string. */
+char	*get_lines(char *str, char c)
 {
 	char	*line;
 	int		i;
@@ -85,7 +77,7 @@ char	*get_lines(char *str)
 
 	len = 0;
 	i = 0;
-	while (str[len] != '\n')
+	while (str[len] != c)
 		len++;
 	line = ft_calloc(sizeof(char), (len + 2));
 	if (line == NULL)
@@ -161,7 +153,7 @@ char	*new_stash(char *str)
 
 // int	main(void)
 // {
-// 	int fd = open("files/only_nl.txt", O_RDONLY);
+// 	int fd = open("tests/only_nl.txt", O_RDONLY);
 // 	//printf("fd: %d\n", fd);
 // 	char *str;
 // 	while ((str = get_next_line(fd)))
@@ -174,28 +166,28 @@ char	*new_stash(char *str)
 // 	free(str);
 // }
 // -------------------------------------------- //
-int main (void)
-{
-	int fd = open("files/read_error.txt", O_RDONLY);
+// int main (void)
+// {
+// 	int fd = open("tests/read_error.txt", O_RDONLY);
 
-	char *str;
-	str = get_next_line(fd);
-	printf("%s\n", str);
-	free(str);
-	str = get_next_line(fd);
-	printf("%s\n", str);
-	free(str);
-	str = get_next_line(-1);
-	printf("%s\n", str);
-	close(fd);
-	fd = open("files/read_error.txt", O_RDONLY);
-	while ((str = get_next_line(fd)))
-	{
-		printf("%s\n", str);
-		free(str);
-	}
-	free(str);
-}
+// 	char *str;
+// 	str = get_next_line(fd);
+// 	printf("%s\n", str);
+// 	free(str);
+// 	str = get_next_line(fd);
+// 	printf("%s\n", str);
+// 	free(str);
+// 	str = get_next_line(-1);
+// 	printf("%s\n", str);
+// 	close(fd);
+// 	fd = open("tests/read_error.txt", O_RDONLY);
+// 	while ((str = get_next_line(fd)))
+// 	{
+// 		printf("%s\n", str);
+// 		free(str);
+// 	}
+// 	free(str);
+// }
 
 /*
 $	READ()
