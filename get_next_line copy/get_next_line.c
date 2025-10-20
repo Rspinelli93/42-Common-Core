@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:03 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/20 11:26:58 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/20 11:46:24 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char	*get_next_line(int fd)
 	static char	*stash;
 	char		*buff;
 	char		*line;
-	int			ret;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
 	{
@@ -32,13 +31,21 @@ char	*get_next_line(int fd)
 	buff = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
 	if (buff == NULL)
 		return (NULL);
-	ret = BUFFER_SIZE;
 	if (contains_n(stash))
 	{
 		line = get_lines(stash);
 		stash = new_stash(stash);
 		return (free(buff), line);
 	}
+	return (funct_gnl(stash, buff, fd));
+}
+
+char	*funct_gnl(char *stash, char *buff, int fd)
+{
+	char	*line;
+	int		ret;
+
+	ret = BUFFER_SIZE;
 	while (ret == BUFFER_SIZE)
 	{
 		ret = read(fd, buff, BUFFER_SIZE);
@@ -167,28 +174,28 @@ char	*new_stash(char *str)
 // 	free(str);
 // }
 // -------------------------------------------- //
-// int main (void)
-// {
-// 	int fd = open("files/read_error.txt", O_RDONLY);
+int main (void)
+{
+	int fd = open("files/read_error.txt", O_RDONLY);
 
-// 	char *str;
-// 	str = get_next_line(fd);
-// 	printf("%s\n", str);
-// 	free(str);
-// 	str = get_next_line(fd);
-// 	printf("%s\n", str);
-// 	free(str);
-// 	str = get_next_line(-1);
-// 	printf("%s\n", str);
-// 	close(fd);
-// 	fd = open("files/read_error.txt", O_RDONLY);
-// 	while ((str = get_next_line(fd)))
-// 	{
-// 		printf("%s\n", str);
-// 		free(str);
-// 	}
-// 	free(str);
-// }
+	char *str;
+	str = get_next_line(fd);
+	printf("%s\n", str);
+	free(str);
+	str = get_next_line(fd);
+	printf("%s\n", str);
+	free(str);
+	str = get_next_line(-1);
+	printf("%s\n", str);
+	close(fd);
+	fd = open("files/read_error.txt", O_RDONLY);
+	while ((str = get_next_line(fd)))
+	{
+		printf("%s\n", str);
+		free(str);
+	}
+	free(str);
+}
 
 /*
 $	READ()
