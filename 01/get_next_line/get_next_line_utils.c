@@ -6,13 +6,14 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:25 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/20 11:10:21 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/10/20 14:26:59 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/* Returns the length of a string */
+/*
+	* Returns the length of a string */
 int	ft_strlen(const char *s)
 {
 	int	len;
@@ -23,6 +24,14 @@ int	ft_strlen(const char *s)
 	while (s[len])
 		len++;
 	return (len);
+}
+
+/*
+	* free() stash and set to NULL*/
+void	free_stash(char **stash)
+{
+	free(*stash);
+	*stash = NULL;
 }
 
 /*
@@ -58,31 +67,6 @@ void	*ft_calloc(int nmemb, int size)
 	while (i < nmemb * size)
 		ptr[i++] = '\0';
 	return (ptr);
-}
-
-/*
-	* strdup() returns a pointer to a new duplicate of s string
-	* Memory for the new string is obtained
-	* with malloc(3), and can be freed with free(3). */
-char	*ft_strdup(const char *s)
-{
-	int		len;
-	char	*dest;
-	char	*src;
-
-	len = ft_strlen(s);
-	src = (char *)s;
-	dest = (char *) malloc(sizeof(char) * (len + 1));
-	if (dest == NULL)
-		return ((void *) NULL);
-	while (*src)
-	{
-		*dest = *src;
-		src++;
-		dest++;
-	}
-	*dest = '\0';
-	return (dest - len);
 }
 
 /*
