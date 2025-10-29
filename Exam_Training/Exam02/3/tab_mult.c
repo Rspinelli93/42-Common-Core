@@ -37,3 +37,92 @@ $>
 $>./tab_mult | cat -e
 $
 $>*/
+
+#include <unistd.h>
+#include <stdio.h>
+#include <limits.h>
+
+long	ft_atoi(char *str);
+void	ft_putnbr(long num);
+
+int	main(int argc, char** argv)
+{
+	long	num;
+	long	mult;
+
+	mult = 1;
+	if (argc != 2)
+	{
+		write(1, "\n", 1);
+		return (1);
+	}
+	num = ft_atoi(argv[1]);
+	if (num < 1 || num * 9 > INT_MAX)
+	{
+		write(1, "\n", 1);
+		return (1);
+	}
+	while (mult < 10)
+	{
+		ft_putnbr(mult);
+		write(1, " x ", 3);
+		ft_putnbr(num);
+		write(1, " = ", 3);
+		ft_putnbr(mult * num);
+		write(1, "\n", 1);
+		mult++;
+	}
+	return (0);
+}
+
+// int main (void)
+// {
+// 	printf("%i", ft_atoi("-50"));
+// }
+long	ft_atoi(char *str)
+{
+	long num;
+	long sign;
+
+	sign = 1;
+	num = 0;
+	if (!str)
+		return (0);
+	while ((*str >= 8 && *str <= 13) || *str == ' ')
+		str++;
+	if (*str == '+' || *str == '-')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	while (*str >= 48 && *str <= 57)
+	{
+		num = (num * 10) + (*str - 48);
+		str++;
+	}
+	return (num * sign);
+}
+
+// int	main(void)
+// {
+// 	ft_putnbr(150);
+// }
+
+void	ft_putchar(char a)
+{
+	write(1, &a, 1);
+}
+
+void	ft_putnbr(long num)
+{
+	if (num > 9)
+	{
+		ft_putnbr(num / 10);
+		ft_putnbr(num % 10);
+	}
+	if (num < 10)
+	{
+		ft_putchar(num + 48);
+	}
+}
