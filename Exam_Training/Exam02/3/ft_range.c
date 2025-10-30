@@ -19,3 +19,64 @@ Examples:
 - With (0, 0) you will return an array containing 0.
 - With (0, -3) you will return an array containing 0, -1, -2 and -3.
 */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+	int len = 0;
+	int ms = 0;
+	int end = 1;
+	int start = -3;
+
+	if (end > start)
+	{
+		//caso 1
+		ms = start;
+		while (ms <= end)
+		{
+			ms++;
+			len++;
+		}
+	}
+	if (start > end)
+	{
+		//caso 2
+		ms = end;
+		while (ms <= start)
+		{
+			ms++;
+			len++;
+		}
+	}
+	int *arr = malloc (len);
+	int i = 0;
+	if (end > start)
+	{
+		//caso 1
+		while (start <= end)
+		{
+			arr[i] = start;
+			start++;
+			i++;
+		}
+	}
+	else
+	{
+		//caso 2
+		while (end <= start)
+		{
+			arr[i] = end;
+			end++;
+			i++;
+		}
+	}
+	i = 0;
+	while (i < len)
+	{
+		printf("%i", arr[i]);
+		i++;
+	}
+	return (0);
+}
