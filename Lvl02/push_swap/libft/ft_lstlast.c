@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 12:26:01 by rspinell         ###   ########.fr       */
+/*   Created: 2025/10/03 15:53:52 by rspinell          #+#    #+#             */
+/*   Updated: 2025/10/03 22:20:58 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//+ cc ./push_swap.c ./push_swaplib.a -I ./includes -o test
-
-#include "push_swap.h"
 #include "libft.h"
 
-int	main(void)
+/* Returns a pointer to the last element of the list */
+
+t_list	*ft_lstlast(t_list *lst)
 {
-	ft_printf("Hello 42");
+	t_list	*ptr;
+
+	ptr = lst;
+	if (!lst)
+		return (NULL);
+	while (ptr->next != NULL)
+		ptr = ptr->next;
+	return (ptr);
 }

@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 12:26:01 by rspinell         ###   ########.fr       */
+/*   Created: 2025/10/03 15:50:55 by rspinell          #+#    #+#             */
+/*   Updated: 2025/11/02 12:15:40 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//+ cc ./push_swap.c ./push_swaplib.a -I ./includes -o test
-
-#include "push_swap.h"
 #include "libft.h"
 
-int	main(void)
+/*
+This function allocates memory for a new element of type t_list,
+setting its content to be the content parameter,
+and setting the next variable to NULL.
+
+Then it returns the newly allocated / created element of the list.
+*/
+
+t_list	*ft_lstnew(int *content)
 {
-	ft_printf("Hello 42");
+	t_list	*li;
+
+	li = malloc(sizeof(t_list));
+	if (!li)
+		return (NULL);
+	li->content = content;
+	li->next = NULL;
+	return (li);
 }

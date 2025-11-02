@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_pf.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 12:26:01 by rspinell         ###   ########.fr       */
+/*   Created: 2025/10/07 18:49:52 by rick              #+#    #+#             */
+/*   Updated: 2025/10/12 10:47:40 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//+ cc ./push_swap.c ./push_swaplib.a -I ./includes -o test
+#include "ft_printf.h"
+#include <stdio.h>
 
-#include "push_swap.h"
-#include "libft.h"
-
-int	main(void)
+void	ft_putchar_pf(char c, int *cnt)
 {
-	ft_printf("Hello 42");
+	ft_putchar_fd(c, 1);
+	*cnt += 1;
 }
+/*int	main(void)
+{
+	char c = 'x';
+	int	cnt = 41;
+	ft_putchar_pf(c, &cnt);
+	printf("\nExpected print: 'x'\nExpected count 42. Res: %i\n", cnt);
+	return (0);
+}*/

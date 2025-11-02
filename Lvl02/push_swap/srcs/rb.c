@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   rb.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 12:26:01 by rspinell         ###   ########.fr       */
+/*   Created: 2025/11/02 13:02:52 by rspinell          #+#    #+#             */
+/*   Updated: 2025/11/02 13:12:18 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//+ cc ./push_swap.c ./push_swaplib.a -I ./includes -o test
-
 #include "push_swap.h"
-#include "libft.h"
 
-int	main(void)
-{
-	ft_printf("Hello 42");
-}
+/*
++ rb (rotate b): Shift up all elements of stack b by 1.
++ The first element becomes the last one. */
+void	rb(t_list **list);

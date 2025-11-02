@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 12:26:01 by rspinell         ###   ########.fr       */
+/*   Created: 2025/10/03 15:56:57 by rspinell          #+#    #+#             */
+/*   Updated: 2025/11/02 12:14:47 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//+ cc ./push_swap.c ./push_swaplib.a -I ./includes -o test
-
-#include "push_swap.h"
 #include "libft.h"
 
-int	main(void)
+/*
+This function iterates over
+the whole list and applies the function f
+to the content of each elements.
+*/
+
+void	ft_lstiter(t_list *lst, void (*f)(int *))
 {
-	ft_printf("Hello 42");
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }

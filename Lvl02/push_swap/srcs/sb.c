@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sb.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 12:26:01 by rspinell         ###   ########.fr       */
+/*   Created: 2025/11/02 13:01:34 by rspinell          #+#    #+#             */
+/*   Updated: 2025/11/02 13:07:05 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//+ cc ./push_swap.c ./push_swaplib.a -I ./includes -o test
-
 #include "push_swap.h"
-#include "libft.h"
 
-int	main(void)
-{
-	ft_printf("Hello 42");
-}
+/*
++ (swap b): Swap the first 2 elements at the top of stack b.
++ Do nothing if there is only one element or none.*/
+void	sb(t_list **list);

@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 12:26:01 by rspinell         ###   ########.fr       */
+/*   Created: 2025/10/03 15:56:16 by rspinell          #+#    #+#             */
+/*   Updated: 2025/11/02 12:28:32 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//+ cc ./push_swap.c ./push_swaplib.a -I ./includes -o test
-
-#include "push_swap.h"
 #include "libft.h"
 
-int	main(void)
+/*
+This functions works similarly as the ft_lstdelone function,
+but instead of removing only one element, it removes the element
+passed as parameter as well as all the following elements.*/
+void	ft_lstclear(t_list **lst, void (*del)(int *))
 {
-	ft_printf("Hello 42");
+	t_list	*tmp;
+
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		ft_lstdelone(*(lst), del);
+		*(lst) = tmp;
+	}
+	lst = NULL;
 }

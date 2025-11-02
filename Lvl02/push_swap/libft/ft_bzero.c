@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 12:26:01 by rspinell         ###   ########.fr       */
+/*   Created: 2025/09/15 21:11:14 by rspinell          #+#    #+#             */
+/*   Updated: 2025/11/02 12:11:16 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//+ cc ./push_swap.c ./push_swaplib.a -I ./includes -o test
-
-#include "push_swap.h"
 #include "libft.h"
 
-int	main(void)
+/*
+Erases the data in the n bytes of the memory
+starting at the location pointed to by s, by writing zeros
+(bytes containing '\0') to that area.
+*/
+
+void	ft_bzero(void *s, int n)
 {
-	ft_printf("Hello 42");
+	char	*str;
+
+	str = (char *)s;
+	while (n > 0)
+	{
+		*str = '\0';
+		n--;
+		str++;
+	}
 }

@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   pa.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 12:26:01 by rspinell         ###   ########.fr       */
+/*   Created: 2025/11/02 12:31:51 by rspinell          #+#    #+#             */
+/*   Updated: 2025/11/02 13:11:08 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//+ cc ./push_swap.c ./push_swaplib.a -I ./includes -o test
-
 #include "push_swap.h"
-#include "libft.h"
 
-int	main(void)
-{
-	ft_printf("Hello 42");
-}
+/*
++ pa (push a): Take the first element at the top of b and put it at the top of a.
++ Do nothing if b is empty.*/
+void	pa(t_list **list);

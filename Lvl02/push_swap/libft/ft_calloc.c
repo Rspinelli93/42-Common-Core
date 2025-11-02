@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 12:26:01 by rspinell         ###   ########.fr       */
+/*   Created: 2025/09/15 21:11:34 by rspinell          #+#    #+#             */
+/*   Updated: 2025/11/02 12:11:10 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//+ cc ./push_swap.c ./push_swaplib.a -I ./includes -o test
-
-#include "push_swap.h"
 #include "libft.h"
 
-int	main(void)
+/*
+The calloc() function shall allocate unused space for an array of
+nelem elements each of whose size in bytes is elsize.
+The space shall be initialized to all bits 0.
+*/
+
+void	*ft_calloc(int nmemb, int size)
 {
-	ft_printf("Hello 42");
+	void	*ptr;
+
+	ptr = malloc(nmemb * size);
+	if (ptr == NULL)
+		return (ptr);
+	ft_bzero(ptr, nmemb * size);
+	return (ptr);
 }
