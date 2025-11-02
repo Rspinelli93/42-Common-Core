@@ -6,18 +6,16 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 21:11:34 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 12:11:10 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/02 15:22:17 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-The calloc() function shall allocate unused space for an array of
-nelem elements each of whose size in bytes is elsize.
-The space shall be initialized to all bits 0.
-*/
-
++ The calloc() function shall allocate unused space for an array of
++ nelem elements each of whose size in bytes is elsize.
++ The space shall be initialized to all bits 0. */
 void	*ft_calloc(int nmemb, int size)
 {
 	void	*ptr;

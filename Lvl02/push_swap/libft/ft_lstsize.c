@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 15:52:59 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/03 22:20:14 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/02 16:13:30 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Return the number of element of the list. */
-
+/* 
++ Return the number of element of the list. */
 int	ft_lstsize(t_list *lst)
 {
 	int		i;

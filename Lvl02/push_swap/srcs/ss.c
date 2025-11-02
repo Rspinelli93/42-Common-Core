@@ -6,12 +6,11 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 13:01:58 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 13:10:23 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/02 13:50:09 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 /*
 + ss : (swap a) and (swap b) at the same time. */

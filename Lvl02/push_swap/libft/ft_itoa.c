@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 23:34:10 by rick              #+#    #+#             */
-/*   Updated: 2025/10/06 10:04:44 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/02 15:22:32 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int	cntdigits(int n);
 static char	*ifzero(void);
 static char	*mincase(void);
 
-/* The itoa() function constructs a string representation of an integer.*/
-
+/* 
++ The itoa() function constructs a string representation of an integer.*/
 char	*ft_itoa(int n)
 {
 	char	*str;

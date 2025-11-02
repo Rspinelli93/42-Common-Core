@@ -6,17 +6,17 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 15:56:16 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 12:28:32 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/02 16:36:54 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-This functions works similarly as the ft_lstdelone function,
-but instead of removing only one element, it removes the element
-passed as parameter as well as all the following elements.*/
-void	ft_lstclear(t_list **lst, void (*del)(int *))
++ This functions works similarly as the ft_lstdelone function,
++ but instead of removing only one element, it removes the element
++ passed as parameter as well as all the following elements.*/
+void	ft_lstclear(t_list **lst, void (*del)(int))
 {
 	t_list	*tmp;
 

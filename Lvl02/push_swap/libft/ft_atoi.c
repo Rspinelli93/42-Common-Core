@@ -6,21 +6,14 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 21:11:07 by rspinell          #+#    #+#             */
-/*   Updated: 2025/10/06 09:58:34 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/02 15:24:30 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-Converts a string to its int representation
-
-27. skip whitespaces
-33. set the sign
-40. iterate and set the numbers digit by digit
-46. return int
-*/
-
++ Converts a string to its int representation */
 int	ft_atoi(const char *nptr)
 {
 	int	num;
