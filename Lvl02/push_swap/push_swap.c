@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 15:34:05 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/03 19:06:15 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,3 +14,8 @@
 
 #include "push_swap.h"
 #include "libft.h"
+
+int main(int argc, char **argv)
+{
+    
+}
