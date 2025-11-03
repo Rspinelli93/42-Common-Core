@@ -1,5 +1,5 @@
 
-//* cc ./main.c ./push_swaplib.a -I ./includes -o test
+//* cc ../main.c ./push_swaplib.a -I ./includes -o test
 
 #include "push_swap.h"
 #include "libft.h"
