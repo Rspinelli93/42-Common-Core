@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pb.c                                               :+:      :+:    :+:   */
+/*   shift_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/02 13:02:23 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 13:11:29 by rspinell         ###   ########.fr       */
+/*   Created: 2025/11/02 13:02:34 by rspinell          #+#    #+#             */
+/*   Updated: 2025/11/03 14:38:20 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-+ pb (push b): Take the first element at the top of a and put it at the top of b.
-+ Do nothing if a is empty.*/
-void	pb(t_list **list);
++ ra (rotate a): Shift up all elements of stack a by 1.
++ The first element becomes the last one. */
+void	shift_up(t_list **head)
+{
+    t_list  *node;
+
+    if(!*head)
+        return ;
+    node = *head;
+    *head = (*head)->next;
+    ft_lstadd_back(head, node);
+}

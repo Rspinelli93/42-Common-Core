@@ -14,7 +14,8 @@ int	main(void)
 	t_list  list4;
 	t_list  list5;
 	t_list  list6;
-    t_list  *head;
+    t_list  *head_a;
+    t_list  *head_b;
     t_list  *poanteg;
 	int	arr[6] = {12, 1, 9, 8, 19, -6};
 
@@ -32,16 +33,56 @@ int	main(void)
 	list5.next = &list1;
 	list1.next = NULL;
 
-    head = &list3;
-	poanteg = head;
+    head_a = &list3;
+	head_b = NULL;
+
+	//+ PRINT STACK A
+	poanteg = head_a;
     while (poanteg)
     {
         ft_printf("%i\n", poanteg->cont);
         poanteg = poanteg->next;
     }
-	sa(&head);
-	poanteg = head;
+	ft_printf("\n");
+
+	//+ PRINT STACK B
+/* 	poanteg = head_b;
     while (poanteg)
+    {
+        ft_printf("%i\n", poanteg->cont);
+        poanteg = poanteg->next;
+    }
+	ft_printf("\n"); */
+
+	//+ RUN TEST FUNCTION
+	shift_down(&head_a);
+
+	//+ PRINT STACK A
+	poanteg = head_a;
+	while (poanteg)
+    {
+        ft_printf("%i\n", poanteg->cont);
+        poanteg = poanteg->next;
+    }
+	ft_printf("\n");
+
+		//+ RUN TEST FUNCTION
+	shift_down(&head_a);
+	
+	//+ PRINT STACK A
+	poanteg = head_a;
+	while (poanteg)
+    {
+        ft_printf("%i\n", poanteg->cont);
+        poanteg = poanteg->next;
+    }
+		//+ RUN TEST FUNCTION
+	shift_down(&head_a);
+		ft_printf("\n");
+
+	//+ PRINT STACK A
+	poanteg = head_a;
+	while (poanteg)
     {
         ft_printf("%i\n", poanteg->cont);
         poanteg = poanteg->next;
