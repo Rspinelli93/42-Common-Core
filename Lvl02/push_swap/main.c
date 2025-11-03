@@ -4,7 +4,7 @@
 #include "push_swap.h"
 #include "libft.h"
 
-int	del(int *x);
+void	del(int x);
 
 int	main(void)
 {
@@ -34,7 +34,13 @@ int	main(void)
 
     head = &list3;
 	poanteg = head;
-	//ft_lstdelone(&list1, &(del)(list1.cont));
+    while (poanteg)
+    {
+        ft_printf("%i\n", poanteg->cont);
+        poanteg = poanteg->next;
+    }
+	sa(&head);
+	poanteg = head;
     while (poanteg)
     {
         ft_printf("%i\n", poanteg->cont);
@@ -42,7 +48,10 @@ int	main(void)
     }
 }
 
-
+void	del(int x)
+{
+	ft_printf("deleting");
+}
 /*
 t_list	*ft_lstnew(int content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
@@ -50,7 +59,7 @@ int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, int (*del)(int));
-void	ft_lstclear(t_list **lst, int (*del)(int));
-void	ft_lstiter(t_list *lst, int (*f)(int));
-t_list	*ft_lstmap(t_list *lst, int (*f)(int), int (*del)(int));
+-void	ft_lstclear(t_list **lst, int (*del)(int));
+-void	ft_lstiter(t_list *lst, int (*f)(int));
+-t_list	*ft_lstmap(t_list *lst, int (*f)(int), int (*del)(int));
 */

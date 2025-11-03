@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:06:31 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 13:04:59 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/03 12:10:01 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@
 # include "ft_printf.h"
 # include "libft.h"
 
-void	pa(t_list **list);
-void	pb(t_list **list);
-void	ra(t_list **list);
-void	rb(t_list **list);
-void	rr(t_list **list);
-void	rra(t_list **list);
-void	rrb(t_list **list);
-void	sa(t_list **list);
-void	sb(t_list **list);
-void	ss(t_list **list);
+void	pa(t_list **head);
+void	pb(t_list **head);
+void	ra(t_list **head);
+void	rb(t_list **head);
+void	rr(t_list **head);
+void	rra(t_list **head);
+void	rrb(t_list **head);
+void	swap_both(t_list **head_a, t_list **head_b);
+void	swap_ab(t_list **head);
 
 #endif
