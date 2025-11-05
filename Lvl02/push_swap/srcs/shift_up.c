@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shift_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 13:02:34 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/03 19:15:06 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/05 15:02:40 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	shift_up(t_list **head)
 	node = *head;
 	*head = (*head)->next;
 	ft_lstadd_back(head, node);
+	ft_printf("ra\n");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shift_down.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 13:03:17 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/03 19:17:50 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/05 16:23:11 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ void	shift_down(t_list **list)
 		new_end = new_end->next;
 	ft_lstadd_front(list, new_start);
 	new_end->next = NULL;
+	ft_printf("rra\n");
 }

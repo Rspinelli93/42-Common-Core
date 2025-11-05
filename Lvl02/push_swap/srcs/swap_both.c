@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap_both.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 13:01:58 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/03 19:14:21 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/05 15:02:25 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,5 @@ void	swap_both(t_list **head_a, t_list **head_b)
 {
 	swap_ab(head_a);
 	swap_ab(head_b);
+	ft_printf("ss\n");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_top.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:31:51 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/03 19:18:06 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/05 16:10:04 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void	push_top(t_list **h_srcs, t_list **h_dest)
 		node2 = NULL;
 	*h_srcs = (*h_srcs)->next;
 	ft_lstadd_front(h_dest, node1);
+	ft_printf("pa\n");
 }

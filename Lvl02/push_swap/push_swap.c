@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/05 14:05:17 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/05 16:24:12 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,22 @@ void	sort_three(t_list **first)
 	thrd = ft_lstlast((*first));
 	if (((*first)->cont < sec->cont) && (sec->cont < thrd->cont))
 		return ;
-	else if (((*first)->cont > sec->cont) && (sec->cont < thrd->cont))
-		swap_ab(first);
-	else if (((*first)->cont < sec->cont) && (sec->cont > thrd->cont))
-	{
-		swap_ab(first);
-		shift_up(first);
-	}
-	else
+	else if (((*first)->cont > sec->cont) && (sec->cont > thrd->cont))
 	{
 		swap_ab(first);
 		shift_down(first);
+	}
+	else if (((*first)->cont > sec->cont) && (sec->cont < thrd->cont))
+	{
+		if (thrd->cont > (*first)->cont)
+			swap_ab(first);
+		else
+			shift_up(first);
+		}
+	else
+	{
+		shift_down(first);
+		if ((*first)->cont > sec->cont)
+			swap_ab(first);
 	}
 }

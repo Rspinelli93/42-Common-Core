@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:23:45 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/05 13:28:02 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:01:44 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void	swap_ab(t_list **head)
 	node2->next = node1;
 	node1->next = temp;
 	*head = node2;
+	ft_printf("sa\n");
 }
