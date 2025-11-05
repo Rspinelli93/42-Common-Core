@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   mklist.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/05 12:39:30 by rspinell         ###   ########.fr       */
+/*   Created: 2025/11/05 10:29:26 by rspinell          #+#    #+#             */
+/*   Updated: 2025/11/05 10:43:05 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//* cc ./push_swap.c ./push_swaplib.a -I ./includes -o test
-
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+/*
++ This function takes an array and creates a linked list
++ allocating each node and setting the content of each 
++ node to each number of each possition in the array.
++
++ The return value is a pointer to the first node.*/
+t_list	*mklist(int ac, char **arr)
 {
-	t_list	*head_a;
+	int		i;
+	t_list	*head;
 
-	if (!are_atoi(argc, argv))
-		return (-1);
-	head_a = mklist(argc, argv);
-	print_list(head_a);
-	ft_lstclear(&head_a, &del);
-	return (0);
+	i = 2;
+	head = ft_lstnew(ft_atoi(arr[1]));
+	while (i < ac)
+	{
+		ft_lstadd_back(&head, ft_lstnew(ft_atoi(arr[i])));
+		i++;
+	}
+	return (head);
 }
-// free funct
-// sort 3 numbers
-// data storage

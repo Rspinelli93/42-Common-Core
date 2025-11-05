@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   print_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/03 15:55:23 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/05 12:39:26 by rspinell         ###   ########.fr       */
+/*   Created: 2025/11/05 10:52:28 by rspinell          #+#    #+#             */
+/*   Updated: 2025/11/05 11:00:55 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	del(int content)
-{
-	content = 0;
-}
+#include "push_swap.h"
 
 /*
-+ This function takes a list element as parameter 
-+ and deletes its content as well as free the allocated 
-+ memory using the del function passed as parameter too. */
-void	ft_lstdelone(t_list *lst, void (*del)(int))
++ Prints the content of each node with a \n after.*/
+void	print_list(t_list *head)
 {
-	del(lst->cont);
-	free(lst);
+	while (head)
+	{
+		ft_printf("%i\n", head->cont);
+		head = head->next;
+	}
 }

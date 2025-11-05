@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   free_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/03 15:55:23 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/05 12:39:26 by rspinell         ###   ########.fr       */
+/*   Created: 2025/11/05 12:37:58 by rspinell          #+#    #+#             */
+/*   Updated: 2025/11/05 12:39:56 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	del(int content)
+/* 
++ Free a linked list and set content to 0.*/
+void	free_list(t_list *head)
 {
-	content = 0;
-}
+	t_list	*temp;
 
-/*
-+ This function takes a list element as parameter 
-+ and deletes its content as well as free the allocated 
-+ memory using the del function passed as parameter too. */
-void	ft_lstdelone(t_list *lst, void (*del)(int))
-{
-	del(lst->cont);
-	free(lst);
+	if (head->next == NULL)
+	{
+		free (head);
+		head = NULL;
+	}
+	else
+	{
+		temp = head->next;
+		free_list(temp);
+	}
+	free(head->next);
 }

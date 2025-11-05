@@ -46,4 +46,6 @@ void	ft_lstclear(t_list **lst, void (*del)(int));
 void	ft_lstiter(t_list *lst, void (*f)(int));
 t_list	*ft_lstmap(t_list *lst, int (*f)(int), void (*del)(int));
 
+void	del(int content);
+
 #endif
