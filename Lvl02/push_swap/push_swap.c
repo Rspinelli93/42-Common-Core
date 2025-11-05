@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/03 20:56:26 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/05 09:54:00 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@
 
 int	main(int argc, char **argv)
 {
+	if (are_atoi(argc, argv))
+		return (-1);
 	return (0);
-	// checker function:
-	// - check if all numbers
-	// - check amount of args
-	// - print error in case
 
 	// Create linked list function:
 	// - Iterate through the array of num
