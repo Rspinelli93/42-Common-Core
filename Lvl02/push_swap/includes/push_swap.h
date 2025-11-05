@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:06:31 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/05 12:38:43 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/05 16:36:16 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int		are_atoi(int size, char **arr);
 void	free_list(t_list *head);
 t_list	*mklist(int ac, char **arr);
 void	print_list(t_list *head);
+void	sort_three(t_list **hd);
+
 void	push_top(t_list **h_srcs, t_list **h_dest);
 void	shift_up(t_list **head);
 void	shift_up_both(t_list **head1, t_list **head2);
