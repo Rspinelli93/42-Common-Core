@@ -3,54 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/05 17:55:24 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:42:28 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //* cc ./push_swap.c ./push_swaplib.a -I ./includes -o test
 
 #include "push_swap.h"
+#include "string.h"
 
 int	main(int argc, char **argv)
 {
 	t_list	*head_a;
+	t_list	*head_b;
+	char	**arr;
+	head_a = NULL;
+	head_b = NULL;
 
-	if (!are_atoi(argc, argv))
+	if (argc == 2)
+		arr = ft_split(argv[1], ' ');
+	else
+		arr = &argv[1];
+	if (!are_atoi(argc, arr))
 		return (-1);
-	head_a = mklist(argc, argv);
-	print_list(head_a);
-	ft_printf("\n");
-	if (argc == 4)
+	head_a = mklist(argc, arr);
+	if (ft_lstsize(head_a) == 3)
 		sort_three(&head_a);
-	print_list(head_a);
+	if (is_sorted(&head_a))
+		print_list(head_a);
 	ft_lstclear(&head_a, &del);
+	if (argc == 2)
+		free_split(arr);
 	return (0);
 }
 
-//* Step 1 pb pb pb pb …
-//- Push every number exept 3 to stack b
+// USE LONG INSTEAD OF INT
 
-//* Step 2 Sort 3 numbers
-
-//* Step 3 Find the ”target node”
-//- target node is the "smallest bigger"
-//+ To find the smallest bigger, there are 2 conditions:
-//+
-//+ -- it’s bigger (in stack a) than the node we point at in b
-//+ -- it’s the smallest one of those in stack a
-
-//-  if the node in the stack is already the biggest one
-//-  push it on top of the smallest number in stack a.
-
-//* Step 4 Calculate “to top cost”
-//+ want to make sure when we push the node from b to a, 
-//+ it will be stored on top of the target node we have just calculated
-//- That’s why we need to calculate the cost for the target node.
-//+ how do I know if should use reverse rotate or rotate to bring the node to the top?
-//- If it’s in the first half of the stack (index ≤ num of nodes / 2), rotate, or vice versa
-
-//* Step 5 Find the “cheapest node”
-//
+// find length of stack
+// free stack
+// free split
+// find last node
+// find min and max node
+// include limits.h

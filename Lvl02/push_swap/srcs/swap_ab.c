@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap_ab.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:23:45 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/05 15:01:44 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:48:36 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,12 @@ void	swap_ab(t_list **head)
 	node1->next = temp;
 	*head = node2;
 	ft_printf("sa\n");
+}
+/*
++ ss : (swap a) and (swap b) at the same time. */
+void	swap_both(t_list **head_a, t_list **head_b)
+{
+	swap_ab(head_a);
+	swap_ab(head_b);
+	ft_printf("ss\n");
 }

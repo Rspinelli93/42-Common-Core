@@ -20,6 +20,12 @@
 typedef struct s_list
 {
 	int				cont;
+	int				index;
+	int				cost;
+	int				top_mid; //bool
+	int				cheapest; //bool
+	struct s_list	*target_node;
+	struct s_list	*prev;	
 	struct s_list	*next;
 }	t_list;
 
@@ -30,6 +36,7 @@ int		ft_isdigit(int c);
 char	*ft_strdup(const char *s);
 int		ft_strlen(const char *s);
 char	*ft_itoa(int n);
+char	**ft_split(char const *s, char c);
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
