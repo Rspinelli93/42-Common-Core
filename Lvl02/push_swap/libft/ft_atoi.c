@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 21:11:07 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 15:24:30 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:33:38 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 /*
 + Converts a string to its int representation */
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
-	int	num;
-	int	sign;
+	long	num;
+	long	sign;
 
 	num = 0;
 	sign = 1;

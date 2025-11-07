@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 15:57:31 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/03 19:07:49 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/07 20:09:59 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 + of the function ’f’.  The ’del’ function is used to
 + delete the content of a node if needed.
 + [For more info, check original "libft" folder]*/
-t_list	*ft_lstmap(t_list *lst, int (*f)(int), void (*del)(int))
+t_list	*ft_lstmap(t_list *lst, int (*f)(int))
 {
 	t_list	*new;
 	t_list	*temp;
 	int		val;
 
-	if (!lst || !f || !del)
+	if (!lst || !f)
 		return (NULL);
 	new = NULL;
 	while (lst)
@@ -37,7 +37,7 @@ t_list	*ft_lstmap(t_list *lst, int (*f)(int), void (*del)(int))
 		temp = ft_lstnew(val);
 		if (!temp)
 		{
-			ft_lstclear(&new, del);
+			ft_lstclear(&new);
 			return (NULL);
 		}
 		ft_lstadd_back(&new, temp);

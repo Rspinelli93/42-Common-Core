@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 15:56:16 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/05 12:36:33 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:29:58 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 + This functions works similarly as the ft_lstdelone function,
 + but instead of removing only one element, it removes the element
 + passed as parameter as well as all the following elements.*/
-void	ft_lstclear(t_list **lst, void (*del)(int))
+void	ft_lstclear(t_list **lst)
 {
 	t_list	*tmp;
 
 	while (*lst)
 	{
 		tmp = (*lst)->next;
-		ft_lstdelone(*(lst), del);
+		ft_lstdelone(*lst);
 		*(lst) = tmp;
 	}
 	lst = NULL;

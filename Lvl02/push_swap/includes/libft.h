@@ -22,14 +22,14 @@ typedef struct s_list
 	int				cont;
 	int				index;
 	int				cost;
-	int				top_mid; //bool
+	int				media; //bool
 	int				cheapest; //bool
 	struct s_list	*target_node;
 	struct s_list	*prev;	
 	struct s_list	*next;
 }	t_list;
 
-int		ft_atoi(const char *nptr);
+long	ft_atoi(const char *nptr);
 void	ft_bzero(void *s, int n);
 void	*ft_calloc(int nmemb, int size);
 int		ft_isdigit(int c);
@@ -48,10 +48,10 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstdelone(t_list *lst, void (*del)(int));
-void	ft_lstclear(t_list **lst, void (*del)(int));
+void	ft_lstdelone(t_list *lst);
+void	ft_lstclear(t_list **lst);
 void	ft_lstiter(t_list *lst, void (*f)(int));
-t_list	*ft_lstmap(t_list *lst, int (*f)(int), void (*del)(int));
+t_list	*ft_lstmap(t_list *lst, int (*f)(int));
 
 void	del(int content);
 

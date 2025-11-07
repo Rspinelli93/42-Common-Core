@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_top.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:31:51 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/05 16:10:04 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:12:45 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,10 @@
 void	push_top(t_list **h_srcs, t_list **h_dest)
 {
 	t_list	*node1;
-	t_list	*node2;
 
 	if (!*h_srcs)
 		return ;
 	node1 = *h_srcs;
-	node2 = *h_dest;
-	if (!*h_dest)
-		node2 = NULL;
 	*h_srcs = (*h_srcs)->next;
 	ft_lstadd_front(h_dest, node1);
 	ft_printf("pa\n");

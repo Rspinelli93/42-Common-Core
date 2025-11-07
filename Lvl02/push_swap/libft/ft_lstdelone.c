@@ -3,26 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 15:55:23 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/05 12:39:26 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:14:41 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	del(int content)
-{
-	content = 0;
-}
-
 /*
 + This function takes a list element as parameter 
 + and deletes its content as well as free the allocated 
 + memory using the del function passed as parameter too. */
-void	ft_lstdelone(t_list *lst, void (*del)(int))
+void	ft_lstdelone(t_list *lst)
 {
-	del(lst->cont);
 	free(lst);
 }

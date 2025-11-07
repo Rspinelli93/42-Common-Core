@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:06:31 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/06 18:52:28 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/07 20:08:32 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ void	free_list(t_list *head);
 t_list	*mklist(int ac, char **arr);
 void	print_list(t_list *head);
 void	sort_three(t_list **hd);
-void    free_split(char **arr);
-int	    is_sorted(t_list **list);
-t_list	*find_max(t_list **list);
-t_list	*find_min(t_list **list);
+void	sort_two(t_list **list);
+void	free_split(char **arr);
+int		is_sorted(t_list **list);
+t_list	*find_min_max(t_list **list, const int a);
+void	set_index_media(t_list **list);
 
 void	push_top(t_list **h_srcs, t_list **h_dest);
 void	shift_up(t_list **head);

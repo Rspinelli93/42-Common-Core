@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shift_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 13:02:34 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/06 18:48:14 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/07 19:53:52 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	shift_up(t_list **head)
 	ft_lstadd_back(head, node);
 	ft_printf("ra\n");
 }
+
 /*
 + rr : (rotate a) and (rotate b) at the same time.
 + The first element becomes the last one.*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shift_down.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 13:03:17 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/06 18:47:51 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/07 19:53:24 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	shift_down(t_list **list)
 	new_end->next = NULL;
 	ft_printf("rra\n");
 }
+
 /*
 + rrr : (rotate reverse a) and (rotate reverse b) at the same time.
 + The last element becomes the first one.*/

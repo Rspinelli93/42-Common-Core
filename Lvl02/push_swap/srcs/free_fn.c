@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_list.c                                        :+:      :+:    :+:   */
+/*   free_fn.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 12:37:58 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/06 18:45:37 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/07 19:53:11 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ void	free_list(t_list *head)
 	}
 	free(head->next);
 }
+
 /* 
 + Free the allocated arr of str.*/
-void    free_split(char **arr)
+void	free_split(char **arr)
 {
-    int	i;
+	int	i;
 
 	i = 0;
 	while (arr[i] != NULL)
