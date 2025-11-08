@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 15:50:55 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/02 15:27:21 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:52:28 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ t_list	*ft_lstnew(int content)
 	if (!li)
 		return (NULL);
 	li->cont = content;
+	li->index = 0;
+	li->media = 0;
+	li->cheapest = 0;
 	li->next = NULL;
+	li->target_node = NULL;
 	return (li);
 }

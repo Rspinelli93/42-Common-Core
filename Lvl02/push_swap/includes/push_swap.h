@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:06:31 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/07 20:08:32 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:24:26 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,21 @@
 # include "libft.h"
 
 int		are_atoi(int size, char **arr);
-void	free_list(t_list *head);
 t_list	*mklist(int ac, char **arr);
 void	print_list(t_list *head);
+
 void	sort_three(t_list **hd);
 void	sort_two(t_list **list);
+
+void	free_list(t_list *head);
 void	free_split(char **arr);
+
 int		is_sorted(t_list **list);
 t_list	*find_min_max(t_list **list, const int a);
+
 void	set_index_media(t_list **list);
+void	set_target_atob(t_list **a, t_list **b);
+void	set_target_btoa(t_list **b, t_list **a);
 
 void	push_top(t_list **h_srcs, t_list **h_dest);
 void	shift_up(t_list **head);

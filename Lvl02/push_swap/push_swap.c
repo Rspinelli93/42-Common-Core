@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/07 20:08:55 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:52:40 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,14 @@ int	main(int argc, char **argv)
 	if (!are_atoi(argc, arr))
 		return (-1);
 	head_a = mklist(argc, arr);
-	set_index_media(&head_a);
+
+	push_top(&head_a, &head_b);
+	push_top(&head_a, &head_b);
+	push_top(&head_a, &head_b);
+	set_target_btoa(&head_b, &head_a);
+	print_list(head_b);
+	print_list(head_a);
+	/*set_index_media(&head_a);
 	if (!is_sorted(&head_a))
 	{
 		if (ft_lstsize(head_a) == 2)
@@ -43,7 +50,7 @@ int	main(int argc, char **argv)
 	print_list(head_a);
 	ft_lstclear(&head_a);
 	if (argc == 2)
-		free_split(arr);
+		free_split(arr);*/
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 18:36:23 by rick              #+#    #+#             */
-/*   Updated: 2025/11/07 20:41:50 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/08 18:53:32 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ void	print_list(t_list *head)
 {
 	while (head)
 	{
-		ft_printf("%i\n", head->cont);
+		ft_printf("cont: %i\n", head->cont);
+		if (head->target_node)
+			ft_printf("target: %i\n", head->target_node->cont);
+		ft_printf("\n");
 		head = head->next;
 	}
 }
@@ -130,15 +133,66 @@ void	sort_big(t_list **a, t_list **b);
 check if sorted, otherwise ra or rra (media) (min on top)
 */
 
-void	set_targetnode(t_list **a, t_list **b);
-/*
-- find the closest smaller (if pushing from a to b)
-		if closest smaller not found, targer node is the max value
-- find the closest bigger (if pushing from b to a)
-		if closest bigger not found, targer node is the min value
-*/
+/* TESTED
++ Find the closest smaller (if pushing from a to b)
++ If closest smaller not found, targer node is the max value.*/
+void	set_target_atob(t_list **a, t_list **b)
+{
+	t_list	*pa;
+	t_list	*pb;
+	t_list	*temp;
 
-void	set_cost(t_list **a, t_list **b);
+	if (!*a || !*b)
+		return ;
+	pa = *a;
+	while (pa)
+	{
+		pb = *b;
+		temp = find_min_max(b, 0);
+		while (pb)
+		{
+			if (pb->cont < pa->cont && pb->cont > temp->cont)
+				temp = pb;
+			pb = pb->next;
+		}
+		if (pa->cont < temp->cont)
+			pa->target_node = find_min_max(b, 1);
+		else
+			pa->target_node = temp;
+		pa = pa->next;
+	}
+}
+
+/* TESTED
++ Find the closest bigger (if pushing from b to a)
++ If closest bigger not found, targer node is the min value */
+void	set_target_btoa(t_list **b, t_list **a)
+{
+	t_list	*pa;
+	t_list	*pb;
+	t_list	*temp;
+
+	if (!*a || !*b)
+		return ;
+	pb = *b;
+	while (pb)
+	{
+		pa = *a;
+		temp = find_min_max(a, 1);
+		while (pa)
+		{
+			if (pa->cont > pb->cont && pa->cont < temp->cont)
+				temp = pa;
+			pa = pa->next;
+		}
+		if (pb->cont > temp->cont)
+			pb->target_node = find_min_max(a, 0);
+		else
+			pb->target_node = temp;
+		pb = pb->next;
+	}
+}
+
 /*
 - calculate the number of moves needed:
 - Math:
@@ -151,6 +205,7 @@ void	set_cost(t_list **a, t_list **b);
 
 	To calculate this is with media (or index), either up or down rotate times
 */
+void	set_cost(t_list **a, t_list **b);
 
 
 
