@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 18:36:23 by rick              #+#    #+#             */
-/*   Updated: 2025/11/08 18:53:32 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 00:16:15 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,14 +198,34 @@ void	set_target_btoa(t_list **b, t_list **a)
 - Math:
 
 	X operations to bring a node to the top of 'a'
-		+
+		.+
 	X operations to bring this node target to top of 'b'
-	--------------------------------------
+
 	= push cost;
 
 	To calculate this is with media (or index), either up or down rotate times
 */
-void	set_cost(t_list **a, t_list **b);
+void	set_cost(t_list	**node, t_list **a, t_list **b)
+{
+	int	nb;
+
+	nb = 0;
+	// Make bigger if statements here to separate by a list first, not repeating ifs params
+	if ((*node)->media && (*node)->target_node->media)
+	{
+		if (ft_lstsize(*node) >= ft_lstsize((*node)->target_node)) //Both over media
+			nb = ft_lstsize(*node) + 1;
+		else
+			nb = ft_lstsize((*node)->target_node) + 1;
+	}
+	else if (!(*node)->media && !(*node)->target_node->media) //Both under media
+	{
+		if ((*node)->index >= (*node)->target_node->index)
+			nb = (*node)->index;
+		else
+			nb = (*node)->target_node->index;
+	}
+}
 
 
 

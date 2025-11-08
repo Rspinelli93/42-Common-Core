@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/08 18:52:40 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/08 23:45:02 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,5 @@ int	main(int argc, char **argv)
 //* handle limits
 // handle print erro for firsr if check
 //* handle same number
+// Control mklist() - Make sure to propperly
+//		initialize all the elements of each node
