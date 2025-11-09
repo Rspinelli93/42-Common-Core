@@ -6,33 +6,39 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 13:02:34 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/07 19:53:52 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 12:40:16 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-+ ra (rotate a): Shift up all elements of stack a by 1.
-+ The first element becomes the last one. */
-void	shift_up(t_list **head)
++ Rotate: Shift up all elements of stack a by 1.
++ The first element becomes the last one.
++ int val prints: 1 = ra, 2 = rb, 0 = nothing.*/
+void	shift_up(t_list **list, int x)
 {
 	t_list	*node;
 
-	if (!*head)
+	if (!*list)
 		return ;
-	node = *head;
-	*head = (*head)->next;
-	ft_lstadd_back(head, node);
-	ft_printf("ra\n");
+	node = *list;
+	*list = (*list)->next;
+	ft_lstadd_back(list, node);
+	if (x == 0)
+		return ;
+	if (x == 1)	
+		ft_printf("ra\n");
+	if (x == 2)	
+		ft_printf("rb\n");
 }
 
 /*
 + rr : (rotate a) and (rotate b) at the same time.
 + The first element becomes the last one.*/
-void	shift_up_both(t_list **head1, t_list **head2)
+void	shift_up_both(t_list **a, t_list **b)
 {
-	shift_up(head1);
-	shift_up(head2);
+	shift_up(a, 0);
+	shift_up(b, 0);
 	ft_printf("rr\n");
 }

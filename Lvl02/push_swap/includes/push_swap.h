@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:06:31 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/08 18:24:26 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 12:40:24 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 
 int		are_atoi(int size, char **arr);
 t_list	*mklist(int ac, char **arr);
-void	print_list(t_list *head);
+void	print_list(t_list *list);
 
-void	sort_three(t_list **hd);
+void	sort_three(t_list **list);
 void	sort_two(t_list **list);
 
-void	free_list(t_list *head);
+void	free_list(t_list *list);
 void	free_split(char **arr);
 
 int		is_sorted(t_list **list);
@@ -32,13 +32,16 @@ t_list	*find_min_max(t_list **list, const int a);
 void	set_index_media(t_list **list);
 void	set_target_atob(t_list **a, t_list **b);
 void	set_target_btoa(t_list **b, t_list **a);
+void	set_cost(t_list	**node, t_list **target, int med, int tmed);
+void	set_cost_all(t_list **list);
+void	set_cheapest(t_list **list);
 
-void	push_top(t_list **h_srcs, t_list **h_dest);
-void	shift_up(t_list **head);
-void	shift_up_both(t_list **head1, t_list **head2);
-void	shift_down(t_list **list);
-void	shift_down_both(t_list **head1, t_list **head2);
-void	swap_ab(t_list **head);
-void	swap_both(t_list **head_a, t_list **head_b);
+void	push_top(t_list **src, t_list **dst, int x);
+void	shift_up(t_list **list, int x);
+void	shift_up_both(t_list **a, t_list **b);
+void	shift_down(t_list **list, int x);
+void	shift_down_both(t_list **a, t_list **b);
+void	swap_ab(t_list **list, int x);
+void	swap_both(t_list **a, t_list **b);
 
 #endif

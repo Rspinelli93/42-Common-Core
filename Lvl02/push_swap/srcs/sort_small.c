@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:34:26 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/07 19:54:29 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 12:43:45 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,31 @@
 /*
 + Function to sort 3 numbers
 + It works always within the same stack*/
-void	sort_three(t_list **hd)
+void	sort_three(t_list **list)
 {
 	t_list	*s;
 
-	s = (*hd)->next;
-	if (((*hd)->cont < s->cont) && (s->cont < ft_lstlast((*hd))->cont))
+	s = (*list)->next;
+	if (((*list)->cont < s->cont) && (s->cont < ft_lstlast((*list))->cont))
 		return ;
-	else if (((*hd)->cont > s->cont) && (s->cont > ft_lstlast((*hd))->cont))
+	else if (((*list)->cont > s->cont) && (s->cont > ft_lstlast((*list))->cont))
 	{
-		swap_ab(hd);
-		shift_down(hd);
+		swap_ab(list, 1);
+		shift_down(list, 1);
 	}
-	else if (((*hd)->cont > s->cont) && (s->cont < ft_lstlast((*hd))->cont))
+	else if (((*list)->cont > s->cont) && (s->cont < ft_lstlast((*list))->cont))
 	{
-		if (ft_lstlast((*hd))->cont > (*hd)->cont)
-			swap_ab(hd);
+		if (ft_lstlast((*list))->cont > (*list)->cont)
+			swap_ab(list, 1);
 		else
-			shift_up(hd);
+			shift_up(list, 1);
 	}
 	else
 	{
-		shift_down(hd);
-		s = (*hd)->next;
-		if ((*hd)->cont > s->cont)
-			swap_ab(hd);
+		shift_down(list, 1);
+		s = (*list)->next;
+		if ((*list)->cont > s->cont)
+			swap_ab(list, 1);
 	}
 }
 
@@ -49,6 +49,6 @@ void	sort_two(t_list **list)
 {
 	if ((*list)->cont > (*list)->next->cont)
 	{
-		swap_ab(list);
+		swap_ab(list, 1);
 	}
 }

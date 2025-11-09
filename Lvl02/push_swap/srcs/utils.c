@@ -6,13 +6,13 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 18:36:23 by rick              #+#    #+#             */
-/*   Updated: 2025/11/09 00:16:15 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 12:25:22 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
+/* TESTED
 + This function takes an array and creates a linked list
 + allocating each node and setting the content of each 
 + node to each number of each possition in the array.
@@ -44,21 +44,24 @@ t_list	*mklist(int ac, char **arr)
 	return (head);
 }
 
-/*
+/* TESTED
 + Prints the content of each node with a \n after.*/
-void	print_list(t_list *head)
+void	print_list(t_list *list)
 {
-	while (head)
+	while (list)
 	{
-		ft_printf("cont: %i\n", head->cont);
-		if (head->target_node)
-			ft_printf("target: %i\n", head->target_node->cont);
+		ft_printf("cont: %i\n", list->cont);
+		if (list->targ)
+			ft_printf("target: %i\n", list->targ->cont);
+		ft_printf("index: %i - media: %i\n", list->index, list->media);
+		ft_printf("cost: %i\n", list->cost);
+		ft_printf("cheapest: %i\n", list->cheapest);
 		ft_printf("\n");
-		head = head->next;
+		list = list->next;
 	}
 }
 
-/*
+/* TESTED
 + Return a pointer to the max or min cont node
 + Use 1 for max and 0 for min.*/
 t_list	*find_min_max(t_list **list, const int a)
@@ -90,7 +93,7 @@ t_list	*find_min_max(t_list **list, const int a)
 	}
 }
 
-/*
+/* TESTED
 + Set the index and the media for each node of the list
 + ft_printf("index: %i - media: %i",ptr->index, ptr->media);
 */
@@ -108,7 +111,7 @@ void	set_index_media(t_list **list)
 	while (ptr)
 	{
 		ptr->index = i;
-		if (i <= med)
+		if (i < med)
 			ptr->media = 0;
 		else
 			ptr->media = 1;
@@ -132,100 +135,3 @@ void	sort_big(t_list **a, t_list **b);
 		if pushcost is the smallest push the first one you find
 check if sorted, otherwise ra or rra (media) (min on top)
 */
-
-/* TESTED
-+ Find the closest smaller (if pushing from a to b)
-+ If closest smaller not found, targer node is the max value.*/
-void	set_target_atob(t_list **a, t_list **b)
-{
-	t_list	*pa;
-	t_list	*pb;
-	t_list	*temp;
-
-	if (!*a || !*b)
-		return ;
-	pa = *a;
-	while (pa)
-	{
-		pb = *b;
-		temp = find_min_max(b, 0);
-		while (pb)
-		{
-			if (pb->cont < pa->cont && pb->cont > temp->cont)
-				temp = pb;
-			pb = pb->next;
-		}
-		if (pa->cont < temp->cont)
-			pa->target_node = find_min_max(b, 1);
-		else
-			pa->target_node = temp;
-		pa = pa->next;
-	}
-}
-
-/* TESTED
-+ Find the closest bigger (if pushing from b to a)
-+ If closest bigger not found, targer node is the min value */
-void	set_target_btoa(t_list **b, t_list **a)
-{
-	t_list	*pa;
-	t_list	*pb;
-	t_list	*temp;
-
-	if (!*a || !*b)
-		return ;
-	pb = *b;
-	while (pb)
-	{
-		pa = *a;
-		temp = find_min_max(a, 1);
-		while (pa)
-		{
-			if (pa->cont > pb->cont && pa->cont < temp->cont)
-				temp = pa;
-			pa = pa->next;
-		}
-		if (pb->cont > temp->cont)
-			pb->target_node = find_min_max(a, 0);
-		else
-			pb->target_node = temp;
-		pb = pb->next;
-	}
-}
-
-/*
-- calculate the number of moves needed:
-- Math:
-
-	X operations to bring a node to the top of 'a'
-		.+
-	X operations to bring this node target to top of 'b'
-
-	= push cost;
-
-	To calculate this is with media (or index), either up or down rotate times
-*/
-void	set_cost(t_list	**node, t_list **a, t_list **b)
-{
-	int	nb;
-
-	nb = 0;
-	// Make bigger if statements here to separate by a list first, not repeating ifs params
-	if ((*node)->media && (*node)->target_node->media)
-	{
-		if (ft_lstsize(*node) >= ft_lstsize((*node)->target_node)) //Both over media
-			nb = ft_lstsize(*node) + 1;
-		else
-			nb = ft_lstsize((*node)->target_node) + 1;
-	}
-	else if (!(*node)->media && !(*node)->target_node->media) //Both under media
-	{
-		if ((*node)->index >= (*node)->target_node->index)
-			nb = (*node)->index;
-		else
-			nb = (*node)->target_node->index;
-	}
-}
-
-
-

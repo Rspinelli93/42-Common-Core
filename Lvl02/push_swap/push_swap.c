@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/08 23:45:02 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 12:50:27 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,26 @@ int	main(int argc, char **argv)
 		return (-1);
 	head_a = mklist(argc, arr);
 
-	push_top(&head_a, &head_b);
-	push_top(&head_a, &head_b);
-	push_top(&head_a, &head_b);
+	push_top(&head_a, &head_b, 2);
+	push_top(&head_a, &head_b, 2);
+	push_top(&head_a, &head_b, 2);
 	set_target_btoa(&head_b, &head_a);
-	print_list(head_b);
+	set_target_atob(&head_a, &head_b);
+	set_index_media(&head_a);
+	set_index_media(&head_b);
+	set_cost_all(&head_a);
+	set_cost_all(&head_b);
+	set_cheapest(&head_a);
+	set_cheapest(&head_b);
+	ft_printf("LIST A\n------------\n");
 	print_list(head_a);
-	/*set_index_media(&head_a);
+	ft_printf("LIST B\n------------\n");
+	print_list(head_b);
+	/*
 	if (!is_sorted(&head_a))
 	{
 		if (ft_lstsize(head_a) == 2)
-			sort_three(&head_a);
+			sort_two(&head_a);
 		if (ft_lstsize(head_a) == 3)
 			sort_three(&head_a);
 	}
@@ -65,3 +74,6 @@ int	main(int argc, char **argv)
 //* handle same number
 // Control mklist() - Make sure to propperly
 //		initialize all the elements of each node
+// Handle printing propper command when using each command (if a or b)
+
+

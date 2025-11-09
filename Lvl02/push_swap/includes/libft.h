@@ -24,7 +24,7 @@ typedef struct s_list
 	int				cost;
 	int				media; //bool
 	int				cheapest; //bool
-	struct s_list	*target_node;
+	struct s_list	*targ;
 	struct s_list	*prev;
 	struct s_list	*next;
 }	t_list;

@@ -6,16 +6,17 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 13:03:17 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/07 19:53:24 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 12:38:36 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-+ rra (reverse rotate a): Shift down all elements of stack a by 1.
-+ The last element becomes the first one. */
-void	shift_down(t_list **list)
++ Reverse rotate: Shift down all elements of stack a by 1.
++ The last element becomes the first one.
++ int val prints: 1 = rra, 2 = rrb, 0 = nothing.*/
+void	shift_down(t_list **list, int x)
 {
 	t_list	*new_start;
 	t_list	*new_end;
@@ -28,15 +29,20 @@ void	shift_down(t_list **list)
 		new_end = new_end->next;
 	ft_lstadd_front(list, new_start);
 	new_end->next = NULL;
-	ft_printf("rra\n");
+	if (x == 0)
+		return ;
+	if (x == 1)	
+		ft_printf("rra\n");
+	if (x == 2)	
+		ft_printf("rrb\n");
 }
 
 /*
 + rrr : (rotate reverse a) and (rotate reverse b) at the same time.
 + The last element becomes the first one.*/
-void	shift_down_both(t_list **head1, t_list **head2)
+void	shift_down_both(t_list **a, t_list **b)
 {
-	shift_down(head1);
-	shift_down(head2);
+	shift_down(a, 0);
+	shift_down(b, 0);
 	ft_printf("rrr\n");
 }
