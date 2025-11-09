@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shift_up.c                                         :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 13:02:34 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/09 12:40:16 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 15:24:24 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 + Rotate: Shift up all elements of stack a by 1.
 + The first element becomes the last one.
 + int val prints: 1 = ra, 2 = rb, 0 = nothing.*/
-void	shift_up(t_list **list, int x)
+void	rotate(t_list **list, int x)
 {
 	t_list	*node;
 
@@ -36,9 +36,9 @@ void	shift_up(t_list **list, int x)
 /*
 + rr : (rotate a) and (rotate b) at the same time.
 + The first element becomes the last one.*/
-void	shift_up_both(t_list **a, t_list **b)
+void	rotate_both(t_list **a, t_list **b)
 {
-	shift_up(a, 0);
-	shift_up(b, 0);
+	rotate(a, 0);
+	rotate(b, 0);
 	ft_printf("rr\n");
 }

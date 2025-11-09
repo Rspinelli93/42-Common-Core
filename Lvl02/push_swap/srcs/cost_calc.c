@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 12:08:26 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/09 12:24:39 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 13:23:57 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 /* TESTED
 + Search the cheapest cost node and set the value
-+ of cheapest to true (1).*/
-void	set_cheapest(t_list **list)
++ of cheapest to true (1).
++ returns a pointer to it*/
+t_list	*set_cheapest(t_list **list)
 {
 	t_list	*ptr;
 	t_list	*temp;
@@ -29,6 +30,7 @@ void	set_cheapest(t_list **list)
 		temp = temp->next;
 	}
 	ptr->cheapest = 1;
+	return (ptr);
 }
 
 /* TESTED

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shift_down.c                                       :+:      :+:    :+:   */
+/*   reverse_rot.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 13:03:17 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/09 12:38:36 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 15:25:30 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 + Reverse rotate: Shift down all elements of stack a by 1.
 + The last element becomes the first one.
 + int val prints: 1 = rra, 2 = rrb, 0 = nothing.*/
-void	shift_down(t_list **list, int x)
+void	reverse_rotate(t_list **list, int x)
 {
 	t_list	*new_start;
 	t_list	*new_end;
@@ -40,9 +40,9 @@ void	shift_down(t_list **list, int x)
 /*
 + rrr : (rotate reverse a) and (rotate reverse b) at the same time.
 + The last element becomes the first one.*/
-void	shift_down_both(t_list **a, t_list **b)
+void	reverse_rotate_both(t_list **a, t_list **b)
 {
-	shift_down(a, 0);
-	shift_down(b, 0);
+	rotate(a, 0);
+	rotate(b, 0);
 	ft_printf("rrr\n");
 }

@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/09 12:50:27 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 15:57:21 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 #include "push_swap.h"
 #include "string.h"
 
+static void	sort_list(t_list **a, t_list **b);
+
 int	main(int argc, char **argv)
 {
-	t_list	*head_a;
-	t_list	*head_b;
+	t_list	*la;
+	t_list	*lb;
 	char	**arr;
 
-	head_a = NULL;
-	head_b = NULL;
+	la = NULL;
+	lb = NULL;
 	if (argc < 2)
 		return (-1);
 	if (argc == 2)
@@ -31,36 +33,26 @@ int	main(int argc, char **argv)
 		arr = &argv[1];
 	if (!are_atoi(argc, arr))
 		return (-1);
-	head_a = mklist(argc, arr);
-
-	push_top(&head_a, &head_b, 2);
-	push_top(&head_a, &head_b, 2);
-	push_top(&head_a, &head_b, 2);
-	set_target_btoa(&head_b, &head_a);
-	set_target_atob(&head_a, &head_b);
-	set_index_media(&head_a);
-	set_index_media(&head_b);
-	set_cost_all(&head_a);
-	set_cost_all(&head_b);
-	set_cheapest(&head_a);
-	set_cheapest(&head_b);
-	ft_printf("LIST A\n------------\n");
-	print_list(head_a);
-	ft_printf("LIST B\n------------\n");
-	print_list(head_b);
-	/*
-	if (!is_sorted(&head_a))
-	{
-		if (ft_lstsize(head_a) == 2)
-			sort_two(&head_a);
-		if (ft_lstsize(head_a) == 3)
-			sort_three(&head_a);
-	}
-	print_list(head_a);
-	ft_lstclear(&head_a);
+	la = mklist(argc, arr);
+	sort_list(&la, &lb);
+	print_list(la);
+	ft_lstclear(&la);
 	if (argc == 2)
-		free_split(arr);*/
+		free_split(arr);
 	return (0);
+}
+
+static void	sort_list(t_list **a, t_list **b)
+{
+	if (!is_sorted(a))
+	{
+		if (ft_lstsize(*a) == 2)
+			sort_two(a);
+		else if (ft_lstsize(*a) == 3)
+			sort_three(a);
+		else
+			sort_big(a, b);
+	}
 }
 
 //* find length of stack
@@ -74,6 +66,4 @@ int	main(int argc, char **argv)
 //* handle same number
 // Control mklist() - Make sure to propperly
 //		initialize all the elements of each node
-// Handle printing propper command when using each command (if a or b)
-
-
+//* Handle printing propper command when using each command (if a or b)

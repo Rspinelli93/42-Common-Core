@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 18:36:23 by rick              #+#    #+#             */
-/*   Updated: 2025/11/09 12:25:22 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 15:33:00 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,18 @@ t_list	*mklist(int ac, char **arr)
 }
 
 /* TESTED
-+ Prints the content of each node with a \n after.*/
++ Prints the content of each node with a \n after.
+ 		if (list->targ)
+			ft_printf("target: %i\n", list->targ->cont);
+		ft_printf("index: %i - media: %i\n", list->index, list->media);
+		ft_printf("cost: %i\n", list->cost);
+		ft_printf("cheapest: %i\n", list->cheapest);
+		ft_printf("\n"); */
 void	print_list(t_list *list)
 {
 	while (list)
 	{
 		ft_printf("cont: %i\n", list->cont);
-		if (list->targ)
-			ft_printf("target: %i\n", list->targ->cont);
-		ft_printf("index: %i - media: %i\n", list->index, list->media);
-		ft_printf("cost: %i\n", list->cost);
-		ft_printf("cheapest: %i\n", list->cheapest);
-		ft_printf("\n");
 		list = list->next;
 	}
 }
@@ -119,19 +119,3 @@ void	set_index_media(t_list **list)
 		ptr = ptr->next;
 	}
 }
-void	sort_big(t_list **a, t_list **b);
-/*
-- push 2 to b (checking every time if there is 3 in a)
-- while (length of a != 3)
-	- set_tagetnode
-	- push cheapest (doing so will organize them in descending order in b) (bringing each on top (check media for rotate or reverse rotate) and then sa)
-		if cost 0 push directly
-		if pushcost is the smallest push the first one you find
-- now that i have 3 in a -> sort_tree(a)
-- while (b has something)
-	- set_tagetnode
-	- push cheapest (bringing each on top (check media for rotate or reverse rotate) and then sa)
-		if cost 0 push directly
-		if pushcost is the smallest push the first one you find
-check if sorted, otherwise ra or rra (media) (min on top)
-*/
