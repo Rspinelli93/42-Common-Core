@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 18:36:23 by rick              #+#    #+#             */
-/*   Updated: 2025/11/09 15:33:00 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 16:11:38 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	print_list(t_list *list)
 {
 	while (list)
 	{
-		ft_printf("cont: %i\n", list->cont);
+		ft_printf("%i\n", list->cont);
 		list = list->next;
 	}
 }
@@ -118,4 +118,18 @@ void	set_index_media(t_list **list)
 		i++;
 		ptr = ptr->next;
 	}
+}
+
+/*
++ Simple function to update values on each iteration. */
+void	update_values(t_list **a, t_list **b)
+{
+	set_target_btoa(b, a);
+	set_target_atob(a, b);
+	set_index_media(a);
+	set_index_media(b);
+	set_cost_all(a);
+	set_cost_all(b);
+	set_cheapest(a);
+	set_cheapest(b);
 }

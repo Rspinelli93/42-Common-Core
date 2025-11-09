@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 13:03:17 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/09 15:25:30 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 16:03:40 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	reverse_rotate(t_list **list, int x)
 	new_end->next = NULL;
 	if (x == 0)
 		return ;
-	if (x == 1)	
+	if (x == 1)
 		ft_printf("rra\n");
-	if (x == 2)	
+	if (x == 2)
 		ft_printf("rrb\n");
 }
 
