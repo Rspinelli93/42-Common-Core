@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 12:08:26 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/09 13:23:57 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 21:07:00 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ t_list	*set_cheapest(t_list **list)
 	t_list	*temp;
 
 	ptr = *list;
+	temp = *list;
+	while (temp)
+	{
+		temp->cheapest = 0;
+		temp = temp->next;
+	}
 	temp = *list;
 	while (temp)
 	{

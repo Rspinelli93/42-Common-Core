@@ -6,43 +6,11 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 18:36:23 by rick              #+#    #+#             */
-/*   Updated: 2025/11/09 16:11:38 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 21:44:47 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/* TESTED
-+ This function takes an array and creates a linked list
-+ allocating each node and setting the content of each 
-+ node to each number of each possition in the array.
-+
-+ The return value is a pointer to the first node.*/
-t_list	*mklist(int ac, char **arr)
-{
-	int		i;
-	t_list	*head;
-
-	i = 1;
-	head = ft_lstnew(ft_atoi(arr[0]));
-	if (ac == 2)
-	{
-		while (arr[i])
-		{
-			ft_lstadd_back(&head, ft_lstnew(ft_atoi(arr[i])));
-			i++;
-		}
-	}
-	else
-	{
-		while (i < ac - 1)
-		{
-			ft_lstadd_back(&head, ft_lstnew(ft_atoi(arr[i])));
-			i++;
-		}
-	}
-	return (head);
-}
 
 /* TESTED
 + Prints the content of each node with a \n after.
@@ -122,14 +90,20 @@ void	set_index_media(t_list **list)
 
 /*
 + Simple function to update values on each iteration. */
-void	update_values(t_list **a, t_list **b)
+void	update_values_a(t_list **a, t_list **b)
 {
-	set_target_btoa(b, a);
-	set_target_atob(a, b);
 	set_index_media(a);
-	set_index_media(b);
+	set_target_atob(a, b);
 	set_cost_all(a);
-	set_cost_all(b);
 	set_cheapest(a);
+}
+
+/*
++ Simple function to update values on each iteration. */
+void	update_values_b(t_list **a, t_list **b)
+{
+	set_index_media(b);
+	set_target_btoa(b, a);
+	set_cost_all(b);
 	set_cheapest(b);
 }

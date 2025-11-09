@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:36:07 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/09 18:14:24 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 21:43:45 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@
 + In case needes, rotate or reverse rotate until is_sorted(a); */
 void	sort_big(t_list **a, t_list **b)
 {
-	if (ft_lstsize(*a) > 3)
+	if (ft_lstsize(*a) > 3 && !is_sorted(a))
 		push_top(a, b, 2);
-	if (ft_lstsize(*a) > 3)
+	if (ft_lstsize(*a) > 3 && !is_sorted(a))
 		push_top(a, b, 2);
-	while (ft_lstsize(*a) > 3)
+	while (ft_lstsize(*a) > 3 && !is_sorted(a))
 	{
-		update_values(a, b);
+		update_values_a(a, b);
 		cheapest_to_top(a, b, 1, 2);
 		push_top(a, b, 2);
 	}
 	sort_three(a);
 	while (*b)
 	{
-		update_values(a, b);
+		update_values_b(a, b);
 		cheapest_to_top(b, a, 2, 1);
 		push_top(b, a, 1);
 	}
@@ -66,14 +66,14 @@ void	cheapest_to_top(t_list **src, t_list **dst, int x, int y)
 
 	chp = set_cheapest(src);
 	tar = chp->targ;
-    if (chp->media && tar->media)
-        to_top_media(src, dst, x, y);
-    else if (!chp->media && !tar->media)
-        to_top_index(src, dst, x, y);
-    else
-        to_top(src, dst, x, y);
-    set_index_media(src);
-    set_index_media(dst);
+	if (chp->media && tar->media)
+		to_top_media(src, dst, x, y);
+	else if (!chp->media && !tar->media)
+		to_top_index(src, dst, x, y);
+	else
+		to_top(src, dst, x, y);
+	set_index_media(src);
+	set_index_media(dst);
 }
 
 /*

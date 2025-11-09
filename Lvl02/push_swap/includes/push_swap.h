@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:06:31 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/09 15:56:25 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 21:21:11 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ int		is_sorted(t_list **list);
 void	sort_three(t_list **list);
 void	sort_two(t_list **list);
 void	cheapest_to_top(t_list **src, t_list **dst, int x, int y);
-void	update_values(t_list **a, t_list **b);
 void	sort_big(t_list **a, t_list **b);
 
 // Utils
 t_list	*mklist(int ac, char **arr);
 void	print_list(t_list *list);
 t_list	*find_min_max(t_list **list, const int a);
+void	update_values_b(t_list **a, t_list **b);
+void	update_values_a(t_list **a, t_list **b);
 
 // Free
 void	free_list(t_list *list);
