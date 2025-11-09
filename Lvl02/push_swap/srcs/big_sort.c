@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:36:07 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/09 16:10:24 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/09 18:14:24 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,14 @@ void	cheapest_to_top(t_list **src, t_list **dst, int x, int y)
 
 	chp = set_cheapest(src);
 	tar = chp->targ;
-	while (*src != chp || *dst != tar)
-	{
-		if (chp->media && tar->media)
-			to_top_index(src, dst, x, y);
-		else if (!chp->media && !tar->media)
-			to_top_index(src, dst, x, y);
-		else
-			to_top(src, dst, x, y);
-		set_index_media(src);
-		set_index_media(dst);
-	}
+    if (chp->media && tar->media)
+        to_top_media(src, dst, x, y);
+    else if (!chp->media && !tar->media)
+        to_top_index(src, dst, x, y);
+    else
+        to_top(src, dst, x, y);
+    set_index_media(src);
+    set_index_media(dst);
 }
 
 /*
@@ -90,11 +87,10 @@ void	to_top_media(t_list **src, t_list **dst, int x, int y)
 	tar = chp->targ;
 	while (chp->next && tar->next)
 		reverse_rotate_both(src, dst);
-	while (chp->next)
+	while (*src != chp)
 		reverse_rotate(src, x);
-	while (tar->next)
+	while (*dst != tar)
 		reverse_rotate(dst, y);
-	reverse_rotate_both(src, dst);
 }
 
 /*
@@ -106,13 +102,12 @@ void	to_top_index(t_list **src, t_list **dst, int x, int y)
 
 	chp = set_cheapest(src);
 	tar = chp->targ;
-	while (chp->index && tar->index)
+	while (*src != chp && *dst != tar)
 		rotate_both(src, dst);
-	while (chp->index)
+	while (*src != chp)
 		rotate(src, x);
-	while (tar->index)
+	while (*dst != tar)
 		rotate(dst, y);
-	rotate_both(src, dst);
 }
 
 /*

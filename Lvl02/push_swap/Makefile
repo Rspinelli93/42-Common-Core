@@ -3,17 +3,17 @@ CFLAGS = -Wall -Wextra -Werror
 INCLUDES = ./includes
 
 # Source files (wildcard expands all .c in srcs)
-SRCS = $(wildcard ./ft_printf/srcs/*.c) $(wildcard ./libft/*.c) $(wildcard ./ft_printf/*.c) $(wildcard ./srcs/*.c)
+SRCS = ./push_swap.c $(wildcard ./ft_printf/srcs/*.c) $(wildcard ./libft/*.c) $(wildcard ./ft_printf/*.c) $(wildcard ./srcs/*.c)
 # Object files: replace .c with .o for all SRCS + ft_printf.o
 OFILES = $(SRCS:.c=.o)
 
-NAME = push_swaplib.a
+NAME = push_swap
 
 all: $(NAME)
 
-# Build printf lib from libft + objs
+# Executable
 $(NAME): $(OFILES)
-	ar rcs $(NAME) $(OFILES)
+	cc $(CFLAGS) $(OFILES) -o $(NAME)
 
 # Compile .c to .o, addprefix prepends -I to each include dir
 %.o: %.c
