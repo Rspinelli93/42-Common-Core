@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:06:31 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/10 18:27:43 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/10 21:58:25 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ int		is_sorted(t_list **list);
 void	sort_three(t_list **list);
 void	sort_two(t_list **list);
 void	sort_big(t_list **a, t_list **b);
+void	sort_five(t_list **a);
 
-// tbd
+// Sorting
 void	cheapest_to_top_a(t_list **a, t_list **b);
 void	atob_bot(t_list **a, t_list **b);
 void	atob_top(t_list **a, t_list **b);

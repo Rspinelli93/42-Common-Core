@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cost_calc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 12:08:26 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/10 14:52:10 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/10 21:41:42 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_list	*set_cheapest(t_list **list)
 + Search and return the cheapest*/
 t_list	*get_cheapest(t_list **list)
 {
-	t_list *ptr;
+	t_list	*ptr;
 
 	ptr = *list;
 	while (ptr)
