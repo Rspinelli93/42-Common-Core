@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:06:31 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/10 15:22:29 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/10 18:27:43 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,17 @@ int		is_sorted(t_list **list);
 // Sorting
 void	sort_three(t_list **list);
 void	sort_two(t_list **list);
-void	cheapest_to_top(t_list **src, t_list **dst, int x, int y);
 void	sort_big(t_list **a, t_list **b);
+
+// tbd
+void	cheapest_to_top_a(t_list **a, t_list **b);
+void	atob_bot(t_list **a, t_list **b);
+void	atob_top(t_list **a, t_list **b);
+void	atob(t_list **a, t_list **b);
+void	cheapest_to_top_b(t_list **b, t_list **a);
+void	btoa_bot(t_list **b, t_list **a);
+void	btoa_top(t_list **b, t_list **a);
+void	btoa(t_list **b, t_list **a);
 
 // Utils
 t_list	*mklist(int ac, char **arr);
@@ -44,21 +53,18 @@ void	set_target_btoa(t_list **b, t_list **a);
 void	set_cost(t_list	**node, t_list **target, int med, int tmed);
 void	set_cost_all(t_list **list);
 t_list	*set_cheapest(t_list **list);
+t_list	*get_cheapest(t_list **list);
 
 // Operations
+void	ra(t_list **list, int x);
+void	rb(t_list **list, int x);
+void	rr(t_list **a, t_list **b);
+void	rrb(t_list **list, int x);
+void	rra(t_list **list, int x);
+void	rrr(t_list **a, t_list **b);
+void	ss(t_list **a, t_list **b);
+void	sb(t_list **list, int x);
+void	sa(t_list **list, int x);
 void	push_top(t_list **src, t_list **dst, int x);
-void	rotate(t_list **list, int x);
-void	rotate_both(t_list **a, t_list **b);
-void	reverse_rotate(t_list **list, int x);
-void	reverse_rotate_both(t_list **a, t_list **b);
-void	swap_ab(t_list **list, int x);
-void	swap_both(t_list **a, t_list **b);
-
-// tbd
-void	to_top(t_list **src, t_list **dst, int x, int y);
-void	to_top_index(t_list **src, t_list **dst, int x, int y);
-void	to_top_media(t_list **src, t_list **dst, int x, int y);
-
-t_list	*get_cheapest(t_list **list);
 
 #endif
