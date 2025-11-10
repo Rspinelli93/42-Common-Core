@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror
 INCLUDES = ./includes
 
 # Source files (wildcard expands all .c in srcs)
-SRCS = ./push_swap.c $(wildcard ./ft_printf/srcs/*.c) $(wildcard ./libft/*.c) $(wildcard ./ft_printf/*.c) $(wildcard ./srcs/*.c)
+SRCS = ./push_swap.c $(wildcard ./operations/*.c) $(wildcard ./ft_printf/srcs/*.c) $(wildcard ./libft/*.c) $(wildcard ./ft_printf/*.c) $(wildcard ./srcs/*.c)
 # Object files: replace .c with .o for all SRCS + ft_printf.o
 OFILES = $(SRCS:.c=.o)
 
