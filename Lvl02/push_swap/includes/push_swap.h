@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:06:31 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/10 11:12:35 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:22:29 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,7 @@ void	swap_both(t_list **a, t_list **b);
 void	to_top(t_list **src, t_list **dst, int x, int y);
 void	to_top_index(t_list **src, t_list **dst, int x, int y);
 void	to_top_media(t_list **src, t_list **dst, int x, int y);
+
+t_list	*get_cheapest(t_list **list);
 
 #endif

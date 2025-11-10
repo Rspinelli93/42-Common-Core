@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:34:26 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/09 21:27:29 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:06:41 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,15 @@
 + It works always within the same stack*/
 void	sort_three(t_list **list)
 {
-	t_list	*s;
+	t_list	*biggest;
 
-	s = (*list)->next;
-	if (((*list)->cont < s->cont) && (s->cont < ft_lstlast((*list))->cont))
-		return ;
-	else if (((*list)->cont > s->cont) && (s->cont > ft_lstlast((*list))->cont))
-	{
+	biggest = find_min_max(list, 1);
+	if (biggest == *list)
+		rotate(list, 1);
+	else if ((*list)->next == biggest)
+		reverse_rotate(list, 1);
+	if ((*list)->cont > (*list)->next->cont)
 		swap_ab(list, 1);
-		reverse_rotate(list, 1);
-	}
-	else if (((*list)->cont > s->cont) && (s->cont < ft_lstlast((*list))->cont))
-	{
-		if (ft_lstlast((*list))->cont > (*list)->cont)
-			swap_ab(list, 1);
-		else
-			rotate(list, 1);
-	}
-	else
-	{
-		reverse_rotate(list, 1);
-		s = (*list)->next;
-		if ((*list)->cont > s->cont)
-			swap_ab(list, 1);
-	}
 }
 
 /*

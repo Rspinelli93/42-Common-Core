@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/09 15:36:07 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/10 11:22:57 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:22:53 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@
 + have no nodes in b_list. (Always updating its values on
 + each iteration)
 +
-+ In case needes, rotate or reverse rotate until is_sorted(a);
-*/
++ In case needes, rotate or reverse rotate until is_sorted(a); */
 void	sort_big(t_list **a, t_list **b)
 {
 	if (ft_lstsize(*a) > 3 && !is_sorted(a))
@@ -44,7 +43,7 @@ void	sort_big(t_list **a, t_list **b)
 	while (*b)
 	{
 		update_values_b(a, b);
-		cheapest_to_top(b, a, 1, 2);
+		cheapest_to_top(b, a, 2, 1);
 		push_top(b, a, 1);
 	}
 	while (!is_sorted(a))
@@ -65,7 +64,7 @@ void	cheapest_to_top(t_list **src, t_list **dst, int x, int y)
 	t_list	*chp;
 	t_list	*tar;
 
-	chp = set_cheapest(src);
+	chp = get_cheapest(src);
 	tar = chp->targ;
 	if (chp->media && tar->media)
 		to_top_media(src, dst, x, y);
@@ -84,7 +83,7 @@ void	to_top_media(t_list **src, t_list **dst, int x, int y)
 	t_list	*chp;
 	t_list	*tar;
 
-	chp = set_cheapest(src);
+	chp = get_cheapest(src);
 	tar = chp->targ;
 	while (chp->next && tar->next)
 		reverse_rotate_both(src, dst);
@@ -101,7 +100,7 @@ void	to_top_index(t_list **src, t_list **dst, int x, int y)
 	t_list	*chp;
 	t_list	*tar;
 
-	chp = set_cheapest(src);
+	chp = get_cheapest(src);
 	tar = chp->targ;
 	while (*src != chp && *dst != tar)
 		rotate_both(src, dst);
