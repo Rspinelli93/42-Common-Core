@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 18:36:23 by rick              #+#    #+#             */
-/*   Updated: 2025/11/10 21:01:23 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/10 22:11:22 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_list	*find_min_max(t_list **list, const int a)
 void	set_index_media(t_list **list)
 {
 	int		i;
-	int		med;
+	int		med; 
 	t_list	*ptr;
 
 	med = ft_lstsize(*list) / 2;

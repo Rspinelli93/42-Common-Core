@@ -16,7 +16,7 @@ import random
 folder = os.path.expanduser("~/Common-Core/Lvl02/push_swap/python_test/test")
 os.makedirs(folder, exist_ok=True)
 
-# Helper function
+# Helper functn
 def generate_test(filename, count, min_n=-1000, max_n=1000):
     numbers = random.sample(range(min_n, max_n), count)
     with open(os.path.join(folder, filename), "w") as f:

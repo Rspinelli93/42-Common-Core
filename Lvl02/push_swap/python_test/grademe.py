@@ -47,7 +47,7 @@ args = parser.parse_args()
 
 limits = LIMITS_STRICT if args.strict else LIMITS_80
 
-# Gather all test files
+# Gather all test file
 test_files = sorted([f for f in os.listdir(TESTS_FOLDER) if f.endswith(".txt")])
 
 for test_file in test_files:
