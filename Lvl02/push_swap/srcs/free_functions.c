@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 12:37:58 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/10 22:11:42 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/11 18:33:10 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_list	*mklist(int ac, char **arr)
 
 	i = 1;
 	head = ft_lstnew(ft_atoi(arr[0]));
+	if (!head)
+		return (NULL);
 	if (ac == 2)
 	{
 		while (arr[i])

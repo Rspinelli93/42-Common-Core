@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 09:02:45 by rick              #+#    #+#             */
-/*   Updated: 2025/11/10 22:11:52 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/11 20:08:31 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	is_atoi(char *str);
 static int	is_repeated(int size, char **arr);
 
 /*
-+ Bool: Checker function to know if all numbers 
++ Bool Checker function to know if all numbers 
 + and argument count is valid. Print error message
 + also.*/
 int	are_atoi(int size, char **arr)
@@ -30,14 +30,14 @@ int	are_atoi(int size, char **arr)
 			|| ft_atoi(arr[i]) < -2147483648
 			|| ft_atoi(arr[i]) > 2147483647)
 		{
-			ft_printf("ERROR ARGS");
+			ft_printf("Error\n");
 			return (0);
 		}
 		i++;
 	}
 	if (is_repeated(size, arr))
 	{
-		ft_printf("ERROR ARGS");
+		ft_printf("Error\n");
 		return (0);
 	}
 	return (1);
@@ -54,6 +54,8 @@ static int	is_atoi(char *str)
 	}
 	if ((*str == '+') || (*str == '-'))
 		str++;
+	if ((*str == ' ') || (*str == '\0') || !ft_isdigit(*str))
+		return (0);
 	while (*str)
 	{
 		if (!ft_isdigit(*str))

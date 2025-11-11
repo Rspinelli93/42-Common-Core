@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/10 22:11:19 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/11 20:08:11 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include "push_swap.h"
 #include "string.h"
 
-static void	sort_list(t_list **a, t_list **b);
+static char	**parser(int ac, char **av);
+static int	arr_size(char **arr);
 
 int	main(int argc, char **argv)
 {
@@ -27,11 +28,8 @@ int	main(int argc, char **argv)
 	lb = NULL;
 	if (argc < 2)
 		return (-1);
-	if (argc == 2)
-		arr = ft_split(argv[1], ' ');
-	else
-		arr = &argv[1];
-	if (!are_atoi(argc, arr))
+	arr = parser(argc, argv);
+	if (!arr)
 		return (-1);
 	la = mklist(argc, arr);
 	sort_list(&la, &lb);
@@ -42,17 +40,47 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-static void	sort_list(t_list **a, t_list **b)
+/*
++ Pretty self explicatory the name.*/
+static char	**parser(int ac, char **av)
 {
-	if (!is_sorted(a))
+	char	**arr;
+
+	if (ac == 2)
 	{
-		if (ft_lstsize(*a) == 2)
-			sort_two(a);
-		else if (ft_lstsize(*a) == 3)
-			sort_three(a);
-		else
-			sort_big(a, b);
+		arr = ft_split(av[1], ' ');
+		if (!arr)
+			return (NULL);
+		if (!are_atoi(arr_size(arr), arr))
+		{
+			free_split(arr);
+			return (NULL);
+		}
 	}
+	else
+	{
+		arr = &av[1];
+		if (!are_atoi(ac, arr))
+			return (NULL);
+	}
+	return (arr);
+}
+
+/*
++ To get the right number in case of split.*/
+static int	arr_size(char **arr)
+{
+	char	**ptr;
+	int		size;
+
+	size = 1;
+	ptr = arr;
+	while (*ptr)
+	{
+		size++;
+		ptr++;
+	}
+	return (size);
 }
 
 //* find length of stack
@@ -62,8 +90,13 @@ static void	sort_list(t_list **a, t_list **b)
 //* find min and max node
 //* include limits.h
 //* handle limits
-// handle print erro for firsr if check
+//* handle print erro for firsr if check
 //* handle same number
-// Control mklist() - Make sure to propperly
-//		initialize all the elements of each node
+//* Control mklist() - Make sure to propperly
+//		*initialize all the elements of each node
 //* Handle printing propper command when using each command (if a or b)
+// handle same number at split
+// hadle biggest or smallest int at split
+// handle letters at split "s 6 7 8 34"
+// handle minus and plus sign "5 8 9 - 3 4"
+// handle 1 number "4"

@@ -6,11 +6,36 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:34:26 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/10 22:11:27 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/11 19:19:24 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
++ Main sort.*/
+void	sort_list(t_list **a, t_list **b)
+{
+	if (!is_sorted(a))
+	{
+		if (ft_lstsize(*a) == 2)
+			sort_two(a);
+		else if (ft_lstsize(*a) == 3)
+			sort_three(a);
+		else
+			sort_big(a, b);
+	}
+}
+
+/*
++ Sort 2 nodes.*/
+void	sort_two(t_list **list)
+{
+	if ((*list)->cont > (*list)->next->cont)
+	{
+		sa(list, 1);
+	}
+}
 
 /*
 + Function to sort 3 numbers
@@ -26,16 +51,6 @@ void	sort_three(t_list **list)
 		rra(list, 1);
 	if ((*list)->cont > (*list)->next->cont)
 		sa(list, 1);
-}
-
-/*
-+ Sort 2 nodes.*/
-void	sort_two(t_list **list)
-{
-	if ((*list)->cont > (*list)->next->cont)
-	{
-		sa(list, 1);
-	}
 }
 
 /*
@@ -55,17 +70,17 @@ void	sort_two(t_list **list)
 + In case needes, rotate or reverse rotate until is_sorted(a); */
 void	sort_big(t_list **a, t_list **b)
 {
-	if (ft_lstsize(*a) > 5 && !is_sorted(a))
+	if (ft_lstsize(*a) > 3 && !is_sorted(a))
 		push_top(a, b, 2);
-	if (ft_lstsize(*a) > 5 && !is_sorted(a))
+	if (ft_lstsize(*a) > 3 && !is_sorted(a))
 		push_top(a, b, 2);
-	while (ft_lstsize(*a) > 5 && !is_sorted(a))
+	while (ft_lstsize(*a) > 3 && !is_sorted(a))
 	{
 		update_values_a(a, b);
 		cheapest_to_top_a(a, b);
 		push_top(a, b, 2);
 	}
-	sort_five(a);
+	sort_three(a);
 	while (*b)
 	{
 		update_values_b(a, b);

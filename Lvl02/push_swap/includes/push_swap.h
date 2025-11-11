@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:06:31 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/10 21:58:25 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/11 19:19:43 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		is_sorted(t_list **list);
 void	sort_three(t_list **list);
 void	sort_two(t_list **list);
 void	sort_big(t_list **a, t_list **b);
-void	sort_five(t_list **a);
+void	sort_list(t_list **a, t_list **b);
 
 // Sorting
 void	cheapest_to_top_a(t_list **a, t_list **b);
