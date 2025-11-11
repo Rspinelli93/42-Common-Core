@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/11 20:08:11 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/11 20:24:04 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "string.h"
 
 static char	**parser(int ac, char **av);
-static int	arr_size(char **arr);
 
 int	main(int argc, char **argv)
 {
@@ -32,6 +31,12 @@ int	main(int argc, char **argv)
 	if (!arr)
 		return (-1);
 	la = mklist(argc, arr);
+	if (!la)
+	{
+		if (argc == 2)
+			free_split(arr);
+		return (-1);
+	}
 	sort_list(&la, &lb);
 	print_list(la);
 	ft_lstclear(&la);
@@ -68,7 +73,7 @@ static char	**parser(int ac, char **av)
 
 /*
 + To get the right number in case of split.*/
-static int	arr_size(char **arr)
+int	arr_size(char **arr)
 {
 	char	**ptr;
 	int		size;

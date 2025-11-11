@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 12:37:58 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/11 18:33:10 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/11 20:38:11 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,28 @@
 t_list	*mklist(int ac, char **arr)
 {
 	int		i;
+	int		arrsize;
 	t_list	*head;
+	t_list	*new;
 
 	i = 1;
 	head = ft_lstnew(ft_atoi(arr[0]));
 	if (!head)
 		return (NULL);
 	if (ac == 2)
-	{
-		while (arr[i])
-		{
-			ft_lstadd_back(&head, ft_lstnew(ft_atoi(arr[i])));
-			i++;
-		}
-	}
+		arrsize = arr_size(arr) - 1;
 	else
+		arrsize = ac - 1;
+	while (i < arrsize)
 	{
-		while (i < ac - 1)
+		new = ft_lstnew(ft_atoi(arr[i]));
+		if (!new)
 		{
-			ft_lstadd_back(&head, ft_lstnew(ft_atoi(arr[i])));
-			i++;
+			free_list(head);
+			return (NULL);
 		}
+		ft_lstadd_back(&head, new);
+		i++;
 	}
 	return (head);
 }

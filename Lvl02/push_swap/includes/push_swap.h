@@ -6,7 +6,7 @@
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 12:06:31 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/11 19:19:43 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/11 20:23:59 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	print_list(t_list *list);
 t_list	*find_min_max(t_list **list, const int a);
 void	update_values_b(t_list **a, t_list **b);
 void	update_values_a(t_list **a, t_list **b);
+int 	arr_size(char **arr);
 
 // Free
 void	free_list(t_list *list);
