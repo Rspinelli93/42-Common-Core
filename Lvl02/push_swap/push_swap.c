@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 18:35:41 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/11 20:24:04 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:51:36 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	sort_list(&la, &lb);
-	print_list(la);
 	ft_lstclear(&la);
 	if (argc == 2)
 		free_split(arr);
