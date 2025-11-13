@@ -1,30 +1,44 @@
-CFLAGS = -Wall -Wextra -Werror
-
+CC      = cc
+CFLAGS  = -Wall -Wextra -Werror
 INCLUDES = ./includes
 
-# Source files (wildcard expands all .c in srcs)
-SRCS = ./mini_talk.c $(wildcard ./ft_printf/srcs/*.c) $(wildcard ./libft/*.c) $(wildcard ./ft_printf/*.c) $(wildcard ./srcs/*.c)
-# Object files: replace .c with .o for all SRCS + ft_printf.o
-OFILES = $(SRCS:.c=.o)
+# Shared sources
+COMMON_SRCS = $(wildcard ./srcs/*.c) \
+              $(wildcard ./libft/*.c) \
+              $(wildcard ./ft_printf/*.c) \
+              $(wildcard ./ft_printf/srcs/*.c)
 
-NAME = minitalk
+COMMON_OBJS = $(COMMON_SRCS:.c=.o)
 
-all: $(NAME)
+# Programs
+CLIENT = client
+SERVER = server
 
-# Executable
-$(NAME): $(OFILES)
-	cc $(CFLAGS) $(OFILES) -o $(NAME)
+CLIENT_SRCS = client.c
+SERVER_SRCS = server.c
 
-# Compile .c to .o, addprefix prepends -I to each include dir
+CLIENT_OBJS = $(CLIENT_SRCS:.c=.o)
+SERVER_OBJS = $(SERVER_SRCS:.c=.o)
+
+all: $(CLIENT) $(SERVER)
+
+# ---- Executables ----
+$(CLIENT): $(CLIENT_OBJS) $(COMMON_OBJS)
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(SERVER): $(SERVER_OBJS) $(COMMON_OBJS)
+	$(CC) $(CFLAGS) $^ -o $@
+
+# ---- Compile rule ----
 %.o: %.c
-	cc $(CFLAGS) $(addprefix -I, $(INCLUDES)) -c $< -o $@
+	$(CC) $(CFLAGS) $(addprefix -I, $(INCLUDES)) -c $< -o $@
 
 clean:
-	rm -rf $(OFILES)
+	rm -f $(CLIENT_OBJS) $(SERVER_OBJS) $(COMMON_OBJS)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -f $(CLIENT) $(SERVER)
 
 re: fclean all
 
-.PHONY: clean fclean re all bonus
+.PHONY: all clean fclean re

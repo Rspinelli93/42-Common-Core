@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_talk.h                                        :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 11:22:22 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/13 22:19:50 by rick             ###   ########.fr       */
+/*   Created: 2025/11/13 16:50:52 by rick              #+#    #+#             */
+/*   Updated: 2025/11/13 22:29:44 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef MINI_TALK_H
-#define MINI_TALK_H
+#include "mini_talk.h"
 
-#include "libft.h"
-#include "ft_printf.h"
-#include <signal.h>
+int	main(void)
+{
+	pid_t		pid;
+	//static int	bits[8];
 
-#endif
+	pid = getpid();
+	ft_printf("PID: %i", pid);
+	return (0);
+}

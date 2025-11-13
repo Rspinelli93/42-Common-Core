@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_talk.h                                        :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 11:22:22 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/13 22:19:50 by rick             ###   ########.fr       */
+/*   Created: 2025/11/13 16:51:26 by rick              #+#    #+#             */
+/*   Updated: 2025/11/13 22:16:40 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef MINI_TALK_H
-#define MINI_TALK_H
+#include "mini_talk.h"
 
-#include "libft.h"
-#include "ft_printf.h"
-#include <signal.h>
+int	main(int ac, char **av)
+{
+	int			pid;
+	//static int	bits[8];
 
-#endif
+	if (ac != 3)
+		return (0);
+	pid = ft_atoi(av[1]);
+	ft_printf("%i", pid);
+	return (0);
+}

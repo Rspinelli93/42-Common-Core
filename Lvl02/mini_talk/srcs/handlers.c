@@ -1,20 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_talk.h                                        :+:      :+:    :+:   */
+/*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 11:22:22 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/13 22:19:50 by rick             ###   ########.fr       */
+/*   Created: 2025/11/13 22:32:11 by rick              #+#    #+#             */
+/*   Updated: 2025/11/13 22:32:50 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef MINI_TALK_H
-#define MINI_TALK_H
+#include "mini_talk.h"
 
-#include "libft.h"
-#include "ft_printf.h"
-#include <signal.h>
-
-#endif
+void	handler0();
