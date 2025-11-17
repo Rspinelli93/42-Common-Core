@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   mini_talk.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 11:22:02 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/13 22:13:48 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/17 13:35:29 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "mini_talk.h"
 
 /*
 ! MINI TALK EXPLANATION 
@@ -19,7 +17,8 @@
 
 $ Step 1 — Server: Setup and Signal Handling  
 
-* Server starts first and prints its PID. The client needs this PID to send signals.  
+* Server starts first and prints its PID. The client needs this PID to 
+*   send signals.  
 * Sets up handlers for SIGUSR1 and SIGUSR2. When a signal arrives, 
 *   the OS pauses normal execution and calls the handler.  
 * Handler must be fast and simple. It only stores the bit, updates the current 
@@ -32,10 +31,11 @@ $ Step 1 — Server: Setup and Signal Handling
 
 $ Step 2 — Client: Sending a Message Bit by Bit  
 
-* Needs server PID, the message, and agreement on signals (SIGUSR1 = 0, SIGUSR2 = 1).  
+* Needs server PID, the message, and agreement on signals 
+*   (SIGUSR1 = 0, SIGUSR2 = 1).  
 * Converts each character into binary (8 bits).  
-* Sends each bit as a signal to the server, waiting briefly or for acknowledgment 
-*   before the next bit.  
+* Sends each bit as a signal to the server, waiting briefly or 
+*   for acknowledgment before the next bit.  
 * Sends null byte (‘\0’) at the end to indicate message completion.  
 
 - SERVER SIDE RECEIVING  
@@ -43,8 +43,10 @@ $ Step 2 — Client: Sending a Message Bit by Bit
 $ Step 3 — Server: Receiving and Rebuilding  
 
 * Each signal wakes the server and calls the handler, which stores the bit.  
-* After 8 bits, a byte is formed, converted to ASCII, printed, and counters reset.  
-* Static variables keep track of the current byte and bit position between signals.  
+* After 8 bits, a byte is formed, converted to ASCII, 
+*   printed, and counters reset.  
+* Static variables keep track of the current byte and
+*   bit position between signals.  
 * Receiving a null byte indicates the message has ended.  
 * Optionally, server can send acknowledgment after each bit or character.  
 
@@ -76,7 +78,8 @@ $ Step 6 — Client ↔ Server Handshake
 
 $ Step 7 — After the Message Ends  
 
-* Server: null byte received → prints newline, resets state, and waits for next client.  
+* Server: null byte received → prints newline, resets state,
+*   and waits for next client.  
 * Client: waits for final acknowledgment (if used) and exits; without ACK, 
 *   it exits after sending null byte.  
 * Cleanup prevents leftover data, hangs, or missed signals.  
