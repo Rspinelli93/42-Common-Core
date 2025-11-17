@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_talk.c                                        :+:      :+:    :+:   */
+/*   logic.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 11:22:02 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/17 13:35:29 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/17 14:33:20 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
+! TESTER
+https://github.com/ThibaudM13/minitalk-Tester
+
 ! MINI TALK EXPLANATION 
 
 - SERVER SIDE  
