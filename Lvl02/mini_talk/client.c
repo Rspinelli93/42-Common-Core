@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:51:26 by rick              #+#    #+#             */
-/*   Updated: 2025/11/19 10:15:18 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/19 11:43:33 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // todo: Check exit funct, change sleep for usleep
 // todo: check global variables!
 
-//* This variable can be changed by the signal handler 
+//* A regular bool var can be changed by the signal handler
 //* while the main code is checking it. This why needs to be marked as volatile
 volatile sig_atomic_t	g_ready = true;
 
@@ -42,8 +42,8 @@ int	main(int ac, char **av)
 }
 
 /*
-* Here we set sa_handler instead of sa_sigaction, since we dont 
-* need to set any flags (like in server side that we need the 
+* Here we set sa_handler instead of sa_sigaction, since we dont
+* need to set any flags (like in server side that we need the
 * flag to get the PID of the client).*/
 void	setup_signal(void)
 {
@@ -81,7 +81,7 @@ void	send_bits(char *str, int pid)
 				exit(EXIT_FAILURE);
 		}
 		i++;
-		sleep(0.3);
+		sleep(1);
 		while (!g_ready)
 			pause();
 	}
