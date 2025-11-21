@@ -1,8 +1,8 @@
 CC       = cc
-CFLAGS   = -Wall -Wextra -Werror -Imlx_linux
-INCLUDES = ./includes /usr/include ./libs/ft_printf/includes ./libs/libft
-LINUX_API = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-LFLAGS = -Imlx_linux -O3
+CFLAGS   = -Wall -Wextra -Werror -Iminilibx-linux
+INCLUDES = ./includes ./libs/ft_printf/includes ./libs/libft
+LINUX_API = -Lminilibx-linux -lmlx_Linux -lXext -lX11 -lm -lz
+LFLAGS = -Iminilibx-linux -O3
 
 # ---------------- LIBRARY ----------------
 LIBFT_DIR = libs/libft
@@ -11,19 +11,12 @@ LIBFT = $(LIBFT_DIR)/libft.a
 FT_PRINTF_DIR = libs/ft_printf
 FT_PRINTF = $(FT_PRINTF_DIR)/libftprintf.a
 
-#MLX_DIR = libs/minilibx-linux
-#MLX = $(MLX_DIR)/libmlx.a
+MLX_DIR = minilibx-linux
+MLX = $(MLX_DIR)/libmlx_Linux.a
 
 # ---------------- SOURCE ----------------
 SRCS = \
-	main.c \
-#	srcs/map.c \
-#	srcs/utils.c \
-#	srcs/render.c \
-#	srcs/player.c \
-#	srcs/hooks.c \
-#	srcs/images.c \
-#	srcs/pathfinding.c
+	main.c
 
 # ------------- COMPILING ----------------
 
@@ -31,7 +24,7 @@ OBJS = $(SRCS:.c=.o)
 
 NAME = so_long
 
-all: $(LIBFT) $(FT_PRINTF) $(NAME) # $(MLX)
+all: $(LIBFT) $(FT_PRINTF) $(MLX) $(NAME) 
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
@@ -39,11 +32,11 @@ $(LIBFT):
 $(FT_PRINTF):
 	$(MAKE) -C $(FT_PRINTF_DIR)
 
-#$(MLX):
-#	$(MAKE) -C $(MLX_DIR)
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINTF) -o $(NAME) #$(MLX)$(LINUX_API) 
+	$(CC) $(OBJS) $(LIBFT) $(FT_PRINTF) $(MLX) $(LINUX_API) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(addprefix -I, $(INCLUDES)) $(LFLAGS) -c $< -o $@
@@ -53,6 +46,7 @@ $(NAME): $(OBJS)
 clean:
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(FT_PRINTF_DIR) clean
+	$(MAKE) -C $(MLX_DIR) clean
 	rm -f $(OBJS)
 
 fclean: clean

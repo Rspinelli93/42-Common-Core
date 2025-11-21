@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2025/11/20 19:08:17 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/21 19:06:24 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 # include "ft_printf.h"
-//# include "mlx.h"
-//# include "mlx_int.h"
+# include "mlx.h"
+# include "mlx_int.h"
 
 #endif
