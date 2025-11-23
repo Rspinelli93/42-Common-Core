@@ -6,12 +6,49 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:24:17 by rick              #+#    #+#             */
-/*   Updated: 2025/11/23 10:35:32 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/23 23:15:31 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+char **get_map(char	adress)
+{
+ 	int 	fd;
+	char	**str;
+
+	fd = open(adress, O_RDONLY);
+ 	str = get_next_line(fd);
+	ft_printf("%s", str);
+	close(fd);
+}
+
+void	free_map(char **str)
+{
+	free(str);
+}
+
+int	get_size(char *adress)
+{
+	int 	fd;
+	int		cnt;
+	char	c;
+	int		rd;
+
+	cnt = 0;
+	rd = 1;
+	fd = open(adress, O_RDONLY);
+	while (rd != 0)
+	{
+		rd = read(fd, &c, 1);
+		if (c != '\n')
+			cnt++;
+	}
+	close(fd);
+	return (cnt);
+}
+
+void	map_parser(void);
 /* 
 Key Concepts:
 
@@ -31,8 +68,6 @@ Key Concepts:
     Count the number of player starts (P), exits (E), and collectibles (C).
     Ensure the map is surrounded by walls (1).
     */
-
-void	map_parser();
 /*
 Map Validation Checklist:
 

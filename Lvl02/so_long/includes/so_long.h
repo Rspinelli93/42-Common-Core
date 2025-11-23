@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2025/11/23 13:36:56 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/23 23:14:53 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 # define SO_LONG_H
 
 # include "libft.h"
+# include "get_next_line.h"
 # include "ft_printf.h"
 # include "mlx.h"
 # include "mlx_int.h"
 
-typedef struct	s_data
+typedef struct s_data
 {
 	void	*conect;
 	void	*win;
-} t_data;
+}	t_data;
 
 //* ---------- exit.c --------
 int		exit_game_i(t_data *data);
@@ -34,6 +35,7 @@ int		handle_input(int keysign, t_data *data);
 //* ---------- logic.c --------
 
 //* ---------- map.c --------
+int		get_size(char *adress);
 
 //* ---------- render.c --------
 

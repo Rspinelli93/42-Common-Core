@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:37:55 by rick              #+#    #+#             */
-/*   Updated: 2025/11/23 10:38:23 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/23 19:06:54 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ Steps:
 
     Loop Through the Map Array:
 
-    for (int y = 0; y < game->map_height; y++) { for (int x = 0; x < game->map_width; x++) { // Determine what to draw at (x, y) } }
+    for (int y = 0; y < game->map_height; y++) 
+        { for (int x = 0; x < game->map_width; x++) 
+        { // Determine what to draw at (x, y) } }
 
     Determine Tile Type:
 
@@ -40,7 +42,8 @@ Steps:
 
     Draw the Tile:
 
-    mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img_wall, x * tile_size, y * tile_size);
+    mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, 
+        game->img_wall, x * tile_size, y * tile_size);
 
 Tips:
 
