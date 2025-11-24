@@ -1,5 +1,5 @@
 CC       = cc
-CFLAGS   = -Wall -Wextra -Werror -Iminilibx-linux
+CFLAGS   = -Wall -Wextra -Werror -Iminilibx-linux -g
 INCLUDES = ./includes ./libs/ft_printf/includes ./libs/libft ./libs/gnl
 LINUX_API = -Lminilibx-linux -lmlx_Linux -lXext -lX11 -lm -lz
 LFLAGS = -Iminilibx-linux -O3

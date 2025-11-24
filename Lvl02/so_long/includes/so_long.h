@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2025/11/24 12:31:37 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/24 15:43:57 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ void	set_size(char *adress, t_map *map);
 t_map	*set_map(char *adress);
 char	**set_array(t_map *map, int fd);
 void	free_map(t_map *map);
-int		map_parser(char **arr);
+int		map_parser(char **arr, t_map *map);
 int		is_rectangular(char	**arr);
 int		find_sprite(char **arr, char c);
+int		is_closed(char **arr, t_map *map);
 
 //* ---------- render.c --------
 

@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 12:45:48 by rick              #+#    #+#             */
-/*   Updated: 2025/11/24 12:51:13 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/24 17:08:49 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 map_parser runs all the functions for parsing the map
 if all the conditions are met it returns 1, otherwise
 will return 0.*/
-int	map_parser(char **arr)
+int	map_parser(char **arr, t_map *map)
 {
 	if (!is_rectangular(arr))
 		return (0);
@@ -25,6 +25,8 @@ int	map_parser(char **arr)
 	if (!find_sprite(arr, 'E'))
 		return (0);
 	if (!find_sprite(arr, 'C'))
+		return (0);
+	if (!is_closed(arr, map))
 		return (0);
 	return (1);
 }
@@ -87,4 +89,35 @@ int	find_sprite(char **arr, char c)
 	return (1);
 }
 
-int	is_blocked(char **arr, char c);
+/*
+This function will check for empty lines or for the map missing
+a block of wall at least on the edges.
+In case conditions are not met, it will print an error message and
+retutn false, otherwise will return true.*/
+int	is_closed(char **arr, t_map *map)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	i = 0;
+	while (i < map->size && arr[i])
+	{
+		len = ft_strlen(arr[i]);
+		if (len > 0 && arr[i][len - 1] == '\n')
+			len--;
+		if (len == 0)
+			return (ft_printf("Empty line detected\n"), 0);
+		if (arr[i][0] != '1' || arr[i][len - 1] != '1')
+			return (ft_printf("Map sides not closed\n"), 0);
+		if (i == 0 || arr[i + 1] == NULL)
+		{
+			j = 0;
+			while (j < len)
+				if (arr[i][j++] != '1')
+					return (ft_printf("Map top/bot not closed\n"), 0);
+		}
+		i++;
+	}
+	return (1);
+}

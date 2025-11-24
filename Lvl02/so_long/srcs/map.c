@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:24:17 by rick              #+#    #+#             */
-/*   Updated: 2025/11/24 12:46:27 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/24 17:12:34 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_map	*set_map(char *adress)
 	t_map	*map;
 
 	fd = open(adress, O_RDONLY);
+	if (fd < 0)
+		return (NULL);
 	map = ft_calloc(sizeof(t_map), 1);
 	if (!map)
 		return (NULL);
@@ -34,11 +36,14 @@ t_map	*set_map(char *adress)
 	map->arr = set_array(map, fd);
 	if (!map->arr)
 		return (free_map(map), NULL);
-	if (!map_parser(map->arr))
+	if (!map_parser(map->arr, map))
 		return (free_map(map), NULL);
 	return (map);
 }
 
+/*
+Helper function to set_map. Just contains the iterarion 
+logic within populating the allocated array of strings.*/
 char	**set_array(t_map *map, int fd)
 {
 	int		i;
@@ -72,7 +77,7 @@ void	free_map(t_map *map)
 	i = 0;
 	if (map->arr)
 	{
-		while (i < map->size)
+		while (map->arr[i])
 		{
 			if (map->arr[i])
 				free(map->arr[i]);
@@ -92,52 +97,25 @@ void	set_size(char *adress, t_map *map)
 {
 	int		fd;
 	char	c;
-	int		rd;
 
 	map->len = 0;
 	map->size = 0;
 	map->end = 0;
-	rd = 1;
 	c = '\0';
 	fd = open(adress, O_RDONLY);
-	while (rd != 0)
+	if (fd < 0)
+		return ;
+	if (read(fd, &c, 1) > 0)
+		map->size = 1;
+	while (read(fd, &c, 1))
 	{
-		rd = read(fd, &c, 1);
 		if (c != '\n')
 			map->len++;
-		else
+		if (c == '\n')
 			map->size++;
 	}
 	map->end = 1;
-	if (map->size == 0)
+	if (map->len == 0)
 		ft_printf("Empty file not valid\n");
 	close(fd);
 }
-
-/* 
-Key Concepts:
-
-*    File Reading: Read the map file line by line.
-*    Validation: Ensure the map is rectangular and properly formatted.
-*    Storing the Map: Store the map in a 2D array for easy access.
-*/
-
-//void read_map(const char *filename, t_game *game);
-/*
-    Purpose: Reads the map file and populates the game’s map array.
-    Implementation Tips:
-
-    Open the file using open().
-    Read each line using get_next_line() or similar.
-    Check that each line is the same length.
-    Count the number of player starts (P), exits (E), and collectibles (C).
-    Ensure the map is surrounded by walls (1).
-    */
-/*
-Map Validation Checklist:
-
-    Map is rectangular.
-    Map is enclosed by walls.
-    Contains exactly one player start (P).
-    Contains at least one exit (E).
-    Contains at least one collectible (C).*/
