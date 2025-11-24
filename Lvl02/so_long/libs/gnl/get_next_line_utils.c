@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:25 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/23 19:59:49 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/24 09:58:15 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*str_realloc(char *str)
 	int		i;
 
 	i = 0;
-	new = ft_calloc_gnl(sizeof(char), (ft_strlen_gnl(str) + BUFFER_SIZE + 1));
+	new = ft_calloc_gnl(sizeof(char), (ft_strlen_gnl(str) + 1 + 1));
 	if (new == NULL)
 	{
 		free(str);

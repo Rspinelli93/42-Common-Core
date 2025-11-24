@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:33:03 by rick              #+#    #+#             */
-/*   Updated: 2025/11/23 10:35:00 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/24 12:10:22 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 /*
 Loading Textures and Images
 
-Your game will be more engaging with visuals! Load images for your player, walls, collectibles, and exit.
+Your game will be more engaging with visuals! Load images for your player,
+         walls, collectibles, and exit.
 Key Concepts:
 
     Image Loading: Use mlx_xpm_file_to_image() to load XPM files.
@@ -23,7 +24,8 @@ Key Concepts:
 
 Loading Images:
 
-game->img_player = mlx_xpm_file_to_image(game->mlx_ptr, "assets/player.xpm", &width, &height);
+game->img_player = mlx_xpm_file_to_image(game->mlx_ptr, "assets/player.xpm",
+         &width, &height);
 
     Parameters:
     game->mlx_ptr: The MinilibX connection.

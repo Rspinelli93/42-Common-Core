@@ -6,12 +6,11 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:41:11 by rick              #+#    #+#             */
-/*   Updated: 2025/11/23 11:09:37 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/24 12:13:26 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 /* 
 Step 7: Implementing Game Logic
@@ -37,14 +36,15 @@ void move_player(t_game *game, int dx, int dy) {
 
 Collecting Items:
 
-    When the player moves onto a tile with a 'C', increment the collectible count and replace the tile with '0'.
+    When the player moves onto a tile with a 'C', increment the collectible
+         count and replace the tile with '0'.
 
 Exiting the Game:
 
-    If the player moves onto the 'E' tile after collecting all items, display a victory message and exit.
+    If the player moves onto the 'E' tile after collecting all items, display a 
+        victory message and exit.
 
 Tips:
 
     Update the Map Array: Reflect changes like collected items.
     Move Counting: Keep track of the number of moves and display it.*/
-

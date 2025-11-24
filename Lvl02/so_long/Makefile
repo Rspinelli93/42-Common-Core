@@ -23,6 +23,7 @@ SRCS = \
 	srcs/exit.c \
 	srcs/keyboard.c \
 	srcs/logic.c \
+	srcs/map_parser.c \
 	srcs/map.c \
 	srcs/render.c \
 	srcs/sprites.c \

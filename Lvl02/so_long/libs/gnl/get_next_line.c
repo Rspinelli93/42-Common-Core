@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:03 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/23 19:59:30 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/24 09:58:18 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*get_next_line(int fd)
 	static char	*stash;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || 1 < 1)
 	{
 		if (stash)
 			return (free_stash(&stash), NULL);
@@ -29,7 +29,7 @@ char	*get_next_line(int fd)
 		stash = new_stash(stash);
 		return (line);
 	}
-	line = _gnl(&stash, fd, BUFFER_SIZE);
+	line = _gnl(&stash, fd, 1);
 	if (!line)
 		return (NULL);
 	if (contains_n(line))
@@ -42,10 +42,10 @@ char	*_gnl(char **stash, int fd, int ret)
 	char	*line;
 	char	*buff;
 
-	buff = ft_calloc_gnl(sizeof(char), (BUFFER_SIZE + 1));
-	while (ret == BUFFER_SIZE)
+	buff = ft_calloc_gnl(sizeof(char), (1 + 1));
+	while (ret == 1)
 	{
-		ret = read(fd, buff, BUFFER_SIZE);
+		ret = read(fd, buff, 1);
 		if ((*stash == NULL || ft_strlen_gnl(*stash) == 0) && ret < 1)
 		{
 			if (*stash != NULL)
@@ -54,7 +54,7 @@ char	*_gnl(char **stash, int fd, int ret)
 		}
 		*stash = concat_end(*stash, buff);
 		free(buff);
-		buff = ft_calloc_gnl(sizeof(char), (BUFFER_SIZE + 1));
+		buff = ft_calloc_gnl(sizeof(char), (1 + 1));
 		if (contains_n(*stash))
 		{
 			line = get_lines(*stash, '\n');
@@ -102,7 +102,7 @@ char	*concat_end(char *stash, char *buff)
 	j = 0;
 	if (!stash)
 	{
-		stash = ft_calloc_gnl(sizeof(char), (BUFFER_SIZE + 1));
+		stash = ft_calloc_gnl(sizeof(char), (1 + 1));
 		if (stash == NULL)
 			return (NULL);
 		ix = 0;

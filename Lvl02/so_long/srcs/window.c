@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:31:36 by rick              #+#    #+#             */
-/*   Updated: 2025/11/23 19:07:24 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/24 12:10:58 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,5 @@ Steps:
 Tips:
 
     Calculate Window Size Based on Map Dimensions.
-    Check for Errors: Ensure that mlx_init() and mlx_new_window() return valid pointers.*/
+    Check for Errors: Ensure that mlx_init() and mlx_new_window() return 
+    valid pointers.*/

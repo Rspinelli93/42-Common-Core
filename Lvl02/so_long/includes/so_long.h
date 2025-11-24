@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2025/11/23 23:14:53 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/24 12:31:37 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,19 @@
 # include "mlx.h"
 # include "mlx_int.h"
 
+typedef struct s_map
+{
+	int		len;
+	int		size;
+	int		end;
+	char	**arr;
+}	t_map;
+
 typedef struct s_data
 {
 	void	*conect;
 	void	*win;
+	t_map	*map;
 }	t_data;
 
 //* ---------- exit.c --------
@@ -35,7 +44,13 @@ int		handle_input(int keysign, t_data *data);
 //* ---------- logic.c --------
 
 //* ---------- map.c --------
-int		get_size(char *adress);
+void	set_size(char *adress, t_map *map);
+t_map	*set_map(char *adress);
+char	**set_array(t_map *map, int fd);
+void	free_map(t_map *map);
+int		map_parser(char **arr);
+int		is_rectangular(char	**arr);
+int		find_sprite(char **arr, char c);
 
 //* ---------- render.c --------
 

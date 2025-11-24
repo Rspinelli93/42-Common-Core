@@ -6,16 +6,12 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/12 12:34:42 by rspinell          #+#    #+#             */
-/*   Updated: 2025/11/23 22:22:17 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/24 11:13:27 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
 
 # include <fcntl.h>
 # include <stdlib.h>
