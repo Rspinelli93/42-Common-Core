@@ -3,21 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2025/11/24 15:43:57 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/26 14:15:50 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# define IMG_SIZE 64
+
 # include "libft.h"
 # include "get_next_line.h"
 # include "ft_printf.h"
 # include "mlx.h"
 # include "mlx_int.h"
+
+typedef struct s_myimg
+{
+	void	*img_ptr;
+	int		width;
+	int		height;
+}	t_myimg;
 
 typedef struct s_map
 {
@@ -32,11 +41,20 @@ typedef struct s_data
 	void	*conect;
 	void	*win;
 	t_map	*map;
+	int		img_size;
+	int		win_width;
+	int		win_heigth;
+	t_myimg	wall;
+	t_myimg	space;
+	t_myimg	water;
+	t_myimg	fire;
+	t_myimg	exit;
 }	t_data;
 
 //* ---------- exit.c --------
 int		exit_game_i(t_data *data);
 void	exit_game(t_data *data);
+void	free_images(t_data *data);
 
 //* ---------- keyboard.c --------
 int		handle_input(int keysign, t_data *data);
@@ -54,6 +72,8 @@ int		find_sprite(char **arr, char c);
 int		is_closed(char **arr, t_map *map);
 
 //* ---------- render.c --------
+void	render_map(t_data *data, char **arr);
+int		set_images(t_data *data);
 
 //* ---------- sprites.c --------
 

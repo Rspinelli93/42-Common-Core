@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 20:16:41 by rick              #+#    #+#             */
-/*   Updated: 2025/11/24 12:39:05 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/26 13:42:20 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (ft_printf("[Err] Run: ./so_long [map-adress]\n"), 1);
+	ft_bzero(&data, sizeof(t_data));
 	data.map = set_map(av[1]);
 	if (!data.map)
 		return (1);
@@ -27,6 +28,9 @@ int	main(int ac, char **av)
 		return (free_map(data.map), 1);
 	mlx_key_hook(data.win, handle_input, &data);
 	mlx_hook(data.win, 17, 04, exit_game_i, &data);
+	if (!set_images(&data))
+		return (exit_game(&data), 1);
+	render_map(&data, data.map->arr);
 	mlx_loop(data.conect);
 	exit_game(&data);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:38:53 by rick              #+#    #+#             */
-/*   Updated: 2025/11/23 13:37:32 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/26 14:23:31 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ keysign parameter imput.*/
 int	handle_input(int keysign, t_data *data)
 {
 	if (keysign == XK_Escape)
-		exit_game(data);
+		mlx_loop_end(data->conect);
 	return (0);
 }
 

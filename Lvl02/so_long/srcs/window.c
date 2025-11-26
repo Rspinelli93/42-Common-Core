@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:31:36 by rick              #+#    #+#             */
-/*   Updated: 2025/11/24 12:10:58 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/26 14:16:45 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ mlx_init() && mlx_new_window() functions run malloc
 therefore the correspondent malloc check.*/
 int	win_init(t_data *data)
 {
+	data->img_size = IMG_SIZE;
+	data->win_width = data->img_size * ft_strlen(data->map->arr[0]) - 64;
+	data->win_heigth = data->img_size * data->map->size - 64;
 	data->conect = mlx_init();
 	if (!data->conect)
 		return (0);
-	data->win = mlx_new_window(data->conect, 800, 600, "so_long");
+	data->win = mlx_new_window(data->conect, data->win_width, data->win_heigth, "so_long");
 	if (!data->win)
 	{
 		mlx_destroy_display(data->conect);
