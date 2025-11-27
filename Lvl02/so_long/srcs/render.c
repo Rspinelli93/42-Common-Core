@@ -13,113 +13,224 @@
 #include "so_long.h"
 
 /*
-Render map will take the images previously stored in data and will
-put them to window.*/
-void	render_map(t_data *data, char **arr)
+* load_image is use to load one specific image.
+* 1. Loads XPM to get the void pointer and dimensions.
+* 2. Set the memory address to copy pixels from afterwards.
+* Returns 0 if loading failed, 1 if success.
+*/
+int load_image(void *mlx, t_myimg *img, char *path)
+{
+	img->img_ptr = mlx_xpm_file_to_image(mlx, path, &img->width, &img->height);
+	if (!img->img_ptr)
+		return (0);
+	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, 
+									&img->line_len, &img->endian);
+	return (1);
+}
+
+/*
+* set_images runs the function load_image for every image:
+* (wall, space, water, exit, fire).
+* Setting their respectives t_myimg inside the game t_data
+* Returns 0 if loading failed, 1 if success.*/
+int set_images(t_data *data)
+{
+	if (!load_image(data->conect, &data->wall, "./imgs/wall.xpm"))
+		return (ft_printf("Failed to load: Wall\n"), 0);
+	if (!load_image(data->conect, &data->space, "./imgs/space.xpm"))
+		return (ft_printf("Failed to load: Space\n"), 0);
+	if (!load_image(data->conect, &data->water, "./imgs/water.xpm"))
+		return (ft_printf("Failed to load: Water\n"), 0);
+	if (!load_image(data->conect, &data->exit, "./imgs/exit.xpm"))
+		return (ft_printf("Failed to load: Exit\n"), 0);
+	if (!load_image(data->conect, &data->fire, "./imgs/fire.xpm"))
+		return (ft_printf("Failed to load: Fire\n"), 0);
+	return (1);
+}
+
+//! DOUBLE MALLOC
+/*
+Function to create the buffer where is "painted" pixel by
+pixel before being rendered in the window.
+The canvas is created with mlx_new_image, and the data
+necessary for "painting each pixel" is set with 
+mlx_get_data_addr.*/
+int	make_buffer(t_data *data)
+{
+	data->buffer.height = data->win_height;
+	data->buffer.width = data->win_width;
+	data->buffer.img_ptr = mlx_new_image(data->conect,
+		data->win_width,
+		data->win_height);
+	if (!data->buffer.img_ptr)
+		return (0);
+	data->buffer.addr = mlx_get_data_addr(data->buffer.img_ptr,
+		&data->buffer.bpp,
+		&data->buffer.line_len,
+		&data->buffer.endian);
+	if (!data->buffer.addr)
+		return (0);
+	return (1);
+}
+
+/*
+Data: (The Destination) The main struct (which holds the buffer).
+Sprite: (The Source) The specific sprite you want to draw (e.g., &data->wall).
+The X Offset: Where on the screen (horizontal) to place the left edge of the image.
+The Y Offset: Where on the screen (vertical) to place the top edge of the image.
+
+
+Here is the mental model for the loop. We are going to iterate 
+through every single pixel of the Sprite (the small image) and
+copy it to the correct location in the Buffer (the big image).*/
+void	put_img_to_buff(t_data *data, t_myimg *sprite, int x_pos, int y_pos)
 {
 	int	i;
 	int	j;
+	int	offset;
 
 	i = 0;
-	while (arr[i])
+	j = 0;
+	offset = 0;
+	while (i < sprite->height)
 	{
-		j = 0;
-		while (arr[i][j] && arr[i][j] != '\n')
+		j = 0
+		while (j < sprite->width)
 		{
-			if (arr[i][j] == '1')
-				mlx_put_image_to_window(data->conect, data->win, data->wall.img_ptr, j * 64, i * 64);
-			else if (arr[i][j] == '0')
-				mlx_put_image_to_window(data->conect, data->win, data->space.img_ptr, j * 64, i * 64);
-			else if (arr[i][j] == 'P')
-				mlx_put_image_to_window(data->conect, data->win, data->water.img_ptr, j * 64, i * 64);
-			else if (arr[i][j] == 'E')
-				mlx_put_image_to_window(data->conect, data->win, data->exit.img_ptr, j * 64, i * 64);
-			else if (arr[i][j] == 'C')
-				mlx_put_image_to_window(data->conect, data->win, data->fire.img_ptr, j * 64, i * 64);
-			j++;
-		}
-		i++;
+            // STEP 1: FIND THE PIXEL IN THE SPRITE (SOURCE)
+            // Calculate memory offset using sprite->line_len
+            src_offset = (y * sprite->line_len) + (x * (sprite->bpp / 8))
+            
+            // Get the memory address of this specific pixel
+            pixel_ptr = sprite->addr + src_offset
+            
+            color = *(unsigned int *)pixel_ptr
+
+            // STEP 2: CHECK TRANSPARENCY
+            // (In XPM, transparent pixels often have a specific color, 
+            // e.g., 0xFF000000 (black) or a "magic pink". 
+            // If the color is NOT transparent, we copy it.)
+            
+            if (color != TRANSPARENT_COLOR)
+            {
+				my_pixel_put()
+			}
+			j++
+    	}
+		i++
 	}
 }
 
 /*
-This function runs the function mlx_xpm_file_to_image in all the t_myimg 
-within the struct t_data data.*/
-int	set_images(t_data *data)
+This is the heart of your rendering engine. You are creating a function that acts like a "stamp."
+
+The Prototype
+
+You need 4 pieces of information to do this job:
+
+    The Destination: The main struct (which holds the buffer).
+
+    The Source: The specific sprite you want to draw (e.g., &data->wall).
+
+    The X Offset: Where on the screen (horizontal) to place the left edge of the image.
+
+    The Y Offset: Where on the screen (vertical) to place the top edge of the image.
+
+C
+
+void put_img_to_img(t_data *data, t_myimg *sprite, int x_pos, int y_pos);
+
+The Logic (Pseudocode)
+
+Here is the mental model for the loop. We are going to iterate through every single pixel of the Sprite (the small image) and copy it to the correct location in the Buffer (the big image).
+Plaintext
+
+FUNCTION put_img_to_img(data, sprite, x_pos, y_pos)
 {
-	data->img_size = IMG_SIZE;
-	data->exit.img_ptr = mlx_xpm_file_to_image(data->conect,
-			"./imgs/exit.xpm", &(data->img_size), &(data->img_size));
-	data->fire.img_ptr = mlx_xpm_file_to_image(data->conect,
-			"./imgs/fire.xpm", &(data->img_size), &(data->img_size));
-	data->space.img_ptr = mlx_xpm_file_to_image(data->conect,
-			"./imgs/space.xpm", &(data->img_size), &(data->img_size));
-	data->wall.img_ptr = mlx_xpm_file_to_image(data->conect,
-			"./imgs/wall.xpm", &(data->img_size), &(data->img_size));
-	data->water.img_ptr = mlx_xpm_file_to_image(data->conect,
-			"./imgs/water.xpm", &(data->img_size), &(data->img_size));
-	if (!data->wall.img_ptr || !data->exit.img_ptr || !data->fire.img_ptr
-		|| !data->space.img_ptr || !data->water.img_ptr)
-		return (ft_printf("Error\nProblem loading images (check paths!)\n"), 0);
-	return (1);
+    // Iterators for the sprite's grid
+    y = 0
+    x = 0
+
+    // Loop through every row of the sprite
+    WHILE (y < sprite->height)
+    {
+        x = 0
+        // Loop through every pixel in that row
+        WHILE (x < sprite->width)
+        {
+            // STEP 1: FIND THE PIXEL IN THE SPRITE (SOURCE)
+            // Calculate memory offset using sprite->line_len
+            src_offset = (y * sprite->line_len) + (x * (sprite->bpp / 8))
+            
+            // Get the memory address of this specific pixel
+            pixel_ptr = sprite->addr + src_offset
+            
+            // Read the color (cast to unsigned int to get the full RGBA value)
+            color = *(unsigned int *)pixel_ptr
+
+            // STEP 2: CHECK TRANSPARENCY
+            // (In XPM, transparent pixels often have a specific color, 
+            // e.g., 0xFF000000 (black) or a "magic pink". 
+            // If the color is NOT transparent, we copy it.)
+            
+            IF (color != TRANSPARENT_COLOR)
+            {
+                // STEP 3: FIND THE PIXEL IN THE BUFFER (DESTINATION)
+                // Calculate the matching position on the big canvas
+                // Note: We add x_pos and y_pos here!
+                dest_y = y_pos + y
+                dest_x = x_pos + x
+                
+                dest_offset = (dest_y * data->buffer.line_len) + (dest_x * (data->buffer.bpp / 8))
+                
+                // Get the address in the buffer
+                dest_ptr = data->buffer.addr + dest_offset
+                
+                // Write the color into the buffer
+                *(unsigned int *)dest_ptr = color
+            }
+
+            x++
+        }
+        y++
+    }
 }
 
-void	refresh_map(void)
+Key Details for Implementation
+
+    Pointer Arithmetic: Your addr is a char *. When you add the offset, you are 
+	moving byte-by-byte. This is correct. However, when you read or write
+	 the color, you must cast that address to (unsigned int *).
+
+        Why? Because a pixel is 4 bytes (Red, Green, Blue, Alpha). If you 
+		treat it as a char, you only copy the Blue part (usually).
+
+    Transparency: This is the hardest part of manual copying. Since you
+	 are not using MLX's internal functions, you have to decide what
+	  "Transparent" means.
+
+        Simple way: Open your .xpm file in a text editor. Look at the 
+		top. It will say something like " c None". That means spaces are 
+		transparent.
+
+        In Code: In MiniLibX, "None" (Transparency) usually translates to 
+		the color integer 0xFF000000 (Pure Black with full transparency) or
+		sometimes just 0x0. You might need to experiment to see which color 
+		code your sprites use for "invisible."
+*/
+void	my_pixel_put()
 {
-	// create a new struct to render
-	//		containing map copy to be able to modify
-	// a new image buffer where we are going to paste all the little images
-	// height and width of window?
+	// STEP 3: FIND THE PIXEL IN THE BUFFER (DESTINATION)
+	// Calculate the matching position on the big canvas
+	// Note: We add x_pos and y_pos here!
+	dest_y = y_pos + y
+	dest_x = x_pos + x
+	
+	dest_offset = (dest_y * data->buffer.line_len) + (dest_x * (data->buffer.bpp / 8))
+	
+	// Get the address in the buffer
+	dest_ptr = data->buffer.addr + dest_offset
+	
+	// Write the color into the buffer
+	*(unsigned int *)dest_ptr = color
 }
-/* 
-** Put an image to the given window.
-**
-** @param	void *mlx_ptr	the mlx instance;
-** @param	void *win_ptr	the window instance;
-** @param	int  x			the x location of where the image ought to be placed;
-** @param	int  y			the y location of where the image ought to be placed;
-** @return	int				has no return value (bc).
--void       *mlx_xpm_file_to_image ( void *mlx_ptr, char *filename, 
--						int *width, int *height );
--int		mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, 
--						void *img_ptr, int x, int y);
------------------------------------------
-Step 5: Rendering the Game World
-
-Now, let’s draw the map and all its elements onto the window.
-Key Concepts:
-
-    Rendering Loop: Continuously draw the current state of the game.
-    Drawing Tiles: Place images on the window according to the map array.
-
-Function to Render the Map:
-
-void render_map(t_game *game);
-
-Steps:
-
-    Loop Through the Map Array:
-
-    for (int y = 0; y < game->map_height; y++) 
-        { for (int x = 0; x < game->map_width; x++) 
-        { // Determine what to draw at (x, y) } }
-
-    Determine Tile Type:
-
-    '1': Wall.
-    '0': Empty space.
-    'P': Player.
-    'C': Collectible.
-    'E': Exit.
-
-    Draw the Tile:
-
-    mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, 
-        game->img_wall, x * tile_size, y * tile_size);
-
-Tips:
-
-    Redraw Every Frame: For simplicity, redraw the entire map each frame.
-    Optimization: For better performance, only redraw what’s necessary.
-
- */

@@ -23,10 +23,14 @@
 
 typedef struct s_myimg
 {
-	void	*img_ptr;
-	int		width;
-	int		height;
-}	t_myimg;
+    void    *img_ptr;   // The Identifier (The ticket)
+    char    *addr;      // The Memory Address (The actual pixel data) <--- CRITICAL
+    int     bpp;        // Bits per pixel (How big is one pixel?)
+    int     line_len;   // Line length (How wide is one row in RAM?)
+    int     endian;     // Byte order
+    int     width;      // 64 (You know this)
+    int     height;     // 64 (You know this)
+}   t_myimg;
 
 typedef struct s_map
 {
@@ -49,6 +53,7 @@ typedef struct s_data
 	t_myimg	water;
 	t_myimg	fire;
 	t_myimg	exit;
+	t_myimg buffer;
 }	t_data;
 
 //* ---------- exit.c --------
