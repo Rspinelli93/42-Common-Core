@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:38:53 by rick              #+#    #+#             */
-/*   Updated: 2025/11/26 14:23:31 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/28 21:20:27 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,22 @@ It will run different functions depending on the
 keysign parameter imput.*/
 int	handle_input(int keysign, t_data *data)
 {
-	if (keysign == XK_Escape)
+    data->move_count++;
+    ft_printf("Move count: %d\n", data->move_count);
+	if (keysign == KEY_ESC)
 		mlx_loop_end(data->conect);
+/*     if (keysign == 119 || keysign == 65362)
+        move_player(data, 0, -1);
+    if (keysign == 115 || keysign == 65364)
+        move_player(data, 0, 1);
+    if (keysign == 97 || keysign == 65361)
+        move_player(data, -1, 0);
+    if (keysign == 100 || keysign == 65363)
+        move_player(data, 1, 0); */
 	return (0);
 }
+
+void    move_player(t_data *data, int x, int y);
 
 /*
 Step 6: Handling Keyboard Input

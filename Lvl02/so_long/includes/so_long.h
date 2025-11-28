@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2025/11/26 14:15:50 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/28 21:09:09 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 # define SO_LONG_H
 
 # define IMG_SIZE 64
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_UP 65362
+# define KEY_DOWN 65364
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
 
 # include "libft.h"
 # include "get_next_line.h"
@@ -24,7 +33,7 @@
 typedef struct s_myimg
 {
     void    *img_ptr;   // The Identifier (The ticket)
-    char    *addr;      // The Memory Address (The actual pixel data) <--- CRITICAL
+    char    *pixel;      // The Memory Address (The actual pixel data) <--- CRITICAL
     int     bpp;        // Bits per pixel (How big is one pixel?)
     int     line_len;   // Line length (How wide is one row in RAM?)
     int     endian;     // Byte order
@@ -47,7 +56,8 @@ typedef struct s_data
 	t_map	*map;
 	int		img_size;
 	int		win_width;
-	int		win_heigth;
+	int		win_height;
+	int		move_count;
 	t_myimg	wall;
 	t_myimg	space;
 	t_myimg	water;
@@ -55,6 +65,7 @@ typedef struct s_data
 	t_myimg	exit;
 	t_myimg buffer;
 }	t_data;
+
 
 //* ---------- exit.c --------
 int		exit_game_i(t_data *data);
@@ -77,12 +88,19 @@ int		find_sprite(char **arr, char c);
 int		is_closed(char **arr, t_map *map);
 
 //* ---------- render.c --------
-void	render_map(t_data *data, char **arr);
-int		set_images(t_data *data);
+
+int		make_buffer(t_data *data);
+void	put_buffer(t_data *data, t_myimg *buff, char **arr);
+void	put_filter_sprite(t_data *data, int x_pos, int y_pos, char map_char);
+void	put_img_to_buff(t_data *data, t_myimg *sprite, int x_pos, int y_pos);
+void	my_pixel_put(t_myimg *buffer, int x, int y, int color);
 
 //* ---------- sprites.c --------
+int		load_sprite(void *conect, t_myimg *sprite, char *path);
+int 	set_sprites(t_data *data);
 
 //* ---------- window.c --------
 int		win_init(t_data *data);
+int 	game_loop(t_data *data);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:42:36 by rick              #+#    #+#             */
-/*   Updated: 2025/11/26 14:23:41 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/28 20:54:01 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	free_images(t_data *data)
 		mlx_destroy_image(data->conect, data->wall.img_ptr);
 	if (data->water.img_ptr)
 		mlx_destroy_image(data->conect, data->water.img_ptr);
+	if (data->buffer.img_ptr)
+        mlx_destroy_image(data->conect, data->buffer.img_ptr);
 }
 
 /*

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:31:36 by rick              #+#    #+#             */
-/*   Updated: 2025/11/26 14:16:45 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/28 20:51:22 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ therefore the correspondent malloc check.*/
 int	win_init(t_data *data)
 {
 	data->img_size = IMG_SIZE;
-	data->win_width = data->img_size * ft_strlen(data->map->arr[0]) - 64;
-	data->win_heigth = data->img_size * data->map->size - 64;
+	data->win_width = data->img_size * ft_strlen(data->map->arr[0]) - IMG_SIZE;
+	data->win_height = data->img_size * data->map->size - IMG_SIZE;
 	data->conect = mlx_init();
 	if (!data->conect)
 		return (0);
-	data->win = mlx_new_window(data->conect, data->win_width, data->win_heigth, "so_long");
+	data->win = mlx_new_window(data->conect, data->win_width, data->win_height, "so_long");
 	if (!data->win)
 	{
 		mlx_destroy_display(data->conect);
@@ -35,29 +35,9 @@ int	win_init(t_data *data)
 }
 
 /*
-*-------------------------------------------------------------------
- Initializing the Game Window with MinilibX
-
-Key Concepts:
-
-    MinilibX Initialization: Connect to the X-Window system.
-    Window Creation: Create a window of appropriate size.
-
-Steps:
-
-    Initialize MinilibX:
-
-    game->mlx_ptr = mlx_init();
-
-    Create a New Window:
-
-    game->win_ptr = mlx_new_window(game->mlx_ptr, width, height, "so_long");
-    Width: tile_size * map_width.
-    Height: tile_size * map_height.
-    Tile Size: For example, 64 pixels.
-
-Tips:
-
-    Calculate Window Size Based on Map Dimensions.
-    Check for Errors: Ensure that mlx_init() and mlx_new_window() return 
-    valid pointers.*/
+Function to put inside mlx_loop_hook. It re-renders the map.*/
+int game_loop(t_data *data)
+{
+    put_buffer(data, &data->buffer, data->map->arr);
+    return (0);
+}
