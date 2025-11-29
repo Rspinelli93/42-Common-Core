@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2025/11/29 08:32:02 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/29 19:50:32 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@
 
 typedef struct s_myimg
 {
-    void    *img_ptr;   // The Identifier (The ticket)
-    char    *pixel;      // The Memory Address (The actual pixel data) <--- CRITICAL
-    int     bpp;        // Bits per pixel (How big is one pixel?)
-    int     line_len;   // Line length (How wide is one row in RAM?)
-    int     endian;     // Byte order
-    int     width;      // 64 (You know this)
-    int     height;     // 64 (You know this)
-}   t_myimg;
+	void	*img_ptr;
+	char	*pixel;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}	t_myimg;
 
 typedef struct s_map
 {
@@ -49,6 +49,8 @@ typedef struct s_map
 	char	**arr;
 	int		p1_x;
 	int		p1_y;
+	int		e_x;
+	int		e_y;
 }	t_map;
 
 typedef struct s_data
@@ -65,26 +67,30 @@ typedef struct s_data
 	t_myimg	water;
 	t_myimg	fire;
 	t_myimg	exit;
-	t_myimg buffer;
+	t_myimg	buffer;
 }	t_data;
 
-
 //* ---------- exit.c --------
+
 int		exit_game_i(t_data *data);
 void	exit_game(t_data *data);
 void	free_images(t_data *data);
+void	free_map(t_map *map);
 
 //* ---------- keyboard.c --------
+
 int		handle_input(int keysign, t_data *data);
-void    move_player(t_data *data ,t_map *map, int off_x, int off_y);
-//* ---------- logic.c --------
+void	move_player(t_data *data, t_map *map, int off_x, int off_y);
 
 //* ---------- map.c --------
+
 void	set_size(char *adress, t_map *map);
 t_map	*set_map(char *adress);
 char	**set_array(t_map *map, int fd);
-void	free_map(t_map *map);
 void	init_p_pos(t_map *map, char **arr);
+void	init_e_pos(t_map *map, char **arr);
+
+//* ---------- map_parser.c --------
 
 int		map_parser(char **arr, t_map *map);
 int		is_rectangular(char	**arr);
@@ -100,11 +106,13 @@ void	put_img_to_buff(t_data *data, t_myimg *sprite, int x_pos, int y_pos);
 void	my_pixel_put(t_myimg *buffer, int x, int y, int color);
 
 //* ---------- sprites.c --------
+
 int		load_sprite(void *conect, t_myimg *sprite, char *path);
-int 	set_sprites(t_data *data);
+int		set_sprites(t_data *data);
 
 //* ---------- window.c --------
+
 int		win_init(t_data *data);
-int 	game_loop(t_data *data);
+int		game_loop(t_data *data);
 
 #endif

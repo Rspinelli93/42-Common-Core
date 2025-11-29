@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:37:55 by rick              #+#    #+#             */
-/*   Updated: 2025/11/28 21:16:55 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/29 19:26:51 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int	make_buffer(t_data *data)
 	data->buffer.height = data->win_height;
 	data->buffer.width = data->win_width;
 	data->buffer.img_ptr = mlx_new_image(data->conect,
-		data->win_width,
-		data->win_height);
+			data->win_width,
+			data->win_height);
 	if (!data->buffer.img_ptr)
 		return (0);
 	data->buffer.pixel = mlx_get_data_addr(data->buffer.img_ptr,
-		&data->buffer.bpp,
-		&data->buffer.line_len,
-		&data->buffer.endian);
+			&data->buffer.bpp,
+			&data->buffer.line_len,
+			&data->buffer.endian);
 	if (!data->buffer.pixel)
 		return (0);
 	return (1);
@@ -45,21 +45,21 @@ push it to the window. This function will rerun every time
 we make a change in the position of the player.*/
 void	put_buffer(t_data *data, t_myimg *buff, char **arr)
 {
-    int j;
-    int i;
+	int	j;
+	int	i;
 
-    j = 0;
-    while (arr[j]) 
-    {
-        i = 0;
-        while (arr[j][i] && arr[j][i] != '\n')
-        {
-            put_filter_sprite(data, i * IMG_SIZE, j * IMG_SIZE, arr[j][i]);
-            i++;
-        }
-        j++;
-    }
-    mlx_put_image_to_window(data->conect, data->win, buff->img_ptr, 0, 0);
+	j = 0;
+	while (arr[j])
+	{
+		i = 0;
+		while (arr[j][i] && arr[j][i] != '\n')
+		{
+			put_filter_sprite(data, i * IMG_SIZE, j * IMG_SIZE, arr[j][i]);
+			i++;
+		}
+		j++;
+	}
+	mlx_put_image_to_window(data->conect, data->win, buff->img_ptr, 0, 0);
 }
 
 /*
@@ -99,12 +99,12 @@ void	put_img_to_buff(t_data *data, t_myimg *sprite, int x_pos, int y_pos)
 		x = 0;
 		while (x < sprite->width)
 		{
-            sprite_offset = (y * sprite->line_len) + (x * (sprite->bpp / 8));
-            color = *(unsigned int *)(sprite->pixel + sprite_offset);
-            if (color != 0xFF000000 && color != 0)
+			sprite_offset = (y * sprite->line_len) + (x * (sprite->bpp / 8));
+			color = *(unsigned int *)(sprite->pixel + sprite_offset);
+			if (color != 0xFF000000 && color != 0)
 				my_pixel_put(&data->buffer, x_pos + x, y_pos + y, color);
 			x++;
-    	}
+		}
 		y++;
 	}
 }
@@ -121,6 +121,6 @@ void	my_pixel_put(t_myimg *buffer, int x, int y, int color)
 {
 	int	offset;
 
-	offset = (buffer->line_len * y) + (x * (buffer->bpp / 8));	
+	offset = (buffer->line_len * y) + (x * (buffer->bpp / 8));
 	*((unsigned int *)(offset + buffer->pixel)) = color;
 }

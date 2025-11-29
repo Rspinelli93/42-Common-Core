@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:24:17 by rick              #+#    #+#             */
-/*   Updated: 2025/11/29 08:37:12 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/29 20:16:07 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_map	*set_map(char *adress)
 	if (!map_parser(map->arr, map))
 		return (free_map(map), NULL);
 	init_p_pos(map, map->arr);
+	init_e_pos(map, map->arr);
 	return (map);
 }
 
@@ -63,30 +64,6 @@ char	**set_array(t_map *map, int fd)
 	map->arr[i] = NULL;
 	close(fd);
 	return (map->arr);
-}
-
-/*
-Function to free map struct.
-Frees the array of strings generated with gnl
-Then frees the pointer to the t_map.*/
-void	free_map(t_map *map)
-{
-	int	i;
-
-	if (!map)
-		return ;
-	i = 0;
-	if (map->arr)
-	{
-		while (map->arr[i])
-		{
-			if (map->arr[i])
-				free(map->arr[i]);
-			i++;
-		}
-		free(map->arr);
-	}
-	free(map);
 }
 
 /*
@@ -117,10 +94,13 @@ void	set_size(char *adress, t_map *map)
 	}
 	map->end = 1;
 	if (map->len == 0)
-		ft_printf("Empty file not valid\n");
+		ft_printf("Error\nEmpty file not valid\n");
 	close(fd);
 }
 
+/*
+set x and y values of the position of the player
+in the t_map map.*/
 void	init_p_pos(t_map *map, char **arr)
 {
 	int	x;
@@ -136,6 +116,32 @@ void	init_p_pos(t_map *map, char **arr)
 			{
 				map->p1_x = x;
 				map->p1_y = y;
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
+/*
+set x and y values of the position of the exit
+in the t_map map.*/
+void	init_e_pos(t_map *map, char **arr)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (arr[y])
+	{
+		x = 0;
+		while (arr[y][x] && arr[y][x] != '\n')
+		{
+			if (arr[y][x] == 'E')
+			{
+				map->e_x = x;
+				map->e_y = y;
 				return ;
 			}
 			x++;

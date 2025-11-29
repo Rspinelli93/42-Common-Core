@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 12:45:48 by rick              #+#    #+#             */
-/*   Updated: 2025/11/24 17:08:49 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/29 20:15:57 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	is_rectangular(char	**arr)
 	{
 		if (len != (int)ft_strlen(arr[i]))
 		{
-			ft_printf("Map is not rectangular, not valid\n");
+			ft_printf("Error\nMap is not rectangular, not valid\n");
 			return (0);
 		}
 		i++;
@@ -81,11 +81,11 @@ int	find_sprite(char **arr, char c)
 		i++;
 	}
 	if (c == 'C' && count < 1)
-		return (ft_printf("Map needs 1 consumable (min)\n"), 0);
+		return (ft_printf("Error\nMap needs 1 consumable (min)\n"), 0);
 	if (c == 'P' && count != 1)
-		return (ft_printf("Map needs 1 player (only)\n"), 0);
+		return (ft_printf("Error\nMap needs 1 player (only)\n"), 0);
 	if (c == 'E' && count != 1)
-		return (ft_printf("Map needs 1 exit (only)\n"), 0);
+		return (ft_printf("Error\nMap needs 1 exit (only)\n"), 0);
 	return (1);
 }
 
@@ -107,15 +107,15 @@ int	is_closed(char **arr, t_map *map)
 		if (len > 0 && arr[i][len - 1] == '\n')
 			len--;
 		if (len == 0)
-			return (ft_printf("Empty line detected\n"), 0);
+			return (ft_printf("Error\nEmpty line detected\n"), 0);
 		if (arr[i][0] != '1' || arr[i][len - 1] != '1')
-			return (ft_printf("Map sides not closed\n"), 0);
+			return (ft_printf("Error\nMap sides not closed\n"), 0);
 		if (i == 0 || arr[i + 1] == NULL)
 		{
 			j = 0;
 			while (j < len)
 				if (arr[i][j++] != '1')
-					return (ft_printf("Map top/bot not closed\n"), 0);
+					return (ft_printf("Error\nMap top/bot not closed\n"), 0);
 		}
 		i++;
 	}

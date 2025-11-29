@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:42:36 by rick              #+#    #+#             */
-/*   Updated: 2025/11/28 20:54:01 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/29 19:49:18 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,33 +62,29 @@ void	free_images(t_data *data)
 	if (data->water.img_ptr)
 		mlx_destroy_image(data->conect, data->water.img_ptr);
 	if (data->buffer.img_ptr)
-        mlx_destroy_image(data->conect, data->buffer.img_ptr);
+		mlx_destroy_image(data->conect, data->buffer.img_ptr);
 }
 
 /*
-* -----------------------------------------------------------------
-Step 8: Cleaning Up and Exiting
+Function to free map struct.
+Frees the array of strings generated with gnl
+Then frees the pointer to the t_map.*/
+void	free_map(t_map *map)
+{
+	int	i;
 
-Gracefully handle exiting the game and freeing up resources.
-Key Concepts:
-
-    Memory Management: Free allocated memory to prevent leaks.
-    Exit Hooks: Handle window close events.
-
-Function to Exit the Game:
-
-int exit_game(t_game *game) {
-    // Free images
-    // Destroy window
-    // Free map array
-    exit(0);
+	if (!map)
+		return ;
+	i = 0;
+	if (map->arr)
+	{
+		while (map->arr[i])
+		{
+			if (map->arr[i])
+				free(map->arr[i]);
+			i++;
+		}
+		free(map->arr);
+	}
+	free(map);
 }
-
-Setting Up the Exit Hook:
-
-mlx_hook(game->win_ptr, DestroyNotify, NoEventMask, &exit_game, game);
-
-Tips:
-
-    Free in Reverse Order: Free resources in the opposite order of allocation.
-    Handle All Exit Cases: Include Escape key and window close button. */

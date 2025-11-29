@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 20:16:41 by rick              #+#    #+#             */
-/*   Updated: 2025/11/28 21:07:41 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/29 20:21:00 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	if (ac != 2)
-		return (ft_printf("[Err] Run: ./so_long [map-adress]\n"), 1);
+		return (ft_printf("Error\nUSE: ./so_long [map-adress]\n"), 1);
 	ft_bzero(&data, sizeof(t_data));
 	data.map = set_map(av[1]);
 	if (!data.map)
 		return (1);
 	if (!win_init(&data))
-		return (free_map(data.map), 1);
+		return (ft_printf("Error\nWin init fail"), free_map(data.map), 1);
 	mlx_key_hook(data.win, handle_input, &data);
 	mlx_hook(data.win, 17, 04, exit_game_i, &data);
 	if (!set_sprites(&data))
