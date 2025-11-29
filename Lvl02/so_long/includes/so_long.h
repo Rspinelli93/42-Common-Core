@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2025/11/28 21:09:09 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/29 08:32:02 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_map
 	int		size;
 	int		end;
 	char	**arr;
+	int		p1_x;
+	int		p1_y;
 }	t_map;
 
 typedef struct s_data
@@ -74,7 +76,7 @@ void	free_images(t_data *data);
 
 //* ---------- keyboard.c --------
 int		handle_input(int keysign, t_data *data);
-
+void    move_player(t_data *data ,t_map *map, int off_x, int off_y);
 //* ---------- logic.c --------
 
 //* ---------- map.c --------
@@ -82,6 +84,8 @@ void	set_size(char *adress, t_map *map);
 t_map	*set_map(char *adress);
 char	**set_array(t_map *map, int fd);
 void	free_map(t_map *map);
+void	init_p_pos(t_map *map, char **arr);
+
 int		map_parser(char **arr, t_map *map);
 int		is_rectangular(char	**arr);
 int		find_sprite(char **arr, char c);

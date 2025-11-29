@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:24:17 by rick              #+#    #+#             */
-/*   Updated: 2025/11/26 13:11:13 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/11/29 08:37:12 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_map	*set_map(char *adress)
 		return (free_map(map), NULL);
 	if (!map_parser(map->arr, map))
 		return (free_map(map), NULL);
+	init_p_pos(map, map->arr);
 	return (map);
 }
 
@@ -118,4 +119,27 @@ void	set_size(char *adress, t_map *map)
 	if (map->len == 0)
 		ft_printf("Empty file not valid\n");
 	close(fd);
+}
+
+void	init_p_pos(t_map *map, char **arr)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (arr[y])
+	{
+		x = 0;
+		while (arr[y][x] && arr[y][x] != '\n')
+		{
+			if (arr[y][x] == 'P')
+			{
+				map->p1_x = x;
+				map->p1_y = y;
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
 }
