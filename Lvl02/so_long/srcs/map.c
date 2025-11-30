@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:24:17 by rick              #+#    #+#             */
-/*   Updated: 2025/11/29 20:16:07 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/30 11:37:14 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ t_map	*set_map(char *adress)
 		return (NULL);
 	map = ft_calloc(sizeof(t_map), 1);
 	if (!map)
-		return (NULL);
+		return (ft_printf("Error\nMap alloc"), NULL);
 	set_size(adress, map);
 	if (map->size == 0)
 		return (free(map), NULL);
 	map->arr = ft_calloc(sizeof(char *), (map->size + 1));
-	if (!map)
+	if (!map->arr)
 		return (free(map), NULL);
 	map->arr = set_array(map, fd);
 	if (!map->arr)
 		return (free_map(map), NULL);
-	if (!map_parser(map->arr, map))
+	if (!map_parser(map->arr, map, adress))
 		return (free_map(map), NULL);
 	init_p_pos(map, map->arr);
 	init_e_pos(map, map->arr);

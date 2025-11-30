@@ -6,13 +6,12 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 10:38:53 by rick              #+#    #+#             */
-/*   Updated: 2025/11/29 20:14:48 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/30 11:18:21 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	no_c(char **arr, char c);
 static void	mv_player_helper(t_data *data, t_map *map, int off_x, int off_y);
 
 /*
@@ -88,7 +87,7 @@ static void	mv_player_helper(t_data *data, t_map *map, int off_x, int off_y)
 /*
 boolean function that returns true if no C char where found
 in the array.*/
-static int	no_c(char **arr, char c)
+int	no_c(char **arr, char c)
 {
 	int	x;
 	int	y;

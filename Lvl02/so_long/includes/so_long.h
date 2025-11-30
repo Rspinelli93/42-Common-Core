@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2025/11/29 19:50:32 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/30 11:39:49 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,17 @@ void	exit_game(t_data *data);
 void	free_images(t_data *data);
 void	free_map(t_map *map);
 
+//* ---------- flood_algo.c --------
+
+int		is_blocked(char *address);
+void	flood_map(t_map *dup, int x, int y);
+t_map	*map_dup(char *adress);
+
 //* ---------- keyboard.c --------
 
 int		handle_input(int keysign, t_data *data);
 void	move_player(t_data *data, t_map *map, int off_x, int off_y);
+int		no_c(char **arr, char c);
 
 //* ---------- map.c --------
 
@@ -92,7 +99,7 @@ void	init_e_pos(t_map *map, char **arr);
 
 //* ---------- map_parser.c --------
 
-int		map_parser(char **arr, t_map *map);
+int		map_parser(char **arr, t_map *map, char *address);
 int		is_rectangular(char	**arr);
 int		find_sprite(char **arr, char c);
 int		is_closed(char **arr, t_map *map);

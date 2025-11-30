@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 12:45:48 by rick              #+#    #+#             */
-/*   Updated: 2025/11/29 20:15:57 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/30 11:24:34 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 map_parser runs all the functions for parsing the map
 if all the conditions are met it returns 1, otherwise
 will return 0.*/
-int	map_parser(char **arr, t_map *map)
+int	map_parser(char **arr, t_map *map, char *address)
 {
 	if (!is_rectangular(arr))
 		return (0);
@@ -28,6 +28,8 @@ int	map_parser(char **arr, t_map *map)
 		return (0);
 	if (!is_closed(arr, map))
 		return (0);
+	if (is_blocked(address))
+		return (ft_printf("Error\nPlayer, Collec or Exit blocked\n"), 0);
 	return (1);
 }
 
