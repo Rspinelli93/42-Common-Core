@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 12:45:48 by rick              #+#    #+#             */
-/*   Updated: 2025/11/30 11:24:34 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/30 11:56:38 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,18 @@ int	is_closed(char **arr, t_map *map)
 		i++;
 	}
 	return (1);
+}
+
+/*
+bool function to check the right format of file. (.ber)*/
+int	ber_format(char *str)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	if (len < 4)
+		return (0);
+	if (ft_strncmp(str + len - 4, ".ber", 4) == 0)
+		return (1);
+	return (0);
 }

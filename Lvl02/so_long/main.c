@@ -6,12 +6,13 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 20:16:41 by rick              #+#    #+#             */
-/*   Updated: 2025/11/29 20:21:00 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/30 12:00:39 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+//* TODO: check if define buffer is legal
 //* TODO: check if define buffer is legal
 
 int	main(int ac, char **av)
@@ -20,6 +21,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (ft_printf("Error\nUSE: ./so_long [map-adress]\n"), 1);
+	if (!ber_format(av[1]))
+		return (ft_printf("Error\nWrong file type. USE: '.ber'\n"), 1);
 	ft_bzero(&data, sizeof(t_data));
 	data.map = set_map(av[1]);
 	if (!data.map)

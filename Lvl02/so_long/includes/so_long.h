@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2025/11/30 11:39:49 by rick             ###   ########.fr       */
+/*   Updated: 2025/11/30 11:57:53 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int		map_parser(char **arr, t_map *map, char *address);
 int		is_rectangular(char	**arr);
 int		find_sprite(char **arr, char c);
 int		is_closed(char **arr, t_map *map);
+int		ber_format(char *str);
 
 //* ---------- render.c --------
 
