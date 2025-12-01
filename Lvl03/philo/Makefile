@@ -2,7 +2,7 @@
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
-INCLUDES = philo.h
+HEADER = philo.h
 
 SRCS = \
 	main.c \
@@ -10,6 +10,7 @@ SRCS = \
 	init.c \
 	parse.c \
 	run.c \
+	utils.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -20,10 +21,10 @@ NAME = philo
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CC) $(OBJS) $(HEADER) -o $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -I $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 
 # ------------ CLEAN RULES --------------

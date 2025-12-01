@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:21:02 by rick              #+#    #+#             */
-/*   Updated: 2025/12/01 18:53:47 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/01 22:44:24 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int ac, char **av)
 {
-	if (ac == 5 || ac == 6)
+	if (input_parser(ac, av))
 	{
 		// 1) Check errors, filling table table
 		// input_parser()
@@ -29,7 +29,6 @@ int	main(int ac, char **av)
 		// free_philo()
 	}
 	else
-	{
-		// error_handler()
-	}
+		return (usage_err_msg(), EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

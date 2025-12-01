@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/01 18:51:06 by rick              #+#    #+#             */
-/*   Updated: 2025/12/01 23:26:11 by rick             ###   ########.fr       */
+/*   Created: 2025/12/01 21:36:03 by rick              #+#    #+#             */
+/*   Updated: 2025/12/01 22:48:22 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_data  *init_philo(int ac, char **av)
+void    *safe_malloc(size_t bytes)
 {
-    t_data *data;
+    void    *ret;
 
-    data = safe_malloc(sizeof(data));
-    data->n_philo = ft_atol(av[1]);
-    data->t_die = ft_atol(av[2]) * 1000;
-    data->t_eat = ft_atol(av[3]) * 1000;
-	data->t_sleep = ft_atol(av[4]) * 1000;
-    if (ac == 6)
-	data->num_eat = ft_atol(av[5]);
-
-    return (data);
+    ret = malloc(bytes);
+    if (!ret)
+    {
+        //*free_philo();
+        exit_msg("Malloc Error.\n");
+    }
+    return (ret);
 }
-
-
