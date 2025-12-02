@@ -12,6 +12,8 @@
 
 #include "philo.h"
 
+// https://medium.com/@ruinadd/philosophers-42-guide-the-dining-philosophers-problem-893a24bc0fe2
+
 int	main(int ac, char **av)
 {
 	if (input_parser(ac, av))

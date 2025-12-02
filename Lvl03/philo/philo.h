@@ -53,7 +53,8 @@ struct s_data
 	long	t_eat;
 	long	t_sleep;
 	long	num_eat;
-
+	t_fork	*forks;
+	t_philo	*philos;
 };
 
 struct s_philo

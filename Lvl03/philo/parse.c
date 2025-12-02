@@ -25,7 +25,7 @@ int	input_parser(int ac, char **av)
 	if (ac == 5 || ac == 6)
 	{
 		if (ft_atol(av[1]) == 0)
-			exit_msg("You must have at least one philosopher\n");
+			exit_msg("You must input at least one philosopher\n");
 		if (ft_atol(av[2]) < 60
 			|| ft_atol(av[3]) < 60
 			|| ft_atol(av[4]) < 60)
