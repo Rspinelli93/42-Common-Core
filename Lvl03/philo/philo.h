@@ -23,21 +23,13 @@
 #define RESET   "\033[0m"
 
 // ------------- INCLUDES ----------------
-/* memset */
+
 #include <string.h>
-/* printf */
 #include <stdio.h>
-/* malloc, free */
 #include <stdlib.h>
-/* write, usleep */
 #include <unistd.h>
-/* gettimeofday */
 #include <sys/time.h>
-/* pthread_create, pthread_detach, pthread_join, */
-/* pthread_mutex_init, pthread_mutex_destroy, */
-/* pthread_mutex_lock, pthread_mutex_unlock */
 #include <pthread.h>
-/*INT_MAX*/
 #include <limits.h>
 
 // ------------- STRUCTS ----------------
@@ -45,6 +37,8 @@
 typedef struct s_data t_data;
 typedef struct s_philo t_philo;
 typedef struct s_fork t_fork;
+typedef pthread_mutex_t t_mutex;
+typedef pthread_t t_thread;
 
 struct s_data
 {
@@ -59,12 +53,12 @@ struct s_data
 
 struct s_philo
 {
-	int a;
+	t_thread	*trd;
 };
 
 struct s_fork
 {
-	int ix;
+	t_mutex	*mtx;
 	
 };
 
