@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:21:02 by rick              #+#    #+#             */
-/*   Updated: 2025/12/03 15:07:55 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/03 21:10:26 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 // https://medium.com/@ruinadd/philosophers-42-guide-the-dining-philosophers-problem-893a24bc0fe2
 // https://www.youtube.com/watch?v=oq29KUy29iQ&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2&index=4
 
+
+// av[] number_of_philosophers | time_to_die | time_to_eat | time_to_sleep | [number_of_times_each_philosopher_must_eat]
 int	main(int ac, char **av)
 {
 	if (input_parser(ac, av))
@@ -84,8 +86,10 @@ void	init_philos(t_data *data)
 t_philo	philo_init(t_data *data)
 {
 	t_philo philo;
-	t_thread *th;
+	t_trd 	*th;
 
 	pthread_create(th, NULL, routine, arg);
 	philo.trd = th;
 }
+
+void	assign_forks(t_data *data);
