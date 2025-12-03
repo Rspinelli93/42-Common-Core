@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rspinell <rspinell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:11:55 by rick              #+#    #+#             */
-/*   Updated: 2025/12/01 23:25:38 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/03 14:32:57 by rspinell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ typedef pthread_t t_thread;
 
 struct s_data
 {
-	long	n_philo;
-	long	t_die;
-	long	t_eat;
-	long	t_sleep;
+	long	num_philo;
+	long	tm_die;
+	long	tm_eat;
+	long	tm_sleep;
 	long	num_eat;
 	t_fork	*forks;
 	t_philo	*philos;
@@ -59,7 +59,7 @@ struct s_philo
 struct s_fork
 {
 	t_mutex	*mtx;
-	
+	int		ix;
 };
 
 // ------------- PROTOTYPES ----------------
