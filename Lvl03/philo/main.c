@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rspinell <rspinellir13@gmail.com>          +#+  +:+       +#+        */
+/*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:21:02 by rick              #+#    #+#             */
-/*   Updated: 2025/12/02 19:14:19 by rspinell         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:07:55 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,3 +66,26 @@ int	main(int ac, char **av)
 * Invalidates the mutex and frees its resources (must be unlocked).
 * Connection: Cleaning up forks/locks at the very end to prevent leaks.
 */
+
+void	init_philos(t_data *data)
+{
+	t_philo	*philos;
+	long	i;
+
+	i = 0;
+	philos = malloc(sizeof(t_philo) * data->num_philo);
+	while (i < data->num_philo)
+	{
+		data->philos[i] = philo_init(data);
+		i++;
+	}
+}
+
+t_philo	philo_init(t_data *data)
+{
+	t_philo philo;
+	t_thread *th;
+
+	pthread_create(th, NULL, routine, arg);
+	philo.trd = th;
+}
