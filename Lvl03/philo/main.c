@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:21:02 by rick              #+#    #+#             */
-/*   Updated: 2025/12/03 21:10:26 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/08 16:09:25 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,12 @@
 // av[] number_of_philosophers | time_to_die | time_to_eat | time_to_sleep | [number_of_times_each_philosopher_must_eat]
 int	main(int ac, char **av)
 {
+	t_data	*data;
 	if (input_parser(ac, av))
 	{
-		// 1) Check errors, filling table table
-		// input_parser()
-
-		// 2) Create the data
-		// init_philo()
-
-		//	3) Run the dinner
-		// run_philo()
-
+		data = init_philo(ac, av);
+		init_tab(data);
+		start_simulation(data);
 		// 4) Control leaks
 		// free_philo()
 	}
@@ -68,28 +63,3 @@ int	main(int ac, char **av)
 * Invalidates the mutex and frees its resources (must be unlocked).
 * Connection: Cleaning up forks/locks at the very end to prevent leaks.
 */
-
-void	init_philos(t_data *data)
-{
-	t_philo	*philos;
-	long	i;
-
-	i = 0;
-	philos = malloc(sizeof(t_philo) * data->num_philo);
-	while (i < data->num_philo)
-	{
-		data->philos[i] = philo_init(data);
-		i++;
-	}
-}
-
-t_philo	philo_init(t_data *data)
-{
-	t_philo philo;
-	t_trd 	*th;
-
-	pthread_create(th, NULL, routine, arg);
-	philo.trd = th;
-}
-
-void	assign_forks(t_data *data);

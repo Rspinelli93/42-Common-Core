@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:11:55 by rick              #+#    #+#             */
-/*   Updated: 2025/12/03 21:03:48 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/08 16:23:36 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,36 @@ typedef pthread_t t_trd;
 
 struct s_data
 {
-	long	num_philo;
-	long	tm_die;
-	long	tm_eat;
-	long	tm_sleep;
-	long	n_meals;
-	long	strt_sim; // here we store the time when the simulation starts
-	bool	end_sim; // all ate n_meals or one died
-	t_fork	*forks;
-	t_philo	*philos;
+    long        num_philo;
+    long        tm_die;
+    long        tm_eat;
+    long        tm_sleep;
+    long        n_meals;
+    long        start_time;
+    bool        end_sim;
+    t_mutex     end_mtx;
+    t_mutex     print_mtx;
+    t_fork      *forks;
+    t_philo     *philos;
+    t_trd       monitor;
 };
 
 struct s_philo
 {
-	int			id;
-	long		meals_cnt;
-	bool		full;
-	long		tm_last_meal;
-	t_fork		*l_fork;
-	t_fork		*r_fork;
-	t_trd	*trd;
+    t_data      *data;
+    int         id;
+    long        meals_cnt;
+    bool        full;
+    long        tm_last_meal;
+    t_fork      *l_fork;
+    t_fork      *r_fork;
+    t_trd       trd;
 };
 
 struct s_fork
 {
-	t_mutex	*mtx;
-	int		ix;
+    t_mutex     mtx;
+    int         ix;
 };
 
 // ------------- PROTOTYPES ----------------
@@ -78,16 +82,17 @@ void	exit_msg(char *msg);
 void	usage_err_msg(void);
 
 //* ------ init.c ------ //
-
+void	init_tab(t_data *data);
+t_data	*init_philo(int ac, char **av);
 //* ------ main.c ------ //
 
 //* ------ parse.c ------ //
 int		input_parser(int ac, char **av);
 long	ft_atol(char *str);
 
-//* ------ run.c ------ //
-
+//* ------ simulation.c ------ //
+void	start_simulation(t_data *data);
 //* ------ utils.c ------ //
-void    *safe_malloc(size_t bytes);
+void	*safe_malloc(size_t bytes, t_data *data);
 
 #endif
