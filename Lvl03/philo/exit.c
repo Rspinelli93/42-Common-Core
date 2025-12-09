@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:29:17 by rick              #+#    #+#             */
-/*   Updated: 2025/12/09 17:36:48 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/09 23:05:38 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,18 @@ void	usage_err_msg(void)
 	printf("%s[number_of_times_each_philosopher_must_eat]%s\n", BLUE, RESET);
 }
 
-void    cleanup(t_data *data)
+void	cleanup(t_data *data)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (i < data->num_philo)
-    {
-        pthread_mutex_destroy(&data->forks[i].mtx);
-        pthread_mutex_destroy(&data->philos[i].meal_mtx);
-        i++;
-    }
-    pthread_mutex_destroy(&data->print_mtx);
-    pthread_mutex_destroy(&data->end_mtx);
-    free_philo(data);
+	i = 0;
+	while (i < data->num_philo)
+	{
+		pthread_mutex_destroy(&data->forks[i].mtx);
+		pthread_mutex_destroy(&data->philos[i].meal_mtx);
+		i++;
+	}
+	pthread_mutex_destroy(&data->print_mtx);
+	pthread_mutex_destroy(&data->end_mtx);
+	free_philo(data);
 }

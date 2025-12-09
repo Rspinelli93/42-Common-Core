@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:54:03 by rick              #+#    #+#             */
-/*   Updated: 2025/12/09 17:07:10 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/09 23:17:25 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	eating(t_philo *philo);
 *THINK
 	- Print "is thinking".
 */
-void	*philo_routine(void *philosopher)
+void	*ph_rout(void *philosopher)
 {
 	t_philo	*philo;
 
@@ -44,7 +44,7 @@ void	*philo_routine(void *philosopher)
 		if (philo->data->end_sim)
 		{
 			pthread_mutex_unlock(&philo->data->end_mtx);
-			break;
+			break ;
 		}
 		pthread_mutex_unlock(&philo->data->end_mtx);
 		eating(philo);
@@ -93,7 +93,7 @@ static void	eating(t_philo *philo)
 static void	one_philo(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->l_fork->mtx);
-	print_msg(get_time() - philo->data->start_time, philo->id, 1);
+	print_msg(philo, philo->id, 1);
 	ft_usleep(philo->data->tm_die, philo->data);
 	pthread_mutex_unlock(&philo->l_fork->mtx);
 }

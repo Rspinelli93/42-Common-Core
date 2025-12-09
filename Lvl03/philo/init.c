@@ -6,11 +6,13 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:51:06 by rick              #+#    #+#             */
-/*   Updated: 2025/12/09 17:05:18 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/09 23:17:17 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static void	set_philo(t_data *data);
 
 /*
 *Function to initialize the data or "table"
@@ -49,9 +51,44 @@ void	init_tab(t_data *data)
 	data->end_sim = false;
 	data->philos = safe_malloc(sizeof(t_philo) * data->num_philo, data);
 	data->forks = safe_malloc(sizeof(t_fork) * data->num_philo, data);
-	i = -1;
-	while (i++ < data->num_philo)
+	i = 0;
+	while (i < data->num_philo)
+	{
 		pthread_mutex_init(&(data->forks[i].mtx), NULL);
+		data->forks[i].ix = i;
+		i++;
+	}
+	i = 0;
+	set_philo(data);
+}
+
+void	start_simulation(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	data->start_time = get_time();
+	while (i < data->num_philo)
+	{
+		data->philos[i].tm_last_meal = data->start_time;
+		pthread_create(&data->philos[i].trd, NULL, ph_rout, &data->philos[i]);
+		i++;
+	}
+	pthread_create(&data->monitor, NULL, monitor_routine, data);
+	i = 0;
+	while (i < data->num_philo)
+	{
+		pthread_join(data->philos[i].trd, NULL);
+		i++;
+	}
+	pthread_join(data->monitor, NULL);
+}
+
+static void	set_philo(t_data *data)
+{
+	int	i;
+
+	i = 0;
 	while (i < data->num_philo)
 	{
 		data->philos[i].id = i + 1;
@@ -64,26 +101,4 @@ void	init_tab(t_data *data)
 		pthread_mutex_init(&data->philos[i].meal_mtx, NULL);
 		i++;
 	}
-}
-
-void	start_simulation(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	data->start_time = get_time();
-	while (i < data->num_philo)
-	{
-		data->philos[i].tm_last_meal = data->start_time;
-		pthread_create(&data->philos[i].trd, NULL, philo_routine, &data->philos[i]);
-		i++;
-	}
-	pthread_create(&data->monitor, NULL, monitor_routine, data);
-	i = 0;
-	while (i < data->num_philo)
-	{
-		pthread_join(data->philos[i].trd, NULL);
-		i++;
-	}
-	pthread_join(data->monitor, NULL);
 }

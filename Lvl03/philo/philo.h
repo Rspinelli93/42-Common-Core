@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:11:55 by rick              #+#    #+#             */
-/*   Updated: 2025/12/09 17:37:50 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/09 23:17:12 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,11 @@ struct s_fork
 };
 
 // ------------- PROTOTYPES ----------------
-
 //* ------ exit.c ------ //
 
 void	exit_msg(char *msg);
 void	usage_err_msg(void);
-void    cleanup(t_data *data);
+void	cleanup(t_data *data);
 void	free_philo(t_data *data);
 
 //* ------ init.c ------ //
@@ -93,7 +92,7 @@ t_data	*init_philo(int ac, char **av);
 
 //* ------ routines ------ //
 
-void	*philo_routine(void *philosopher);
+void	*ph_rout(void *philosopher);
 void	*monitor_routine(void *table_data);
 
 //* ------ parse.c ------ //

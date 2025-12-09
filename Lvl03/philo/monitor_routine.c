@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 17:06:40 by rick              #+#    #+#             */
-/*   Updated: 2025/12/09 17:38:48 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/09 23:08:36 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	*monitor_routine(void *table_data)
 			pthread_mutex_lock(&data->philos[i].meal_mtx);
 			if (is_dead(data, i))
 				return (NULL);
-			if (data->n_meals != -1 && data->philos[i].meals_cnt >= data->n_meals)
+			if (data->n_meals != -1
+				&& data->philos[i].meals_cnt >= data->n_meals)
 				finished_eating++;
 			pthread_mutex_unlock(&data->philos[i].meal_mtx);
 			i++;
@@ -70,7 +71,7 @@ void	*monitor_routine(void *table_data)
 static bool	is_dead(t_data *data, int index)
 {
 	if (get_time() - data->philos[index].tm_last_meal > data->tm_die)
-	{	
+	{
 		pthread_mutex_unlock(&data->philos[index].meal_mtx);
 		pthread_mutex_lock(&data->end_mtx);
 		data->end_sim = true;

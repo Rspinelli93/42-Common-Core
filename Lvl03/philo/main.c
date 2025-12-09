@@ -6,24 +6,21 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:21:02 by rick              #+#    #+#             */
-/*   Updated: 2025/12/09 15:21:00 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/09 23:10:01 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// av[] number_of_philosophers | time_to_die | time_to_eat | 
-// time_to_sleep | [number_of_times_each_philosopher_must_eat]
 int	main(int ac, char **av)
 {
 	t_data	*data;
-	
+
 	if (input_parser(ac, av))
 	{
 		data = init_philo(ac, av);
 		start_simulation(data);
-		// 4) Control leaks
-		// free_philo()
+		cleanup(data);
 	}
 	else
 		return (usage_err_msg(), EXIT_FAILURE);
@@ -32,21 +29,27 @@ int	main(int ac, char **av)
 
 /*
 - pthread_create(thread_ptr, attr, routine, arg)
-* Spawns a new thread that immediately runs the 'routine' function.
-* Connection: Used to birth a philosopher who runs their lifecycle loop.
+* Spawns a new thread that immediately runs the 'routine' 
+	*function.
+* Connection: Used to birth a philosopher who runs their 
+	*lifecycle loop.
 
 - pthread_join(thread, retval_ptr)
 * Blocks the current thread until the specific 'thread' finishes.
-* Connection: Main thread uses this to wait for all philosophers before exiting.
+* Connection: Main thread uses this to wait for all philosophers 
+	*before exiting.
 
 - pthread_detach(thread)
-* Tells OS to reclaim thread resources automatically on finish; prevents joining.
-* Connection: sometimes used for the death-monitoring thread to run independently.
+* Tells OS to reclaim thread resources automatically on finish; 
+	*prevents joining.
+* Connection: sometimes used for the death-monitoring thread 
+	*to run independently.
 
 
 - pthread_mutex_init(mutex_ptr, attr)
 * Initializes a mutex object so it can be locked/unlocked.
-* Connection: Turns a variable into a usable 'fork' before simulation starts.
+* Connection: Turns a variable into a usable 'fork' 
+	*before simulation starts.
 
 - pthread_mutex_lock(mutex_ptr)
 * Tries to take the lock; if taken, the thread waits/blocks until available.

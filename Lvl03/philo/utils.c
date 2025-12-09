@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 21:36:03 by rick              #+#    #+#             */
-/*   Updated: 2025/12/09 17:37:53 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/09 23:15:53 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,25 @@ void	print_msg(t_philo *philo, int philo_id, int type)
 
 	pthread_mutex_lock(&philo->data->print_mtx);
 	time = get_time() - philo->data->start_time;
-
 	pthread_mutex_lock(&philo->data->end_mtx);
 	if (!philo->data->end_sim || type == 5)
 	{
 		if (type == 1)
-			printf("%ld %d has taken a fork\n", time, philo_id);
+			printf("%ldms - Philosopher %d has taken a fork\n", time, philo_id);
 		else if (type == 2)
-			printf("%ld %d is eating\n", time, philo_id);
+			printf("%ldms - Philosopher %d is eating\n", time, philo_id);
 		else if (type == 3)
-			printf("%ld %d is sleeping\n", time, philo_id);
+			printf("%ldms - Philosopher %d is sleeping\n", time, philo_id);
 		else if (type == 4)
-			printf("%ld %d is thinking\n", time, philo_id);
+			printf("%ldms - Philosopher %d is thinking\n", time, philo_id);
 		else if (type == 5)
-			printf("%ld %d died\n", time, philo_id);
+			printf("%ldms - Philosopher %d died\n", time, philo_id);
 	}
 	pthread_mutex_unlock(&philo->data->end_mtx);
 	pthread_mutex_unlock(&philo->data->print_mtx);
 }
 
-/* Returns current time in milliseconds
-*/
+/* Returns current time in milliseconds */
 long	get_time(void)
 {
 	struct timeval	time;
@@ -69,7 +67,7 @@ long	get_time(void)
 
 /* Custom sleep: more precise than usleep and checks for death while waiting
 * Pauses the thread for 'time_in_ms' milliseconds.*/
-void    ft_usleep(long time_in_ms, t_data *data)
+void	ft_usleep(long time_in_ms, t_data *data)
 {
 	long	start_time;
 
