@@ -9,7 +9,8 @@ SRCS = \
 	exit.c \
 	init.c \
 	parse.c \
-	simulation.c \
+	monitor_routine.c \
+	philo_routine.c \
 	utils.c \
 
 OBJS = $(SRCS:.c=.o)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simulation.c                                       :+:      :+:    :+:   */
+/*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:54:03 by rick              #+#    #+#             */
-/*   Updated: 2025/12/09 10:50:29 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/09 17:07:10 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,73 +29,31 @@ static void	eating(t_philo *philo);
 *THINK
 	- Print "is thinking".
 */
-void    *philo_routine(void *philosopher)
+void	*philo_routine(void *philosopher)
 {
-    t_philo *philo;
+	t_philo	*philo;
 
-    philo = (t_philo *)philosopher;
-    if (philo->data->num_philo == 1)
-        return (one_philo(philo), NULL);
-    if (philo->id % 2 == 0)
-        usleep(5);
-    while (1)
-    {
-        pthread_mutex_lock(&philo->data->end_mtx);
-        if (philo->data->end_sim)
-        {
-            pthread_mutex_unlock(&philo->data->end_mtx);
-            break;
-        }
-        pthread_mutex_unlock(&philo->data->end_mtx);
-        eating(philo);
-        print_msg(philo, philo->id, 3);
-        ft_usleep(philo->data->tm_sleep, philo->data);
-        print_msg(philo, philo->id, 4);
-    }
-    return (NULL);
-}
-
-/*
-1. Infinite Loop (while 1):
-- Iterate through all philosophers (i = 0 to num_philo).
-- Lock internal meal_mtx.
-*DEATH CHECK
-	- If (get_time() - last_meal > time_to_die):
-		- Set end_sim = true.
-		- Print "died".
-		- Unlock meal_mtx & Return NULL.
-*FULL CHECK (Optional)
-	- If (n_meals > 0 AND meals_cnt >= n_meals):
-		- Increment "full_philos" counter.
-- Unlock internal meal_mtx.
-*END CONDITION
-	- If (full_philos == num_philo):
-		- Set end_sim = true.
-		- Return NULL.
-- Reset full_philos counter.
-- usleep(500) (Reduce CPU usage).
-*/
-void	*monitor_routine(void *table_data)
-{
-	t_data *data;
-	int		i;
-
-	data = (t_data *)table_data;
+	philo = (t_philo *)philosopher;
+	if (philo->data->num_philo == 1)
+		return (one_philo(philo), NULL);
+	if (philo->id % 2 == 0)
+		usleep(5);
 	while (1)
 	{
-		while (i < data->num_philo)
+		pthread_mutex_lock(&philo->data->end_mtx);
+		if (philo->data->end_sim)
 		{
-			pthread_mutex_lock(&data->philos[i].meal_mtx);
-			if (get_time() - data->philos[i].tm_last_meal > data->tm_die)
-			{
-				data->end_sim = true;
-				print_msg(&data->philos[i], i + 1, 5);
-				pthread_mutex_unlock(&data->philos[i].meal_mtx);
-				return (NULL);
-			}
+			pthread_mutex_unlock(&philo->data->end_mtx);
+			break;
 		}
+		pthread_mutex_unlock(&philo->data->end_mtx);
+		eating(philo);
+		print_msg(philo, philo->id, 3);
+		ft_usleep(philo->data->tm_sleep, philo->data);
+		print_msg(philo, philo->id, 4);
 	}
-} 
+	return (NULL);
+}
 
 /*
 / Lock l_fork & Print "has taken a fork".
@@ -138,26 +96,4 @@ static void	one_philo(t_philo *philo)
 	print_msg(get_time() - philo->data->start_time, philo->id, 1);
 	ft_usleep(philo->data->tm_die, philo->data);
 	pthread_mutex_unlock(&philo->l_fork->mtx);
-}
-
-void	start_simulation(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	data->start_time = get_time();
-	while (i < data->num_philo)
-	{
-		data->philos[i].tm_last_meal = data->start_time;
-        pthread_create(&data->philos[i].trd, NULL, philo_routine, &data->philos[i]);
-		i++;
-	}
-    pthread_create(&data->monitor, NULL, monitor_routine, data);
-	i = 0;
-	while (i < data->num_philo)
-	{
-        pthread_join(data->philos[i].trd, NULL);
-		i++;
-	}
-    pthread_join(data->monitor, NULL);
 }

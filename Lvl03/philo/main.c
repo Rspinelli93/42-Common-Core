@@ -6,24 +6,21 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:21:02 by rick              #+#    #+#             */
-/*   Updated: 2025/12/08 16:09:25 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/09 15:21:00 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// https://medium.com/@ruinadd/philosophers-42-guide-the-dining-philosophers-problem-893a24bc0fe2
-// https://www.youtube.com/watch?v=oq29KUy29iQ&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2&index=4
-
-
-// av[] number_of_philosophers | time_to_die | time_to_eat | time_to_sleep | [number_of_times_each_philosopher_must_eat]
+// av[] number_of_philosophers | time_to_die | time_to_eat | 
+// time_to_sleep | [number_of_times_each_philosopher_must_eat]
 int	main(int ac, char **av)
 {
 	t_data	*data;
+	
 	if (input_parser(ac, av))
 	{
 		data = init_philo(ac, av);
-		init_tab(data);
 		start_simulation(data);
 		// 4) Control leaks
 		// free_philo()

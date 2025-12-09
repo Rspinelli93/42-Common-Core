@@ -6,12 +6,16 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:51:06 by rick              #+#    #+#             */
-/*   Updated: 2025/12/09 10:03:19 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/09 17:05:18 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*
+*Function to initialize the data or "table"
+- Gets all values from argument vector.
+- Runs init_tab()*/
 t_data	*init_philo(int ac, char **av)
 {
 	t_data	*data;
@@ -25,8 +29,17 @@ t_data	*init_philo(int ac, char **av)
 		data->n_meals = ft_atol(av[5]);
 	else
 		data->n_meals = -1;
+	init_tab(data);
 	return (data);
 }
+
+/*
+*Function to initialize forks and philos.
+- Initialize the mutex for printing and end simulation
+- Allocate philos and forks
+	With that, their respective data.
+	For forks the mutexes.
+	For philos all philo data.*/
 void	init_tab(t_data *data)
 {
 	int	i;
@@ -51,4 +64,26 @@ void	init_tab(t_data *data)
 		pthread_mutex_init(&data->philos[i].meal_mtx, NULL);
 		i++;
 	}
+}
+
+void	start_simulation(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	data->start_time = get_time();
+	while (i < data->num_philo)
+	{
+		data->philos[i].tm_last_meal = data->start_time;
+		pthread_create(&data->philos[i].trd, NULL, philo_routine, &data->philos[i]);
+		i++;
+	}
+	pthread_create(&data->monitor, NULL, monitor_routine, data);
+	i = 0;
+	while (i < data->num_philo)
+	{
+		pthread_join(data->philos[i].trd, NULL);
+		i++;
+	}
+	pthread_join(data->monitor, NULL);
 }
