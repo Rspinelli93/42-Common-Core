@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 21:36:03 by rick              #+#    #+#             */
-/*   Updated: 2025/12/08 16:28:33 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/09 10:10:55 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,37 @@ void	*safe_malloc(size_t bytes, t_data *data)
 		exit_msg("Malloc Error");
 	}
 	return (ret);
+}
+
+/* Prints message according to the type:
+* 1 = has taken a fork
+* 2 = is eating
+* 3 = is sleeping
+* 4 = is thinking
+* 5 = died */
+void	print_msg(t_philo *philo, int philo_id, int type)
+{
+	long	time;
+
+	pthread_mutex_lock(&philo->data->print_mtx);
+	time = get_time() - philo->data->start_time;
+
+	pthread_mutex_lock(&philo->data->end_mtx);
+	if (!philo->data->end_sim || type == 5)
+	{
+		if (type == 1)
+			printf("%ld %d has taken a fork\n", time, philo_id);
+		else if (type == 2)
+			printf("%ld %d is eating\n", time, philo_id);
+		else if (type == 3)
+			printf("%ld %d is sleeping\n", time, philo_id);
+		else if (type == 4)
+			printf("%ld %d is thinking\n", time, philo_id);
+		else if (type == 5)
+			printf("%ld %d died\n", time, philo_id);
+	}
+	pthread_mutex_unlock(&philo->data->end_mtx);
+	pthread_mutex_unlock(&philo->data->print_mtx);
 }
 
 /* Returns current time in milliseconds */

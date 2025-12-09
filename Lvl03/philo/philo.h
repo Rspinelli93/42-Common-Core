@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:11:55 by rick              #+#    #+#             */
-/*   Updated: 2025/12/08 16:23:36 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/09 10:01:17 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ struct s_philo
     t_fork      *l_fork;
     t_fork      *r_fork;
     t_trd       trd;
+    t_mutex     meal_mtx;
 };
 
 struct s_fork
@@ -94,5 +95,7 @@ long	ft_atol(char *str);
 void	start_simulation(t_data *data);
 //* ------ utils.c ------ //
 void	*safe_malloc(size_t bytes, t_data *data);
+void	print_msg(t_philo *philo, int philo_id, int type);
+void    ft_usleep(long time_in_ms, t_data *data);
 
 #endif

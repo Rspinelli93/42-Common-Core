@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:51:06 by rick              #+#    #+#             */
-/*   Updated: 2025/12/08 16:22:05 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/09 10:03:19 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,9 @@ void	init_tab(t_data *data)
 	data->end_sim = false;
 	data->philos = safe_malloc(sizeof(t_philo) * data->num_philo, data);
 	data->forks = safe_malloc(sizeof(t_fork) * data->num_philo, data);
-	i = 0;
-	while (i < data->num_philo)
-	{
+	i = -1;
+	while (i++ < data->num_philo)
 		pthread_mutex_init(&(data->forks[i].mtx), NULL);
-		i++;
-	}
-	i = 0;
 	while (i < data->num_philo)
 	{
 		data->philos[i].id = i + 1;
@@ -52,6 +48,7 @@ void	init_tab(t_data *data)
 		data->philos[i].meals_cnt = 0;
 		data->philos[i].tm_last_meal = 0;
 		data->philos[i].full = false;
+		pthread_mutex_init(&data->philos[i].meal_mtx, NULL);
 		i++;
 	}
 }
