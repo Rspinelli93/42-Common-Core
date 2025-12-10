@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 17:06:40 by rick              #+#    #+#             */
-/*   Updated: 2025/12/09 23:08:36 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/10 13:52:11 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	*monitor_routine(void *table_data)
 		}
 		if (all_finished(data, finished_eating))
 			return (NULL);
-		usleep(50);
+		usleep(500);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:54:03 by rick              #+#    #+#             */
-/*   Updated: 2025/12/09 23:17:25 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/10 14:14:42 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ static void	one_philo(t_philo *philo);
 static void	eating(t_philo *philo);
 
 /*
-1. Handle 1 Philosopher Edge Case.
-2. Prevent all philos from grabbing forks at the same time:
-	- If philo->id is even, ft_usleep()
-3. Infinite Loop (while simulation is active):
+* Philosophers Routine:
+- Handle 1 Philosopher Case.
+- Prevent all philos from grabbing forks at the same time:
+	ft_usleep()
+* Infinite loop:
     -Check if dead before starting new cycle
 *EAT
 	- eating();
@@ -37,7 +38,7 @@ void	*ph_rout(void *philosopher)
 	if (philo->data->num_philo == 1)
 		return (one_philo(philo), NULL);
 	if (philo->id % 2 == 0)
-		usleep(5);
+		ft_usleep(35, philo->data);
 	while (1)
 	{
 		pthread_mutex_lock(&philo->data->end_mtx);

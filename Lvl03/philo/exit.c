@@ -6,12 +6,16 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 18:29:17 by rick              #+#    #+#             */
-/*   Updated: 2025/12/09 23:05:38 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/10 13:42:46 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/* 
+*Function to print the parsing messages
+- it has colors! :)
+*/
 void	exit_msg(char *msg)
 {
 	printf("%sERR: %s", RED, RESET);
@@ -19,6 +23,19 @@ void	exit_msg(char *msg)
 	exit(EXIT_FAILURE);
 }
 
+/*
+* Prints usage guide for the user in case of wrong arguments. */
+void	usage_err_msg(void)
+{
+	printf("%sError: Wrong number of params%s\n", RED, RESET);
+	printf("Usage: %s./philo %snumber_of_philosophers ", GREEN, BLUE);
+	printf("%stime_to_die %stime_to_eat ", GREEN, BLUE);
+	printf("%stime_to_sleep ", GREEN);
+	printf("%s[number_of_times_each_philosopher_must_eat]%s\n", BLUE, RESET);
+}
+
+/*
+* Frees allocated data/philos/forks*/
 void	free_philo(t_data *data)
 {
 	if (!data)
@@ -30,15 +47,8 @@ void	free_philo(t_data *data)
 	free(data);
 }
 
-void	usage_err_msg(void)
-{
-	printf("%sError: Wrong number of params%s\n", RED, RESET);
-	printf("Usage: %s./philo %snumber_of_philosophers ", GREEN, BLUE);
-	printf("%stime_to_die %stime_to_eat ", GREEN, BLUE);
-	printf("%stime_to_sleep ", GREEN);
-	printf("%s[number_of_times_each_philosopher_must_eat]%s\n", BLUE, RESET);
-}
-
+/*
+* Function to destroy all mutexes.*/
 void	cleanup(t_data *data)
 {
 	int	i;
