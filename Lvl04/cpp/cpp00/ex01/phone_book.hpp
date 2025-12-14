@@ -6,12 +6,14 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 16:36:54 by rick              #+#    #+#             */
-/*   Updated: 2025/12/13 17:13:40 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/13 17:14:22 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONE_BOOK_H
 # define PHONE_BOOK_H
+
+//https://cplusplus.com/doc/oldtutorial/classes/
 
 #include <iostream>
 
