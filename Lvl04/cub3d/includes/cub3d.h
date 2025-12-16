@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2025/12/16 14:46:08 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/16 19:55:49 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # include "get_next_line.h"
 # include "mlx.h"
 # include "mlx_int.h"
+# include <math.h>
+# include <stdbool.h>
 
 typedef struct s_myimg
 {
@@ -53,6 +55,21 @@ typedef struct s_map
 	int		e_x;
 	int		e_y;
 }	t_map;
+
+typedef struct s_player
+{
+    float x;
+    float y;
+    float angle;
+
+    bool key_up;
+    bool key_down;
+    bool key_left;
+    bool key_right;
+
+    bool left_rotate;
+    bool right_rotate;
+}   t_player;
 
 typedef struct s_data
 {
