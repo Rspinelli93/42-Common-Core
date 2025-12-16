@@ -1,27 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.c                                       :+:      :+:    :+:   */
+/*   map_gen.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/12 14:10:57 by rick              #+#    #+#             */
-/*   Updated: 2025/12/16 13:59:09 by rick             ###   ########.fr       */
+/*   Created: 2025/12/16 12:40:52 by rick              #+#    #+#             */
+/*   Updated: 2025/12/16 12:41:41 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-/*
-bool function to check the right format of file. (.ber)*/
-int	cub_format(char *str)
-{
-	int	len;
-
-	len = ft_strlen(str);
-	if (len < 4)
-		return (0);
-	if (ft_strncmp(str + len - 4, ".cub", 4) == 0)
-		return (1);
-	return (0);
-}

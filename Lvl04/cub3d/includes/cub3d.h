@@ -6,14 +6,16 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2025/12/12 14:09:05 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/16 14:46:08 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define IMG_SIZE 64
+# define IMG_SIZE 128
+# define WIN_HEIGHT 720
+# define WIN_WIDTH 1280
 # define KEY_ESC 65307
 # define KEY_W 119
 # define KEY_A 97
@@ -60,12 +62,10 @@ typedef struct s_data
 	int		img_size;
 	int		win_width;
 	int		win_height;
-	int		move_count;
-	t_myimg	wall;
-	t_myimg	space;
-	t_myimg	water;
-	t_myimg	fire;
-	t_myimg	exit;
+	t_myimg	wall_ea;
+	t_myimg	wall_no;
+	t_myimg	wall_so;
+	t_myimg	wall_we;
 	t_myimg	buffer;
 }	t_data;
 
@@ -102,7 +102,7 @@ int		map_parser(char **arr, t_map *map, char *address);
 int		is_rectangular(char	**arr);
 int		find_sprite(char **arr, char c);
 int		is_closed(char **arr, t_map *map);
-int		ber_format(char *str);
+int		cub_format(char *str);
 
 //* ---------- render.c --------
 

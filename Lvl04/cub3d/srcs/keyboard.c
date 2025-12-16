@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.c                                       :+:      :+:    :+:   */
+/*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/12 14:10:57 by rick              #+#    #+#             */
-/*   Updated: 2025/12/16 13:59:09 by rick             ###   ########.fr       */
+/*   Created: 2025/12/16 13:52:58 by rick              #+#    #+#             */
+/*   Updated: 2025/12/16 13:53:44 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-bool function to check the right format of file. (.ber)*/
-int	cub_format(char *str)
+Function to handle actions depending on each keysign.
+It will run different functions depending on the 
+keysign parameter imput.*/
+int	handle_input(int keysign, t_data *data)
 {
-	int	len;
-
-	len = ft_strlen(str);
-	if (len < 4)
-		return (0);
-	if (ft_strncmp(str + len - 4, ".cub", 4) == 0)
-		return (1);
+	if (keysign == KEY_ESC)
+		mlx_loop_end(data->conect);
 	return (0);
 }

@@ -16,15 +16,13 @@ MLX = $(MLX_DIR)/libmlx_Linux.a
 
 # ---------------- SOURCE ----------------
 SRCS = \
-	cubed.c \
-#	srcs/exit.c \
+	cub3D.c \
+	srcs/exit.c \
 	srcs/keyboard.c \
-	srcs/flood_algo.c \
 	srcs/map_parser.c \
-	srcs/map.c \
-	srcs/render.c \
-	srcs/sprites.c \
+	srcs/map_gen.c \
 	srcs/window.c \
+	srcs/textures.c \
 
 # ------------- COMPILING ----------------
 
