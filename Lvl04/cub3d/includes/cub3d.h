@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 18:38:42 by rick              #+#    #+#             */
-/*   Updated: 2025/12/16 19:55:49 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/17 10:31:20 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 
+# ifndef O_DIRECTORY
+#  define O_DIRECTORY 00200000
+# endif
+
 # include "libft.h"
 # include "get_next_line.h"
 # include "mlx.h"
@@ -35,6 +39,7 @@
 
 typedef struct s_myimg
 {
+	char	*img_address;
 	void	*img_ptr;
 	char	*pixel;
 	int		bpp;
@@ -46,14 +51,9 @@ typedef struct s_myimg
 
 typedef struct s_map
 {
-	int		len;
-	int		size;
-	int		end;
-	char	**arr;
-	int		p1_x;
-	int		p1_y;
-	int		e_x;
-	int		e_y;
+	bool	end;
+	char	**raw;
+	char	**map;
 }	t_map;
 
 typedef struct s_player
