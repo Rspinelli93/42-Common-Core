@@ -6,7 +6,7 @@
 /*   By: rick <rick@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 16:36:54 by rick              #+#    #+#             */
-/*   Updated: 2025/12/17 13:00:09 by rick             ###   ########.fr       */
+/*   Updated: 2025/12/17 15:01:02 by rick             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 //https://cplusplus.com/doc/oldtutorial/classes/
 
 #include <iostream>
+#include <string>
 
 class Contact {
     public:
