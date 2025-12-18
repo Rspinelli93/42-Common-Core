@@ -1,7 +1,7 @@
 NAME = phone_book
 
 CC = c++
-CFLAGS = -Werror -Wextra -Wall -std=c++98
+CFLAGS = -Werror -Wextra -Wall -std=c++98 -g
 SRC = phone_book.cpp
 OBJ = phone_book.o
 
