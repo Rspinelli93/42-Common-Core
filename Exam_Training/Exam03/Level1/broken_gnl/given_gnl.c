@@ -57,17 +57,17 @@ char *ft_strchr(char *s, int c)
     int i = 0;
     while(s[i])
     {
-        if (s[i] == c)
-            return s + i;
-        i++;
+      if (s[i] == c)
+        return s + i;
+      i++;
     }
     return NULL;
 }
 
 void *ft_memcpy(void *dest, const void *src, size_t n)
 {
-  while(--n > 0)
-    ((char *)dest)[n - 1] = ((char *)src)[n - 1];
+  while (n--)
+      ((char *)dest)[n] = ((char *)src)[n];
   return dest;
 }
 
