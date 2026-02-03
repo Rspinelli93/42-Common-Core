@@ -22,7 +22,7 @@ NAME = philo
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(HEADER) -o $(NAME)
+	$(CC) $(OBJS) -o $(NAME)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
