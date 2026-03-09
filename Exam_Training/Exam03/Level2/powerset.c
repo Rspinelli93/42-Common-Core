@@ -65,3 +65,73 @@ $> ./powerset 13 65 23 3 4 6 7 1 2 | cat -e
 $> ./powerset 10 0 1 2 3 4 5 6 7 8 9 | cat -e
 ...
 */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/*
+- 3. POWERSET
+* Goal: Find all subsets from a list of numbers that add up to a target number.
+* Function: Looks at each number in the list one by one and makes a binary choice: 
+* it recursively calls itself once INCLUDING the number in the sum, and once 
+* EXCLUDING it. If it reaches the end of the list and hits the target, it prints.
+*/
+
+typedef struct s_data
+{
+	int	*set;
+	int	*subset;
+	int	len;
+	int	target;
+}	t_data;
+
+void	solve(t_data *d, int idx, int sub_size, int current_sum)
+{
+	int	i;
+
+	if (idx == d->len)
+	{
+		if (current_sum == d->target)
+		{
+			i = 0;
+			while (i < sub_size)
+			{
+				printf("%d", d->subset[i]);
+				if (i < sub_size - 1)
+					printf(" ");
+				i++;
+			}
+			printf("\n");
+		}
+		return ;
+	}
+	d->subset[sub_size] = d->set[idx];
+	solve(d, idx + 1, sub_size + 1, current_sum + d->set[idx]);
+	solve(d, idx + 1, sub_size, current_sum);
+}
+
+int	main(int ac, char **av)
+{
+	t_data	d;
+	int		i;
+
+	if (ac >= 2)
+	{
+		d.target = atoi(av[1]);
+		d.len = ac - 2;
+		d.set = malloc(sizeof(int) * (d.len + 1));
+		d.subset = malloc(sizeof(int) * (d.len + 1));
+		if (!d.set || !d.subset)
+			return (1);
+		i = 0;
+		while (i < d.len)
+		{
+			d.set[i] = atoi(av[i + 2]);
+			i++;
+		}
+		solve(&d, 0, 0, 0);
+		free(d.set);
+		free(d.subset);
+	}
+	return (0);
+}

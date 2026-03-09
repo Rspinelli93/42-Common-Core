@@ -28,3 +28,97 @@ $> ./rip '(()(()(' | cat -e
 ( ) () $
  ()( ) $
 */
+
+#include <stdio.h>
+
+/*
+- 4. RIP
+* Goal: Fix unbalanced parentheses by removing the absolute minimum amount needed.
+* Function: First counts exactly how many extra '(' and ')' exist. Then, it goes 
+* through the string and recursively tries replacing them with spaces. Once it 
+* removes the exact target amount, it verifies if it is balanced and prints it.
+*/
+
+int	is_balanced(char *str)
+{
+	int	count;
+	int	i;
+
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '(')
+			count++;
+		else if (str[i] == ')')
+			count--;
+		if (count < 0)
+			return (0);
+		i++;
+	}
+	return (count == 0);
+}
+
+void	get_removals(char *str, int *left, int *right)
+{
+	int	i;
+
+	i = 0;
+	*left = 0;
+	*right = 0;
+	while (str[i])
+	{
+		if (str[i] == '(')
+			(*left)++;
+		else if (str[i] == ')')
+		{
+			if (*left > 0)
+				(*left)--;
+			else
+				(*right)++;
+		}
+		i++;
+	}
+}
+
+void	solve(char *str, int start, int left, int right)
+{
+	int	i;
+
+	if (left == 0 && right == 0)
+	{
+		if (is_balanced(str))
+			puts(str);
+		return ;
+	}
+	i = start;
+	while (str[i])
+	{
+		if (left > 0 && str[i] == '(')
+		{
+			str[i] = ' ';
+			solve(str, i + 1, left - 1, right);
+			str[i] = '(';
+		}
+		else if (right > 0 && str[i] == ')')
+		{
+			str[i] = ' ';
+			solve(str, i + 1, left, right - 1);
+			str[i] = ')';
+		}
+		i++;
+	}
+}
+
+int	main(int ac, char **av)
+{
+	int	left;
+	int	right;
+
+	if (ac == 2)
+	{
+		get_removals(av[1], &left, &right);
+		solve(av[1], 0, left, right);
+	}
+	return (0);
+}
