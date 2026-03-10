@@ -22,3 +22,6 @@
 [submodule "Lvl03/philosophers"]
 	path = Lvl03/philosophers
 	url = git@github.com:Rspinelli93/philosophers.git
+[submodule "Lvl00/libft"]
+	path = Lvl00/libft
+	url = git@github.com:Rspinelli93/libft.git
