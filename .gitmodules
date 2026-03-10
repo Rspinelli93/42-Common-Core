@@ -4,3 +4,21 @@
 [submodule "Lvl00-libft"]
 	path = Lvl00-libft
 	url = git@github.com:Rspinelli93/libft.git
+[submodule "Lvl01/ft_printf"]
+	path = Lvl01/ft_printf
+	url = git@github.com:Rspinelli93/ft_printf.git
+[submodule "Lvl01/get_next_line"]
+	path = Lvl01/get_next_line
+	url = git@github.com:Rspinelli93/get-next-line.git
+[submodule "Lvl02/so_long"]
+	path = Lvl02/so_long
+	url = git@github.com:Rspinelli93/so_long.git
+[submodule "Lvl02/push_swap"]
+	path = Lvl02/push_swap
+	url = git@github.com:Rspinelli93/push_swap.git
+[submodule "Lvl02/minitalk"]
+	path = Lvl02/minitalk
+	url = git@github.com:Rspinelli93/minitalk.git
+[submodule "Lvl03/philosophers"]
+	path = Lvl03/philosophers
+	url = git@github.com:Rspinelli93/philosophers.git
