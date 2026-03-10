@@ -1,3 +1,6 @@
 [submodule "Lvl03/minishell"]
 	path = Lvl03/minishell
 	url = git@github.com:Rspinelli93/Minishell.git
+[submodule "Lvl00-libft"]
+	path = Lvl00-libft
+	url = git@github.com:Rspinelli93/libft.git
