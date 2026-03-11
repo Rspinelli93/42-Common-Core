@@ -32,13 +32,15 @@ $> ./rip '(()(()(' | cat -e
 #include <stdio.h>
 
 /*
-- 4. RIP
+- RIP
 * Goal: Fix unbalanced parentheses by removing the absolute minimum amount needed.
-* Function: First counts exactly how many extra '(' and ')' exist. Then, it goes 
-* through the string and recursively tries replacing them with spaces. Once it 
+* Function: First counts exactly how many extra '(' and ')' exist. Then, it goes
+* through the string and recursively tries replacing them with spaces. Once it
 * removes the exact target amount, it verifies if it is balanced and prints it.
 */
 
+/*
++ Function to count if the string is ballanced or not.*/
 int	is_balanced(char *str)
 {
 	int	count;
@@ -59,6 +61,9 @@ int	is_balanced(char *str)
 	return (count == 0);
 }
 
+/*
++ Function to know which one '(' or ')' needs to be removed from that string.
++ It will modifify the falues of the ints declared in main.*/
 void	get_removals(char *str, int *left, int *right)
 {
 	int	i;
@@ -81,6 +86,15 @@ void	get_removals(char *str, int *left, int *right)
 	}
 }
 
+/*
+* BASE CASE
++ If left and right are 0 and its balanced, print the string.
+
+* RECURSIVE CASE
++ Decide which case to fix, either if we have more lefts or more rights
+
++ In either case, if you find a left or a right parenthesis char and you left or right is bigger than 0:
++ Change for a space, and run solve in i++ and -1 to that value (left or right)*/
 void	solve(char *str, int start, int left, int right)
 {
 	int	i;

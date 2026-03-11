@@ -32,10 +32,10 @@ cba$
 #include <stdlib.h>
 
 /*
-- 2. PERMUTATIONS
+- PERMUTATIONS
 * Goal: Print all possible combinations of a string's letters in alphabetical order.
-* Function: Sorts the string first. It builds a new word letter by letter using an 
-* array to track which letters are already "used". When the new word reaches the 
+* Function: Sorts the string first. It builds a new word letter by letter using an
+* array to track which letters are already "used". When the new word reaches the
 * original length, it prints it, then backtracks to try different letters.
 */
 
@@ -49,6 +49,8 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
+/*
+* Pretty self explicatory*/
 void	sort_str(char *str, int len)
 {
 	int		i;
@@ -73,6 +75,18 @@ void	sort_str(char *str, int len)
 	}
 }
 
+/*
+* BASE CASE:
++ If we reach the end of the buffer, we null terminate it and print the buffer
+
+* RECURSIVE CASE:
++ Loops to everz single letter to create a new string using all chars
++ The safety check, the used[] array is a checklist on the position of each letter in the original string
+
++ Marks as taken
++ Writes on the buffer
++ Calls solve for the next position
++ Sets used to 0 backk again.*/
 void	solve(char *str, int len, char *buffer, int *used, int step)
 {
 	int	i;

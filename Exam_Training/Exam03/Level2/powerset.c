@@ -70,13 +70,19 @@ $> ./powerset 10 0 1 2 3 4 5 6 7 8 9 | cat -e
 #include <stdlib.h>
 
 /*
-- 3. POWERSET
+- POWERSET
 * Goal: Find all subsets from a list of numbers that add up to a target number.
-* Function: Looks at each number in the list one by one and makes a binary choice: 
-* it recursively calls itself once INCLUDING the number in the sum, and once 
+* Function: Looks at each number in the list one by one and makes a binary choice:
+* it recursively calls itself once INCLUDING the number in the sum, and once
 * EXCLUDING it. If it reaches the end of the list and hits the target, it prints.
 */
 
+/*
+* Struct holding:
++ int *set: an array of the numbers starting from av[2]
++ int *subset: an empty array where I build the outputs.
++ int target: thats av[1], the sum we are aiming to reach
++ int len: total amount of numbers in set*/
 typedef struct s_data
 {
 	int	*set;
@@ -85,18 +91,30 @@ typedef struct s_data
 	int	target;
 }	t_data;
 
-void	solve(t_data *d, int idx, int sub_size, int current_sum)
+/*
+* BASE CASE
+
++ if (idx == data->len) : have we reached the end of the array set? (say, we made a yes or no desition for each number)
++		if (current_sum == data->target) : Does the sum is equal to  the target?
++			print the numbers in subset separated by a space and new line at the end.
+
+* RECURSIVE CASE
++ Put the number at the current position inside the subset
++ Rerun solve as the case where you keep the number (if it woesnt work is handled in the BASE CASE)
++ Rerun solve as the case where you dont keep the number
+*/
+void	solve(t_data *data, int idx, int sub_size, int current_sum)
 {
 	int	i;
 
-	if (idx == d->len)
+	if (idx == data->len)
 	{
-		if (current_sum == d->target)
+		if (current_sum == data->target)
 		{
 			i = 0;
 			while (i < sub_size)
 			{
-				printf("%d", d->subset[i]);
+				printf("%d", data->subset[i]);
 				if (i < sub_size - 1)
 					printf(" ");
 				i++;
@@ -105,33 +123,33 @@ void	solve(t_data *d, int idx, int sub_size, int current_sum)
 		}
 		return ;
 	}
-	d->subset[sub_size] = d->set[idx];
-	solve(d, idx + 1, sub_size + 1, current_sum + d->set[idx]);
-	solve(d, idx + 1, sub_size, current_sum);
+	data->subset[sub_size] = data->set[idx];
+	solve(data, idx + 1, sub_size + 1, current_sum + data->set[idx]);
+	solve(data, idx + 1, sub_size, current_sum);
 }
 
 int	main(int ac, char **av)
 {
-	t_data	d;
+	t_data	data;
 	int		i;
 
 	if (ac >= 2)
 	{
-		d.target = atoi(av[1]);
-		d.len = ac - 2;
-		d.set = malloc(sizeof(int) * (d.len + 1));
-		d.subset = malloc(sizeof(int) * (d.len + 1));
-		if (!d.set || !d.subset)
+		data.target = atoi(av[1]);
+		data.len = ac - 2;
+		data.set = malloc(sizeof(int) * (data.len + 1));
+		data.subset = malloc(sizeof(int) * (data.len + 1));
+		if (!data.set || !data.subset)
 			return (1);
 		i = 0;
-		while (i < d.len)
+		while (i < data.len)
 		{
-			d.set[i] = atoi(av[i + 2]);
+			data.set[i] = atoi(av[i + 2]);
 			i++;
 		}
-		solve(&d, 0, 0, 0);
-		free(d.set);
-		free(d.subset);
+		solve(&data, 0, 0, 0);
+		free(data.set);
+		free(data.subset);
 	}
 	return (0);
 }
