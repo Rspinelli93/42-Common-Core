@@ -70,7 +70,7 @@ int	ft_abs(int n)
 + row: The specific row we are testing.
 
 - Iterates over the board until arriving to the current_col (no need to check after, those are empty)
-- Then we check:
+- It checks for each position:
 	* board[i] = is it at the exact same spot?
 	* ft_abs(board[i] - row) == (current_col - i) = check diagonals
 		* ft_abs(board[i] - row) calculates the vertical distance.
