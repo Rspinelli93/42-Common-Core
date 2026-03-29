@@ -25,3 +25,6 @@
 [submodule "Lvl00/libft"]
 	path = Lvl00/libft
 	url = git@github.com:Rspinelli93/libft.git
+[submodule "Lvl04/CPP"]
+	path = Lvl04/CPP
+	url = git@github.com:Rspinelli93/CPP-Piscine.git
