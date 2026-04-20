@@ -33,10 +33,20 @@ Topics covered include:
 | **philosophers** | Classic concurrency problem (Dining Philosophers) |
 | **minishell** | A small UNIX shell implementation |
 | **so_long** | 2D game project using MiniLibX |
-| **cub3d** | Simple 3D raycasting engine |
+| **miniRT** | Simple 3D raycasing image generation |
 | **NetPractice** | Networking fundamentals through exercises |
-| **ft_irc** | IRC server implementation |
+| **webserv** | HTTP server implementation |
 | **cpp_modules** | Introduction to C++ through a series of modules |
+
+---
+
+### 📦 Cloning the Repository
+
+| Goal | Command |
+| :--- | :--- |
+| **Clone everything at once** | `git clone --recurse-submodules <repository_url>` |
+| **Fetch all submodules later** (if cloned normally) | `git submodule update --init --recursive` |
+| **Fetch a single submodule** (e.g., just libft) | `git submodule update --init <path/to/submodule>` |
 
 ---
 
