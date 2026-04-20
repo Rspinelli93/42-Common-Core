@@ -28,3 +28,6 @@
 [submodule "Lvl04/CPP"]
 	path = Lvl04/CPP
 	url = git@github.com:Rspinelli93/CPP-Piscine.git
+[submodule "Lvl04/miniRT"]
+	path = Lvl04/miniRT
+	url = git@github.com:Rspinelli93/miniRT.git
