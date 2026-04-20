@@ -44,7 +44,7 @@ Topics covered include:
 
 | Goal | Command |
 | :--- | :--- |
-| **Clone everything at once** | `git clone --recurse-submodules <repository_url>` |
+| **Clone everything at once** | `git clone --recurse-submodules git@github.com:Rspinelli93/42-Common-Core.git` |
 | **Fetch all submodules later** (if cloned normally) | `git submodule update --init --recursive` |
 | **Fetch a single submodule** (e.g., just libft) | `git submodule update --init <path/to/submodule>` |
 
