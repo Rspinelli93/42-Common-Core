@@ -40,122 +40,80 @@ Close all FFS before returning. If the cmds executed successfully wait all
 child processes and return 0. */
 
 #include <unistd.h>
-#include <sys/wait.h>
 #include <stdio.h>
+#include <fcntl.h>
+#include <sys/wait.h>
 #include <stdlib.h>
-#include <string.h>
 
-int	picoshell(char **cmds[])
+int    picoshell(char **cmds[])
 {
-	int		fd[2];
-	int		prev_fd;
-	int		i;
-	int		children;
-	int		ret;
-	pid_t	pid;
+	int fd[2];
+	int prev_fd = -1;
+	int i = 0;
+	int children = 0;
+	pid_t pid;
 
-	prev_fd = -1;
-	i = 0;
-	children = 0;
-	ret = 0;
+	//* Parent
 	while (cmds[i])
 	{
+		// If there is another command and then i do the pipe
+		// and only continue if it doesnt fail
 		if (cmds[i + 1] && pipe(fd) == -1)
 			return (1);
+		// Fork the process, basically duplicate the process
 		pid = fork();
+		// Check if that didnt fail
 		if (pid == -1)
 			return (1);
+		// if pid == 0 then its the child processs
+		// everything inside this if is the chils process
+		//* Child
 		if (pid == 0)
 		{
+			// if there was a pipe before (so prev_fd was indeed
+			// different than -1)
 			if (prev_fd != -1)
 			{
+				// make stdin to point to the previous_fd
+				// instead of reading from the keyboard, the child reads
+				// from wherever the prev command wrote at
 				if (dup2(prev_fd, STDIN_FILENO) == -1)
-					exit(1);
-				close(prev_fd);
+					exit (1);
+				close (prev_fd);
 			}
+			// if there is a next command
 			if (cmds[i + 1])
 			{
+				// make stdout to change to the write into the pipe 
+				// instead, then close them both
 				if (dup2(fd[1], STDOUT_FILENO) == -1)
 					exit(1);
 				close(fd[1]);
 				close(fd[0]);
 			}
+			// run the commands with execvp, if execv returns is because it
+			// failed, and i have to exit 1;
 			execvp(cmds[i][0], cmds[i]);
 			exit(1);
 		}
+		//* Parent
+		// increase the children count
 		children++;
+		// Parent closes the pipe read, its given to the child process
 		if (prev_fd != -1)
 			close(prev_fd);
+		// Parent closes the write end of the new pipe (only child wtires into it)
+		// Save read end as prev_fd so next child can use it as stdin
+		// next command
 		if (cmds[i + 1])
 		{
-			close(fd[1]);
+			close (fd[1]);
 			prev_fd = fd[0];
 		}
 		i++;
 	}
+	// Wait for each child to finish, one by one. 
 	while (children--)
-	{
-		int	status;
-
-		waitpid(-1, &status, 0);
-		if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
-			ret = 1;
-		if (WIFSIGNALED(status))
-			ret = 1;
-	}
-	return (ret);
+		wait(NULL);
+	return (0);
 }
-/*
-TESTS:
-# Basic
-./picoshell /bin/ls "|" /usr/bin/grep picoshell
-
-# 3 commands chained
-./picoshell echo "squalala" "|" cat "|" sed 's/a/b/g'
-
-# No pipe at all (single command)
-./picoshell /bin/ls
-
-# Command that produces no output (grep finds nothing)
-./picoshell /bin/ls "|" /usr/bin/grep zzznomatch
-
-# Invalid command (should return 1)
-./picoshell /bin/notexist "|" cat
-
-# Invalid second command
-./picoshell /bin/ls "|" /bin/notexist
-
-# Large output
-./picoshell find / -maxdepth 3 "|" wc -l
-
-# Binary in PATH (no full path)
-./picoshell ls "|" grep main
-
-# Many pipes
-./picoshell ls "|" cat "|" cat "|" cat "|" grep main
-
-# Empty input to second command
-./picoshell echo "" "|" wc -c
-*/
-
-/*
-How it works:
-+ prev_fd tracks the read-end of the previous pipe (what the next child reads from).
-
-Each iteration:
-* 1. If there's a next command → pipe(fd) creates fd[0] (read) and fd[1] (write)
-* 2. fork() → child sets up its I/O then execvp
-* 3. Parent closes what it no longer needs, saves fd[0] as prev_fd for next iteration
-
-The pipe chain visually:
- - cmd[0] → fd[1] | fd[0] → cmd[1] → fd[1] | fd[0] → cmd[2]
-
-Key points:
- - Child: dup2(prev_fd, STDIN) = read from previous pipe, dup2(fd[1], STDOUT) = write to next pipe
- - Parent must close fd[1] after fork, otherwise the next child never gets EOF on its stdin
- - while (wait(NULL) != -1) reaps all children — don't use a counter, just wait until error
-
-Common mistakes to avoid:
- - Forgetting to close(prev_fd) in parent after fork → fd leak
- - Not closing fd[0] in child when it writes → pipe never closes downstream
- - Only waiting for last child → zombie processes*/
