@@ -51,170 +51,167 @@ $> ./vbc '((1+3)*12+(3*(2+6))' | cat -e
 Unexpected token '2'$ */
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <malloc.h>
 #include <ctype.h>
 
+//
 typedef struct node {
-	enum { ADD, MULTI, VAL } type;
-	int val;
-	struct node *l;
-	struct node *r;
-} node;
+    enum {
+        ADD,
+        MULTI,
+        VAL
+    }   type;
+    int val;
+    struct node *l;
+    struct node *r;
+}   node;
 
-node	*new_node(node n)
+//
+node    *new_node(node n)
 {
-	node *ret = calloc(1, sizeof(n));
-	if (!ret)
-		return (NULL);
-	*ret = n;
-	return (ret);
+    node *ret = calloc(1, sizeof(node));
+    if (!ret)
+        return (NULL);
+    *ret = n;
+    return (ret);
 }
 
-void	destroy_tree(node *n)
+//
+void    destroy_tree(node *n)
 {
-	if (!n)
-		return ;
-	if (n->type != VAL)
+    if (!n)
+        return ;
+    if (n->type != VAL)
+    {
+        destroy_tree(n->l);
+        destroy_tree(n->r);
+    }
+    free(n);
+}
+
+//
+void    unexpected(char c)
+{
+    if (c)
+        printf("Unexpected token '%c'\n", c);
+    else
+        printf("Unexpected end of input\n");
+}
+
+//
+int accept(char **s, char c)
+{
+    if (**s == c)
+    {
+        (*s)++;
+        return (1);
+    }
+    return (0);
+}
+
+//
+int expect(char **s, char c)
+{
+    if (accept(s, c))
+        return (1);
+    unexpected(**s);
+    return (0);
+}
+node *parse_sum(char **s);
+
+node *parse_sym(char **s)
+{
+	node *ret;
+
+	if (isdigit(s))
 	{
-		destroy_tree(n->l);
-		destroy_tree(n->r);
-	}
-	free(n);
-}
-
-void	unexpected(char c)
-{
-	if (c)
-		printf("Unexpected token '%c'\n", c);
-	else
-		printf("Unexpected end of input\n");
-}
-
-node	*parse_expr(char **s);
-
-node	*parse_factor(char **s)
-{
-	node	*ret;
-
-	if (**s == '(')
-	{
-		(*s)++;
-		ret = parse_expr(s);
-		if (!ret)
+		if ((ret = new_node((node){.type = VAL, .val = s - '0'})) == NULL)
 			return (NULL);
-		if (**s != ')')
-		{
-			unexpected(**s);
-			destroy_tree(ret);
-			return (NULL);
-		}
 		(*s)++;
 		return (ret);
 	}
-	if (isdigit(**s))
+	if (accept(s, '('))
 	{
-		ret = new_node((node){.type = VAL, .val = **s - '0'});
-		(*s)++;
+		if ((ret = parse_sum(s)) == NULL)
+			return (NULL);
+		if (!expect(s, ')'))
+			return (destroy_tree(ret), NULL);
 		return (ret);
 	}
 	unexpected(**s);
 	return (NULL);
 }
 
-node	*parse_term(char **s)
+node *parse_mult(char **s)
 {
-	node	*left;
-	node	*right;
-	node	*mul;
+	node *left;
+	node *ret;
+	node *right;
 
-	left = parse_factor(s);
-	if (!left)
+	if ((left = parse_sym(s)) == NULL)
 		return (NULL);
-	while (**s == '*')
+	while (accept(s, '*'))
 	{
-		(*s)++;
-		right = parse_factor(s);
-		if (!right)
-		{
-			destroy_tree(left);
-			return (NULL);
-		}
-		mul = new_node((node){.type = MULTI, .l = left, .r = right});
-		if (!mul)
-		{
-			destroy_tree(left);
-			destroy_tree(right);
-			return (NULL);
-		}
-		left = mul;
+		if ((right = parse_sym(s)) == NULL)
+			return (destroy_tree(left), NULL);
+		ret = new_node((node){.type = MULTI, .l = left, .r = right});
+		if (!ret)
+			return (destroy_tree(left), destroy_tree(right), NULL);
+		left = ret;
 	}
 	return (left);
 }
 
-node	*parse_expr(char **s)
+node *parse_sum(char **s)
 {
-	node	*left;
-	node	*right;
-	node	*add;
+	node *left;
+	node *ret;
+	node *right;
 
-	left = parse_term(s);
-	if (!left)
+	if ((left = parse_mult(s)) == NULL)
 		return (NULL);
-	while (**s == '+')
+	while (accept(s, '+'))
 	{
-		(*s)++;
-		right = parse_term(s);
-		if (!right)
-		{
-			destroy_tree(left);
-			return (NULL);
-		}
-		add = new_node((node){.type = ADD, .l = left, .r = right});
-		if (!add)
-		{
-			destroy_tree(left);
-			destroy_tree(right);
-			return (NULL);
-		}
-		left = add;
+		if ((right = parse_mult(s)) == NULL)
+			return (destroy_tree(left), NULL);
+		ret = new_node((node){.type = ADD, .l = left, .r = right});
+		if (!ret)
+			return (destroy_tree(left), destroy_tree(right), NULL);
+		left = ret;
 	}
 	return (left);
 }
 
-node	*parse_expression(char *s)
+node *parse(char *s)
 {
-	node	*ret;
-
-	ret = parse_expr(&s);
-	if (!ret)
+	node *ret;
+	
+	if ((ret = parse_sum(&s)) == NULL)
 		return (NULL);
 	if (*s)
-	{
-		unexpected(*s);
-		destroy_tree(ret);
-		return (NULL);
-	}
+		return (destroy_tree(ret), unexpected(s), NULL);
 	return (ret);
 }
 
-int	eval_tree(node *tree)
+int solve(node *tree)
 {
-	switch (tree->type)
-	{
-		case ADD:   return (eval_tree(tree->l) + eval_tree(tree->r));
-		case MULTI: return (eval_tree(tree->l) * eval_tree(tree->r));
-		case VAL:   return (tree->val);
-	}
-	return (0);
+	if (tree->type == VAL)
+		return (tree->val);
+	if (tree->type == ADD)
+		return (solve(tree->l) + solve(tree->r));
+	return (solve(tree->l) * solve(tree->r));
 }
 
-int	main(int argc, char **argv)
+int main(int ac, char **av)
 {
-	if (argc != 2)
-		return (1);
-	node *tree = parse_expression(argv[1]);
-	if (!tree)
-		return (1);
-	printf("%d\n", eval_tree(tree));
-	destroy_tree(tree);
+	node *tree;
+
+	if (ac == 2)
+	{
+		if ((tree = parse(tree)) == NULL)
+			return (1);
+		printf("%d\n", solve(tree));
+		return (destroy_tree(tree), 0);
+	}
+	return (1);
 }

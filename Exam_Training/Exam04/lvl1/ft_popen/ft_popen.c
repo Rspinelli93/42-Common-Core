@@ -49,46 +49,52 @@ This exercise is inspired by the libc's popen(). */
 
 int	ft_popen(const char *file, char *const argv[], char type)
 {
-	int		fd[2];
+	int	pipefd[2];
 	pid_t	pid;
 
-	if (type != 'r' && type != 'w')
+	if (!file || !argv || (type != 'r' && type != 'w'))
 		return (-1);
-	if (pipe(fd) == -1)
+	if (pipe(pipefd) == -1)
 		return (-1);
 	pid = fork();
 	if (pid == -1)
 	{
-		close(fd[0]);
-		close(fd[1]);
+		close(pipefd[0]);
+		close(pipefd[1]);
 		return (-1);
 	}
 	if (pid == 0)
 	{
 		if (type == 'r')
 		{
-			if (dup2(fd[1], STDOUT_FILENO) == -1);
+			close(pipefd[0]);
+			if (dup2(pipefd[1], 1) == -1)
+			{
+				close(pipefd[1]);
 				exit(1);
-			close(fd[0]);
-			close(fd[1]);
+			}
+			close(pipefd[1]);
 		}
 		else
 		{
-			if (dup2(fd[0], STDIN_FILENO) == -1);
+			close(pipefd[1]);
+			if (dup2(pipefd[0], 0) == -1)
+			{
+				close(pipefd[0]);
 				exit(1);
-			close(fd[1]);
-			close(fd[0]);
+			}
+			close(pipefd[0]);
 		}
 		execvp(file, argv);
 		exit(1);
 	}
 	if (type == 'r')
 	{
-		close(fd[1]);
-		return (fd[0]);
+		close(pipefd[1]);
+		return (pipefd[0]);
 	}
-	close(fd[0]);
-	return (fd[1]);
+	close(pipefd[0]);
+	return (pipefd[1]);
 }
 
 /*
