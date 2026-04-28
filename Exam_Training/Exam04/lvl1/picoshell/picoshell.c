@@ -97,7 +97,9 @@ int picoshell(char **cmds[])
 			prev_fd = -1;
 		i++;
 	}
-	while (wait(0) > 0)
+	while (wait(NULL) > 0)
 		;
 	return (0);
 }
+
+//* prev_fd is the baton - child reads it, parent passes fd[0] as the next baton

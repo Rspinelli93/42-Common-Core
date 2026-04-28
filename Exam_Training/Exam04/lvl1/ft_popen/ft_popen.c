@@ -93,6 +93,7 @@ int ft_popen(const char *file, char *const argv[], char type)
 }
 
 /*
+//* TYPE IS FROM THE PARENT PERSPECTIVE, GIVE CHILD THE OPPOSITE END
 How it works:
 Two cases:
 'r' (read from command output):
