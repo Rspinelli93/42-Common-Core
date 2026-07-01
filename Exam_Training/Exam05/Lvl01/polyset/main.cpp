@@ -98,3 +98,28 @@ int main(int argc, char **argv) {
   delete t;
   return 0;
 }
+
+// Objective: practice OOP composition/inheritance and the difference between a 
+// bag (multiset — duplicates allowed) and a set (no duplicates).
+
+// Breakdown:
+
+// searchable_array_bag / searchable_tree_bag: you're given array_bag/tree_
+// bag (store elements, allow duplicates, no search). You inherit from them 
+// AND implement searchable_bag's interface (probably a contains(T) method) — 
+// so you're adding search capability on top of existing storage without rewriting 
+// storage logic. This tests multiple inheritance (implementation inheritance
+// from the concrete bag + interface inheritance from the abstract searchable_bag).
+
+// set: not inheritance — composition. set has a searchable_bag* internally 
+// (that's the point of making searchable_bag abstract — set doesn't care if 
+// it wraps an array or tree implementation). set enforces the actual 
+// set property: no duplicates. So set::insert must check contains() before adding.
+
+// Real lesson here: program to an interface, not an implementation — 
+// set only knows about searchable_bag, letting you swap array/tree backend 
+// with zero changes to set's code.
+
+// Also testing: orthodox canonical form (constructor, copy constructor, 
+// 	operator=, destructor) on every class, and proper const usage on 
+// 	read-only methods (contains, size, etc.)

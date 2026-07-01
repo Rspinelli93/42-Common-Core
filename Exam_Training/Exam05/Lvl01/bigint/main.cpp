@@ -63,3 +63,38 @@ bigint const &other
 
 	return (0);
 }
+
+// Objective: implement arbitrary-precision unsigned int using 
+// string/vector as storage instead of a fixed-size int.
+// Design decisions you need to make:
+
+// Storage: std::string of digits (easiest for base-10 shift/print) 
+// or std::vector<int> of digits. String is simpler for this subject 
+// since shift/print are base-10 native operations.
+// Store digits most significant first (normal reading order) — 
+// makes <</>> and print trivial. Reversed storage only helps addition, 
+// and addition isn't that much harder either way.
+
+// Operators needed:
+
+// operator+ — pure, const, returns new bigint. Classic manual addition: 
+// iterate from least significant digit, carry.
+// operator==, <, etc. — compare length first, then lexicographic if 
+// same length (works because no leading zeros).
+// operator<<(int n) — append n zeros.
+// operator>>(int n) — drop last n digits (chars), if n >= length result is "0".
+// operator<<(ostream&, bigint const&) — free function, print the string.
+
+// Critical trap #1: leading zeros. "007" must never exist internally, 
+// or comparisons/printing break. Normalize in constructor and after 
+// every operation (strip leading zeros, but keep at least one digit "0").
+
+// Critical trap #2: constructing from string — validate digits, 
+// handle "0" specifically.
+
+// Critical trap #3: comparisons only work by length-then-lex-compare because 
+// you guarantee no leading zeros. If you skip normalization, comparison 
+// logic is wrong.
+
+// Canonical form: constructor, copy ctor, operator=, destructor — all 
+// needed, all should be trivial since you likely just hold a std::string.
