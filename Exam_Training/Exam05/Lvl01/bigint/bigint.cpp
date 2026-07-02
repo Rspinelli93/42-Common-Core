@@ -1,66 +1,157 @@
 #include "bigint.hpp"
 
-bigint::bigint() : _digits("0") {}
+bigint::bigint() : _num("0")
+{
 
-bigint::~bigint() {}
+}
 
-bigint::bigint( unsigned long long num ) : _digits(std::to_string(num)) {};
+bigint::~bigint()
+{
 
-bigint::bigint(bigint const &other) : _digits(other._digits) {}
+}
+
+bigint::bigint( unsigned long long num ) : _num(std::to_string(num))
+{
+
+}
+
+bigint::bigint( std::string num ) : _num(num)
+{
+
+}
+
+bigint::bigint( bigint const &other ) : _num(other._num)
+{
+
+}
 
 bigint &bigint::operator=(bigint const &other)
 {
 	if (this != &other)
-		this->_digits = other._digits;
+		this->_num = other._num;
+	return ( *this );
+}
+
+std::string bigint::getNum( void ) const
+{
+	return (this->_num);
+}
+
+bool	bigint::operator==( bigint const &x ) const
+{
+	return (this->_num == x._num);
+}
+
+bool	bigint::operator!=( bigint const &x ) const
+{
+	return !(*this == x);
+}
+
+bool	bigint::operator<( bigint const &x ) const
+{
+	if (this->_num.length() != x._num.length())
+		return (this->_num.length() < x._num.length());
+	return (this->_num.compare(x._num) < 0);
+}
+
+bool	bigint::operator>( bigint const &x ) const
+{
+	return (x < *this);
+}
+
+bool	bigint::operator<=( bigint const &x ) const
+{
+	return !(x < *this);
+}
+
+bool	bigint::operator>=( bigint const &x ) const
+{
+	return !(*this < x);
+}
+
+static std::string sumSchool(std::string x, std::string y)
+{
+	int i = x.size() - 1;
+	int j = y.size() - 1;
+	int carry = 0;
+	std::string ret;
+
+	while (i >= 0 || j >= 0 || carry > 0)
+	{
+		int digitX = (i >= 0) ? x[i] - '0' : 0;
+		int digitY = (j >= 0) ? y[j] - '0' : 0;
+		int sum = digitX + digitY + carry;
+
+		ret.insert(ret.begin(), (sum % 10) + '0');
+		carry = sum / 10;
+		i--;
+		j--;
+	}
+	return (ret);
+}
+
+bigint	&bigint::operator+=( bigint const &x )
+{
+	this->_num = sumSchool(this->_num, x._num);
 	return (*this);
 }
 
-//-----------
-
-void bigint::_addRecursive(int posA, int posB, int carry, bigint const &other)
+bigint	bigint::operator+( bigint const &x ) const
 {
-	if (posA < 0 && posB < 0 && carry == 0)
-		return ;
-
-	int digitA;
-	int digitB;
-	if (posA >= 0)
-		digitA = _digits[posA] + '0';
-	else
-		digitA = 0;
-	if (posB >= 0)
-		digitB = _digits[posB] + '0';
-	else
-		digitB = 0;
-	
-	int sum = digitA + digitB + carry;
-
-	_addRecursive(posA - 1, posB -1, sum / 10, other);
-
-	if (posA >= 0)
-		_digits[posA] = (sum % 10) + '0';
-	else
-		_digits = char((sum % 10) + '0') + _digits;
+	bigint ret(*this);
+	ret += x;
+	return (ret);
 }
 
-bigint bigint::operator+( bigint const &other ) const
+bigint	&bigint::operator++( void )
 {
-	bigint copy(*this);
-	copy += other;
-	return (copy);
-}
-
-bigint &bigint::operator++(void) { *this += (bigint)1; return (*this); }
-
-bigint bigint::operator++(int) 
-{
-	bigint copy(*this);
-	*this += (bigint)1;
-	return (copy);
-}
-
-bigint &bigint::operator+=( bigint const &other )
-{
-	_addRecursive(_digits.size() - 1, other._digits.size() -1, 0, other);
+	*this += bigint(1);
 	return (*this);
+}
+
+bigint	bigint::operator++( int )
+{
+	bigint copy(*this);
+	++(*this);
+	return (copy);
+}
+
+bigint	&bigint::operator<<=( bigint const &n )
+{
+	if (this->_num != "0")
+	{
+		size_t shift = std::stoul(n._num);
+		this->_num.append(shift, '0');
+	}
+	return (*this);
+}
+
+bigint	bigint::operator<<( bigint const &n ) const
+{
+	bigint ret(*this);
+	ret <<= n;
+	return (ret);
+}
+
+bigint	&bigint::operator>>=( bigint const &n )
+{
+	size_t shift = std::stoul(n._num);
+	if (shift >= this->_num.size())
+		this->_num = "0";
+	else
+		this->_num.erase(this->_num.size() - shift);
+	return (*this);
+}
+
+bigint	bigint::operator>>( bigint const &n ) const
+{
+	bigint ret(*this);
+	ret >>= n;
+	return (ret);
+}
+
+std::ostream &operator<<(std::ostream &out, bigint const &number)
+{
+	out << number.getNum();
+	return (out);
 }

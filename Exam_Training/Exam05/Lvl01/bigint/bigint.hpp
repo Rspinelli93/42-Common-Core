@@ -2,41 +2,40 @@
 #define BIGINT_HPP
 
 #include <iostream>
+#include <string>
 
 class bigint
 {
 	private:
-		 std::string _digits;
+		std::string _num;
+
 	public:
 		bigint();
 		~bigint();
 		bigint( unsigned long long num );
-		bigint(bigint const &other);
+		bigint( std::string num );
+		bigint( bigint const &other );
 		bigint &operator=(bigint const &other);
+		std::string getNum( void ) const;
 
-		//Adding
-		void _addRecursive(int posA, int posB, int carry, bigint const &other);
-		bigint operator+(bigint const &other) const;
-		bigint &operator++( void );
-		bigint operator++( int );
-		bigint &operator+=(bigint const &other);
+		bool	operator==( bigint const &x ) const;
+		bool	operator!=( bigint const &x ) const;
+		bool	operator<=( bigint const &x ) const;
+		bool	operator>=( bigint const &x ) const;
+		bool	operator>( bigint const &x ) const;
+		bool	operator<( bigint const &x ) const;
 
-		//Bit shift
-		bigint operator<<( bigint const &other ) const;
-		bigint operator>>( bigint const &other ) const;
-		bigint &operator>>=( bigint const &other );
-		bigint &operator<<=( bigint const &other );
+		bigint	operator+( bigint const &x ) const;
+		bigint	&operator+=( bigint const &x );
+		bigint	&operator++( void );
+		bigint	operator++( int );
 
-		//Comparison
-		bool operator>( bigint const &other ) const;
-		bool operator<( bigint const &other ) const;
-		bool operator<=( bigint const &other ) const;
-		bool operator>=( bigint const &other ) const;
-		bool operator!=( bigint const &other ) const;
-		bool operator==( bigint const &other ) const;
-
+		bigint	operator<<( bigint const &n ) const;
+		bigint	&operator<<=( bigint const &n );
+		bigint	operator>>( bigint const &n ) const;
+		bigint	&operator>>=( bigint const &n );
 };
 
-std::ostream &operator<<(std::ostream &out, bigint const &num);
+std::ostream &operator<<(std::ostream &out, bigint const &number);
 
 #endif

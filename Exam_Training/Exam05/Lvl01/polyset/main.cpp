@@ -48,6 +48,9 @@ All classes should be under orthodox canonical form. Don't forget the const.
 */
 
 #include "searchable_bag.hpp"
+#include "searchable_array_bag.hpp"
+#include "searchable_tree_bag.hpp"
+#include "polyset.hpp"
 
 #include <iostream>
 #include <stdlib.h>
