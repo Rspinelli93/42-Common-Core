@@ -1,4 +1,5 @@
 #include "searchable_tree_bag.hpp"
+#include <cstddef>
 
 //*
 searchable_tree_bag::searchable_tree_bag()
@@ -31,7 +32,7 @@ bool searchable_tree_bag::has(int value) const
 {
 	node *current = tree;
 
-	while (current != nullptr)
+	while (current != NULL)
 	{
 		if (value == current->value)
 			return (true);
