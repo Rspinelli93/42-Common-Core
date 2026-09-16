@@ -31,3 +31,7 @@
 [submodule "Lvl05/webserv"]
 	path = Lvl05/webserv
 	url = https://github.com/Rspinelli93/webserv.git
+
+[submodule "Lvl05/Inception"]
+	path = Lvl05/Inception
+	url = https://github.com/Rspinelli93/Inception.git
