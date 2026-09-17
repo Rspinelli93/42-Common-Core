@@ -53,3 +53,33 @@ example:
 ..o.......o................
 %>
 */
+
+#include <unistd.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+typedef struct s_data
+{
+	int		lines;
+	char	empty;
+	char	obstacle;
+	char	full;
+}	t_data ;
+
+t_data	*get_data(char *str)
+{
+	return NULL;
+}
+
+int main(int ac, char** av)
+{
+	if (ac != 2)
+		return (1);
+	for (int i = 1; i < ac; i++)
+	{
+		if (!validate_map(av[i]))
+		{
+			fprintf(stderr, "map error\n")
+		}
+	}
+}
